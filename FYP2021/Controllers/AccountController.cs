@@ -14,6 +14,13 @@ using System.Security.Claims;
 // ADD using MODEL
 
 namespace FYP2021.Controllers
+
+
+
+
+
+
+    //changes made by syakir
 {
     [Authorize(AuthenticationSchemes = "Account")]
     public class AccountController : Controller
