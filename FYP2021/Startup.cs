@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
+
 namespace FYP2021
 {
     public class Startup
@@ -24,6 +25,16 @@ namespace FYP2021
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            // adding authentication handler for Account using authentication scheme "Account"
+            services
+               .AddAuthentication("Account")
+               .AddCookie("Account",
+                   options =>
+                   {
+                       options.LoginPath = "/Account/Login/";
+                       options.AccessDeniedPath = "/Account/Forbidden/";
+                   });
+
         }
 
 
@@ -36,6 +47,7 @@ namespace FYP2021
             }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvc(
                routes =>
                {
