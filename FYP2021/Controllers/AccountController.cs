@@ -15,12 +15,6 @@ using System.Security.Claims;
 
 namespace FYP2021.Controllers
 
-
-
-
-
-
-    //changes made by syakir
 {
     [Authorize(AuthenticationSchemes = "Account")]
     public class AccountController : Controller
