@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace FYP2021.Controllers
 {
-    public class HomePageController : Controller
+    public class StudentController : Controller
     {
         public IActionResult Index()
         {
-            return View("Index");
+            return View();
         }
 
 
+
+        public IActionResult StudentLoginpage()
+        {
+            return View();
+        }
     }
 }
