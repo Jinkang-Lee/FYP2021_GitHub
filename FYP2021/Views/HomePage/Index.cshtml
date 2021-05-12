@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Concession Card</title>
+
+    <!-- style sheets references -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/HomePage.css" />
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- script files references -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+</head>
+
+
+<body>
+    <!--RP Logo Area-->
+    <section id="banner" class="rp-logo">
+        <img src="~/images/RP_Logo.png" width="200" height="80" />
+    </section>
+
+
+    <!--Image + Student or Admin login choice-->
+    <section id="banner" class="main-area">
+        <!--NOT SURE WHERE TO PUT ANNOUNCEMENT YET-->
+
+        <div class="container">
+            <div class="row">
+                <!--Text to intro what is this website about-->
+                <div class="col-md-6 text-center" id="text-in">
+                    <h2 class="text-on-top">STUDENT CONCESSION CARD</h2>
+                    <p>
+                        This website is created to improve on Republic Polytechnic's student concession card system.
+                        This website allows both students and admins of Republic Polytechnic to check and track card status with ease.
+                    </p>
+                    <p>Click either "Student" or "Admin" to begin!</p>
+
+
+
+                </div>
+
+                <!--Image beside the text-->
+                <div class="offset-sm-1  col-md-5" id="top-image">
+                    <img src="~/images/Friends.png" class="img-fluid" />
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!--Buttons for Student and Admin login-->
+                <form method="get" action="/Student/StudentLogin">
+
+                    <div class="col-sm-6" id="student-button">
+                        <button class="btn btn-primary btn-toolbar btn-lg" type="submit">Student</button>
+                    </div>
+                </form>
+
+                <form method="get" action="/Admin/AdminLogin">
+                    <div class="col-sm-6" id="admin-button">
+                        <button class="btn btn-primary btn-toolbar btn-lg" type="submit">Admin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!--Announcement Area-->
+
+        <h1 class="text-center" id="announcement-text">Announcements</h1>
+        <div class="container" id="announcement-area">
+            <div class="row">
+                <!--Image beside announcement-->
+                <div class="col-sm-5" id="announcement-image">
+                    <img src="~/images/Calendar2.png" class="img-fluid" />
+                </div>
+
+
+                <div class="col-sm-7 text-center" >
+                    <table class="table" id="announcement-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Announcements</th>
+                                <th scope="col">Released Date</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Maintanence on 13th May 2021 - Please do not access website</td>
+                                <td>5/12/2021</td>
+                            </tr>
+
+                            <tr>
+                                <td>Maintanence on 13th May 2021 - Please do not access website</td>
+                                <td>5/12/2021</td>
+                            </tr>
+
+                            <tr>
+                                <td>Maintanence on 13th May 2021 - Please do not access website</td>
+                                <td>5/12/2021</td>
+                            </tr>
+
+                            <tr>
+                                <td>Maintanence on 13th May 2021 - Please do not access website</td>
+                                <td>5/12/2021</td>
+                            </tr>
+
+                            <tr>
+                                <td>Maintanence on 13th May 2021 - Please do not access website</td>
+                                <td>5/12/2021</td>
+                            </tr>
+
+                            <tr>
+                                <td>Maintanence on 13th May 2021 - Please do not access website</td>
+                                <td>5/12/2021</td>
+                            </tr>
+
+                            <tr>
+                                <td>Maintanence on 13th May 2021 - Please do not access website</td>
+                                <td>5/12/2021</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+</body>
+</html>

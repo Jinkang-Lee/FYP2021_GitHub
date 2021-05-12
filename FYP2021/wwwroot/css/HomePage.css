@@ -1,0 +1,70 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat';
+}
+
+
+
+/*RP Logo area*/
+.rp-logo
+{
+    height: 80px;
+}
+
+
+
+
+/*Main area with intro about website and image*/
+.main-area {
+    height: 650px;
+    background: #11998e; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #38ef7d, #11998e); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#text-in
+{
+    color: white;
+    font-size: 20px;
+    margin-top: 170px;
+}
+
+#top-image
+{
+    margin-top: 100px;
+}
+
+#student-button
+{
+    margin-left:140px;
+}
+
+
+
+
+
+/*Announcement area*/
+#announcement-area
+{
+    height: 800px;
+}
+
+#announcement-text
+{
+    margin-top: 15px;
+    font-size: 50px;
+}
+
+#announcement-image
+{
+    margin-top: 150px
+}
+
+#announcement-table
+{
+    margin-top: 100px;
+}
