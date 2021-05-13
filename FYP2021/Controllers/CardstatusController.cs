@@ -9,9 +9,11 @@ namespace FYP2021.Controllers
     public class CardstatusController : Controller
     {
         public IActionResult ListCard()
-         {
-            return View("ListCard");
+        {
+            return View();
         }
+
+
     }
 }
-//Yiyang testing
+
