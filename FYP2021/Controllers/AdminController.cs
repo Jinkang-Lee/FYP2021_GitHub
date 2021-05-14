@@ -14,10 +14,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FYP2021.Controllers
 {
-
-    //This controller is using "Student" AUTH SCHEME
-    [Authorize(AuthenticationSchemes = "Student")]
-    public class StudentController : Controller
+    //This controller is using "Admin" AUTH SCHEME
+    [Authorize(AuthenticationSchemes = "Admin")]
+    public class AdminController : Controller
     {
         public IActionResult Index()
         {
@@ -25,8 +24,7 @@ namespace FYP2021.Controllers
         }
 
 
-
-        public IActionResult StudentLoginpage()
+        public IActionResult AdminLoginPage()
         {
             return View();
         }
