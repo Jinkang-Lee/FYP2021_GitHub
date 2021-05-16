@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace FYP2021.Controllers
 {
     //This controller is using "Admin" AUTH SCHEME
-    [Authorize(AuthenticationSchemes = "Admin")]
+    [Authorize(AuthenticationSchemes = "AdminAccount")]
     public class AdminController : Controller
     {
         public IActionResult Index()
