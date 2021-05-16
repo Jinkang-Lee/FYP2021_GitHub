@@ -38,7 +38,7 @@
 
         <script>
             $(document).ready(function () {
-                $('#JSPerformTable').DataTable({
+                $('#StudentCardsTable').DataTable({
                     ordering: true,
                     paging: true,
                     searching: true,
@@ -58,11 +58,11 @@
     @{
         // Table for the update card status
     }
-    <table id="StudentCards" class="table">
+    <table id="StudentCardsTable" class="table">
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Emailt</th>
+                <th>Email</th>
                 <th>Phone Number</th>
                 <th>Card Status</th>
                 <th>Date</th>
@@ -72,10 +72,10 @@
                 }
 
                 @*<th scope="col">Name</th>
-                    <th scope="col">Emailt</th>
-                    <th> scope="col"Phone Number</th>
-                    <th scope="col">Card Status</th>
-                    <th scope="col">Date</th>*@
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Card Status</th>
+                <th scope="col">Date</th>*@
             </tr>
         </thead>
 
