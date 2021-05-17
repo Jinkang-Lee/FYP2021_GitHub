@@ -28,5 +28,11 @@ namespace FYP2021.Controllers
         {
             return View();
         }
+
+        // View to the generate report in Admin folder
+        public IActionResult Report()
+        {
+            return View();
+        }
     }
 }
