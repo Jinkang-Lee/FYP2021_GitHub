@@ -28,7 +28,6 @@ namespace FYP2021.Controllers
         AND admin_password = HASHBYTES('SHA1', '{1}')";
 
 
-        private const string ROLE_COL = "Role";
         private const string NAME_COL = "Name";
 
         private const string REDIRECT_CNTR = "Admin";
@@ -50,7 +49,7 @@ namespace FYP2021.Controllers
         [HttpPost]
         public IActionResult Login(LoginUser user)
         {
-            if (!AuthenticateUser(user.UserId, user.Password, out ClaimsPrincipal principal))
+            if (!AuthenticateUser(user.Email, user.Password, out ClaimsPrincipal principal))
             {
                 ViewData["Message"] = "Incorrect Email or Password";
                 ViewData["MsgType"] = "warning";
@@ -91,20 +90,19 @@ namespace FYP2021.Controllers
 
 
         // FOR AUTHENTICATING USERS
-        private bool AuthenticateUser(string uid, string pw, out ClaimsPrincipal principal)
+        private bool AuthenticateUser(string Email, string Password, out ClaimsPrincipal principal)
         {
             principal = null;
 
-            DataTable ds = DBUtl.GetTable(LOGIN_SQL, uid, pw);
+            DataTable ds = DBUtl.GetTable(LOGIN_SQL, Email, Password);
             if (ds.Rows.Count == 1)
             {
                 principal =
                    new ClaimsPrincipal(
                       new ClaimsIdentity(
                          new Claim[] {
-                        new Claim(ClaimTypes.NameIdentifier, ds.Rows[0]["Id"].ToString()),
+                        new Claim(ClaimTypes.NameIdentifier, ds.Rows[0]["Email"].ToString()),
                         new Claim(ClaimTypes.Name, ds.Rows[0][NAME_COL].ToString()),
-                        new Claim(ClaimTypes.Role, ds.Rows[0][ROLE_COL].ToString())
                          }, "Basic"
                       )
                    );

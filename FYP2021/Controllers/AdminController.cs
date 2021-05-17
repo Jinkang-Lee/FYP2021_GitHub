@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 //INSERT MODEL HERE
+using FYP2021.Models;
 using Microsoft.AspNetCore.Http;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -14,7 +15,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FYP2021.Controllers
 {
-    //This controller is using "Admin" AUTH SCHEME
+    //This controller is using "AdminAccount" AUTH SCHEME
     [Authorize(AuthenticationSchemes = "AdminAccount")]
     public class AdminController : Controller
     {
@@ -23,11 +24,12 @@ namespace FYP2021.Controllers
             return View();
         }
 
-
         public IActionResult AdminLoginPage()
         {
             return View();
         }
+
+
 
         // View to the generate report in Admin folder
         public IActionResult Report()
