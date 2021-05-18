@@ -24,10 +24,6 @@ namespace FYP2021.Controllers
             return View();
         }
 
-        public IActionResult AdminLoginPage()
-        {
-            return View();
-        }
 
 
 

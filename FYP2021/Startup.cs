@@ -40,8 +40,8 @@ namespace FYP2021
 
             // adding authentication handler for Account using authentication scheme "StudentAccount"
             services
-               .AddAuthentication("StudentAccount")
-               .AddCookie("StudentAccount",
+               .AddAuthentication("Student")
+               .AddCookie("Student",
                    options =>
                    {
                        options.LoginPath = "/StudentAccount/Login/";
