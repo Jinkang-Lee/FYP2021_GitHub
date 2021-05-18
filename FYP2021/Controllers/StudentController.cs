@@ -16,7 +16,7 @@ namespace FYP2021.Controllers
 {
 
     //This controller is using "Student" AUTH SCHEME
-    [Authorize(AuthenticationSchemes = "Student")]
+    [Authorize(AuthenticationSchemes = "StudentAccount")]
     public class StudentController : Controller
     {
         public IActionResult Index()

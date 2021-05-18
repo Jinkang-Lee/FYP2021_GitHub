@@ -12,24 +12,24 @@
 //using System.Security.Claims;
 
 //// ADD using MODEL
+//using FYP2021.Models;
 
 //namespace FYP2021.Controllers
 
 //{
-//    [Authorize(AuthenticationSchemes = "Student")]
+//    [Authorize(AuthenticationSchemes = "StudentAccount")]
 //    public class StudentAccountController : Controller
 //    {
-//        private const string AUTHSCHEME = "Student";
+//        private const string AUTHSCHEME = "StudentAccount";
 
-//        // Uncomment only AFTER DATABASE IS DONE!!!
-//        //private const string LOGIN_SQL =
-//        //@"SELECT * FROM <INSERT Student USER HERE> 
-//        // WHERE <INSERT Student Email> = '{0}' 
-//        //STUDENT DONT NEED PASSWORD SO DONT NEED PUT PASSWORD
+//        private const string LOGIN_SQL =
+//        @"SELECT * FROM Student
+//         WHERE student_email = '{0}'";
+//        //NEED TO THINK ABOUT HOW TO DO THE 6 DIGIT PIN THING
 
 
 //        private const string ROLE_COL = "Role";
-//        private const string NAME_COL = "Name";
+//        private const string NAME_COL = "student_email";
 
 //        private const string REDIRECT_CNTR = "Student";
 //        private const string REDIRECT_ACTN = "Index";
@@ -50,7 +50,7 @@
 //        [HttpPost]
 //        public IActionResult Login(LoginUser user)
 //        {
-//            if (!AuthenticateUser(user.UserId, user.Password, out ClaimsPrincipal principal))
+//            if (!AuthenticateUser(user.Email, user.Password, out ClaimsPrincipal principal))
 //            {
 //                ViewData["Message"] = "Incorrect Email or Password";
 //                ViewData["MsgType"] = "warning";
