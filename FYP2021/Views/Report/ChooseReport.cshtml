@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Concession Card - Admin</title>
+    <title>Report Generation - Admin</title>
 
     <!-- style sheets references -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -18,59 +18,47 @@
 
 </head>
 
-
 <body>
     <!--RP Logo Area-->
     <section id="banner" class="rp-logo">
         <img src="~/images/RP_Logo.png" width="200" height="80" />
     </section>
 
-
-    <section id="banner" class="button-area">
+    <section id="banner" class="button-area" style=" align-content: center";>
         <div class="container">
             <div class="row">
-                <form method="get" action="/Report/ChooseReport">
+                <form method="get" action="/Report/PendingForTransitLink">
                     <div class="col-md-6" id="first-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">Generate Report</button>
+                        <button class="btn btn-primary btn-toolbar btn-lg"> Pending for TransitLink </button>
                     </div>
                 </form>
-                
 
-                <form method="get" action="/Controller/Action">
+                <form method="get" action="/Report/ReadyForApplication">
                     <div class="col-md-6" id="first-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg" >Announcement</button>
+                        <button class="btn btn-primary btn-toolbar btn-lg"> Ready for Application </button>
                     </div>
                 </form>
-                
             </div>
 
-
             <div class="row">
-                <form method="get" action="/Controller/Action">
+                <form method="get" action="/Report/CardReady">
                     <div class="col-md-6" id="second-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">Update Card Status</button>
+                        <button class="btn btn-primary btn-toolbar btn-lg"> Card Ready </button>
                     </div>
                 </form>
 
-                <form method="get" action="/Controller/Action">
-                    @if (User.IsInRole("SuperAdmin"))
-                    {
-                        <div class="col-md-6" id="second-row-btn">
-                            <button class="btn btn-primary btn-toolbar btn-lg" >Edit Admin User</button>
-                        </div>
-                    }
-                </form>      
-            </div>
-
-
-            <div class="row">
-                <form method="get" action="/Admin/EditStudent">
-                    <div class="col-md-6" id="third-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">Edit Student User</button>
+                <form method="get" action="/Report/CardDispatched">
+                    <div class="col-md-6" id="second-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg"> Card Dispatched </button>
                     </div>
                 </form>
             </div>
+
         </div>
     </section>
+
+
+
 </body>
+
 </html>
