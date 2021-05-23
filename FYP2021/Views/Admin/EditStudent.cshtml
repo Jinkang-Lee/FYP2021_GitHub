@@ -25,13 +25,13 @@
         <img src="~/images/RP_Logo.png" width="200" height="80" />
     </section>
 
-
+    <span style="color:red">@TempData["Msg"]</span>
     <section id="banner" class="button-area">
         <div class="container">
             <div class="row">
                 <form method="get" action="/Admin/CreateStudent">
                     <div class="col-md-4" id="first-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg" >Create Student</button>
+                        <button class="btn btn-primary btn-toolbar btn-lg">Create Student</button>
                     </div>
                 </form>
 
@@ -39,7 +39,7 @@
                 <!--LOCK STUDENT FUNCTION WILL BE INSIDE LIST STUDENT-->
                 <form method="get" action="/Controller/Action">
                     <div class="col-md-4" id="first-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg" >List Students</button>
+                        <button class="btn btn-primary btn-toolbar btn-lg">List Students</button>
                     </div>
                 </form>
 

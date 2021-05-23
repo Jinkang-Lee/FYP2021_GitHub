@@ -32,25 +32,29 @@
         <div class="container" id="Create-Student-Container">
 
             <div class="row">
-                <form method="post" action="/Admin/CreateStudentPost">
+                <form method="post" action="/Admin/CreateStudent">
                     <div class="form-group">
                         <input asp-for="StudEmail" style="font-size: 20px; margin-top: 80px;" class="form-control" placeholder="Student Email" />
+                        <span asp-validation-for="StudEmail" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <input asp-for="StudName" style="font-size: 20px; margin-top: 10px;" class="form-control" placeholder="Student Name" />
+                        <span asp-validation-for="StudName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <input asp-for="StudPhNum" style="font-size: 20px; margin-top: 10px;" class="form-control" placeholder="Student Phone" />
+                        <span asp-validation-for="StudPhNum" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <input asp-for="CardStatus" style="font-size: 20px; margin-top: 10px;" class="form-control" placeholder="Card Status" />
+                        <span asp-validation-for="CardStatus" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" style="margin-left: 200px;" class="btn btn-lg btn-primary" value="Login" />
+                        <input type="submit" style="margin-left: 200px;" class="btn btn-lg btn-primary" value="Create Student" />
                     </div>
                 </form>
 

@@ -45,5 +45,28 @@ namespace FYP2021.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult CreateStudent(Student student)
+        {
+            string userid = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (ModelState.IsValid)
+            {
+                string sql = @"INSERT INTO Student
+                                            (student_email, student_name, ph_num, card_status)
+                                            VALUES ('{0}', '{1}', {2}, '{3}')";
+
+                if (DBUtl.ExecSQL(sql, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus) == 1)
+                    TempData["Msg"] = "New student Added!";
+                return RedirectToAction("EditStudent");
+
+            }
+            else
+            {
+                TempData["Msg"] = "Invalid information entered!";
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
