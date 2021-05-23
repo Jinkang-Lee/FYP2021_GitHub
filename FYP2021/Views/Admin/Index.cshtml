@@ -26,8 +26,51 @@
     </section>
 
 
+    <section id="banner" class="button-area">
+        <div class="container">
+            <div class="row">
+                <form method="get" action="/Controller/Action">
+                    <div class="col-md-6" id="first-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg">Generate Report</button>
+                    </div>
+                </form>
+                
 
-    <h1>CONGRATS ADMIN YOU HAVE LOGGED IN</h1>
+                <form method="get" action="/Controller/Action">
+                    <div class="col-md-6" id="first-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg" >Announcement</button>
+                    </div>
+                </form>
+                
+            </div>
 
+
+            <div class="row">
+                <form method="get" action="/Controller/Action">
+                    <div class="col-md-6" id="second-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg">Update Card Status</button>
+                    </div>
+                </form>
+
+                <form method="get" action="/Controller/Action">
+                    @if (User.IsInRole("SuperAdmin"))
+                    {
+                        <div class="col-md-6" id="second-row-btn">
+                            <button class="btn btn-primary btn-toolbar btn-lg" >Edit Admin User</button>
+                        </div>
+                    }
+                </form>      
+            </div>
+
+
+            <div class="row">
+                <form method="get" action="/Admin/EditStudent">
+                    <div class="col-md-6" id="third-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg">Edit Student User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

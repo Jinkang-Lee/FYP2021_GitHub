@@ -1,0 +1,62 @@
+﻿@model Student
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Concession Card - Admin</title>
+
+    <!-- style sheets references -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!--INSERT CSS FILE HERE-->
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- script files references -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+</head>
+
+
+<body>
+    <!--RP Logo Area-->
+    <section id="banner" class="rp-logo">
+        <img src="~/images/RP_Logo.png" width="200" height="80" />
+    </section>
+
+    <section id="banner" class="main-area">
+
+        <div class="container" id="Create-Student-Container">
+
+            <div class="row">
+                <form method="post" action="/Admin/CreateStudentPost">
+                    <div class="form-group">
+                        <input asp-for="StudEmail" style="font-size: 20px; margin-top: 80px;" class="form-control" placeholder="Student Email" />
+                    </div>
+
+                    <div class="form-group">
+                        <input asp-for="StudName" style="font-size: 20px; margin-top: 10px;" class="form-control" placeholder="Student Name" />
+                    </div>
+
+                    <div class="form-group">
+                        <input asp-for="StudPhNum" style="font-size: 20px; margin-top: 10px;" class="form-control" placeholder="Student Phone" />
+                    </div>
+
+                    <div class="form-group">
+                        <input asp-for="CardStatus" style="font-size: 20px; margin-top: 10px;" class="form-control" placeholder="Card Status" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" style="margin-left: 200px;" class="btn btn-lg btn-primary" value="Login" />
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

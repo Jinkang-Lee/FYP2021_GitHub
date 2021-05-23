@@ -32,5 +32,18 @@ namespace FYP2021.Controllers
         {
             return View();
         }
+
+
+        public IActionResult EditStudent()
+        {
+            return View();
+        }
+
+
+        //HTTP GET
+        public IActionResult CreateStudent()
+        {
+            return View();
+        }
     }
 }
