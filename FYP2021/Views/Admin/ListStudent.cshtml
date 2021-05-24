@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@model DataRowCollection
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -18,33 +22,32 @@
 
 </head>
 
-
 <body>
     <!--RP Logo Area-->
     <section id="banner" class="rp-logo">
         <img src="~/images/RP_Logo.png" width="200" height="80" />
     </section>
 
-    <span style="color:red">@TempData["Msg"]</span>
-    <section id="banner" class="button-area">
-        <div class="container">
-            <div class="row">
-                <form method="get" action="/Admin/CreateStudent">
-                    <div class="col-md-4" id="first-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">Create Student</button>
-                    </div>
-                </form>
+    <table class="table">
+        <tr>
+            <th>Student Email</th>
+            <th>Student Name</th>
+            <th>Student Phone No.</th>
+            <th>Card Status</th>
+        </tr>
+
+        @foreach (DataRow row in Model)
+        {
+            <tr>
+                <td>@row["student_email"]</td>
+                <td>@row["student_name"]</td>
+                <td>@row["ph_num"]</td>
+                <td>@row["card_status"]</td>
+            </tr>
+        }
 
 
-                <!--LOCK STUDENT FUNCTION WILL BE INSIDE LIST STUDENT-->
-                <form method="get" action="/Admin/ListStudent">
-                    <div class="col-md-4" id="first-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">List Students</button>
-                    </div>
-                </form>
+    </table>
 
-            </div>
-        </div>
-    </section>
 </body>
 </html>
