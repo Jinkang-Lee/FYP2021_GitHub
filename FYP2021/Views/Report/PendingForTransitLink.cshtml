@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model DataRowCollection
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -22,18 +24,18 @@
 
 <body>
 
-        <script>
-            $(document).ready(function () {
-                $('#ReportTable').DataTable({
-                    paging: true,
-                    ordering: true,
-                    searching: true,
-                    info: true,
-                    lengthMenu: [[5, 10, 20, -1], [5, 10, 20, "All"]]
+    <script>
+        $(document).ready(function () {
+            $('#ReportTable').DataTable({
+                paging: true,
+                ordering: true,
+                searching: true,
+                info: true,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, "All"]]
 
-                });
             });
-        </script>
+        });
+    </script>
 
     <!--RP Logo Area-->
     <section id="banner" class="rp-logo">
@@ -48,37 +50,24 @@
     </div>
 
     <div class="container" style=" align-content: center">
-        <table style="background-color: lightgray"; id="ReportTable" class="table">
+        <table style="background-color: lightgray" ; id="ReportTable" class="table">
             <thead>
                 <tr>
-                    <th scope="col">Student ID</th>
-                    <th scope="col">Student Name</th>
-                    <th scope="col">Date</th>
+                    <th scope="col"> Student ID </th>
+                    <th scope="col"> Student Name </th>
 
                 </tr>
             </thead>
-
             <tbody>
-                <tr>
-                    <td>Maintanence on 13th May 2021 - Please do not access website</td>
-                    <td>Syakier</td>
-                    <td>5/12/2021</td>
-                </tr>
-
-                <tr>
-                    <td>Maintanence on 13th May 2021 - Please do not access website</td>
-                    <td>Syakir</td>
-                    <td>5/12/2021</td>
-                </tr>
-
-                <tr>
-                    <td>Maintanence on 13th May 2021 - Please do not access website</td>
-                    <td>Syakirah</td>
-                    <td>5/12/2021</td>
-                </tr>
-
-
+                @foreach (DataRow row in Model)
+                {
+                    <tr>
+                        <td>@row["student_email"]</td>
+                        <td>@row["student_name"]</td>
+                    </tr>
+                }
             </tbody>
+            
         </table>
     </div>
 </body>
