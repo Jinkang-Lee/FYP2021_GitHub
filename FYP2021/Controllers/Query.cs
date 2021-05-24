@@ -12,5 +12,10 @@ namespace FYP2021.Controllers
         {
             return View();
         }
+
+        public IActionResult Test()
+        {
+            return View();
+        }
     }
 }
