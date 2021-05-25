@@ -34,10 +34,12 @@ namespace FYP2021.Controllers
         }
 
 
+
         public IActionResult EditStudent()
         {
             return View();
         }
+
 
 
         //HTTP GET
@@ -70,11 +72,69 @@ namespace FYP2021.Controllers
         }
 
 
+
+
         public IActionResult ListStudent()
         {
             string sql = "SELECT * FROM Student";
             DataTable dt = DBUtl.GetTable(sql);
             return View(dt.Rows);
         }
+
+
+
+
+        //HTTP GET FOR EDITING STUDENT IN THE LIST
+        public IActionResult ListEditStudent(string email)
+        {
+            string select = ("SELECT * FROM Student WHERE student_email = {0}");
+            List<Student> list = DBUtl.GetList<Student>(select, email);
+
+            if(list.Count == 1)
+            {
+                return View(list[0]);
+            }
+            else
+            {
+                TempData["Message"] = "Student Not Found!";
+                TempData["MsgType"] = "warning";
+                return RedirectToAction("ListStudent");
+            }
+        }
+
+
+
+
+        //HTTP POST FOR EDITING STUDENT IN THE LIST
+        [HttpPost]
+        public IActionResult ListEditStudent(Student student)
+        {
+            if(!ModelState.IsValid)
+            {
+                TempData["Message"] = "Invalid Input!";
+                TempData["MsgType"] = "warning";
+                return View("ListStudent");
+            }
+            else
+            {
+                string update = @"UPDATE Student SET student_email='{0}', student_name='{1}', ph_num={2}, card_status='{3}'";
+
+                int res = DBUtl.ExecSQL(update, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus);
+
+                if (res == 1)
+                {
+                    TempData["Message"] = "Success!";
+                    TempData["MsgType"] = "success";
+                }
+                else
+                {
+                    TempData["Message"] = DBUtl.DB_Message;
+                    TempData["MsgType"] = "danger";
+                }
+                return RedirectToAction("ListStudent");
+            }
+        }
+
+
     }
 }

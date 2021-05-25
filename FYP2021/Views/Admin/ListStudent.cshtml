@@ -27,27 +27,41 @@
     <section id="banner" class="rp-logo">
         <img src="~/images/RP_Logo.png" width="200" height="80" />
     </section>
-
-    <table class="table">
-        <tr>
-            <th>Student Email</th>
-            <th>Student Name</th>
-            <th>Student Phone No.</th>
-            <th>Card Status</th>
-        </tr>
-
-        @foreach (DataRow row in Model)
-        {
-            <tr>
-                <td>@row["student_email"]</td>
-                <td>@row["student_name"]</td>
-                <td>@row["ph_num"]</td>
-                <td>@row["card_status"]</td>
-            </tr>
-        }
+    
+    <div class="container">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Student Email</th>
+                    <th>Student Name</th>
+                    <th>Student Phone No.</th>
+                    <th>Card Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
 
-    </table>
+            @foreach (DataRow row in Model)
+            {
+                <tr>
+                    <td>@row["student_email"]</td>
+                    <td>@row["student_name"]</td>
+                    <td>@row["ph_num"]</td>
+                    <td>@row["card_status"]</td>
+                    <td>
+                        <a asp-controller="Admin"
+                           asp-action="ListEditStudent"
+                           asp-route-id="@row["student_email"]">Edit</a>
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+
+    </div>
+
+    
 
 </body>
 </html>
