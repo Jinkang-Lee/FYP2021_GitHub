@@ -38,6 +38,13 @@ namespace FYP2021.Controllers
             DataTable dt = DBUtl.GetTable(sql);
             return View(dt.Rows);
         }
+        public IActionResult SummaryReport()
+        {
+            string sql = "SELECT * FROM Student";
+            DataTable dt = DBUtl.GetTable(sql);
+            return View(dt.Rows);
+            
+        }
         public IActionResult ChooseReport()
         {
             return View();
