@@ -22,7 +22,7 @@
 
 </head>
 
-<body>
+<body style="background-color: black">
 
     <!--RP Logo Area-->
     <section id="banner" class="rp-logo">
@@ -30,46 +30,44 @@
     </section>
 
     <div class="container">
+        <script>
+            $(document).ready(function () {
+                $('#ReportTable').DataTable({
+                    paging: true,
+                    ordering: true,
+                    searching: true,
+                    info: true,
+                    lengthMenu: [[5, 10, 20, -1], [5, 10, 20, "All"]]
 
-    </div>
-
-    <script>
-        $(document).ready(function () {
-            $('#ReportTable').DataTable({
-                paging: true,
-                ordering: true,
-                searching: true,
-                info: true,
-                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, "All"]]
-
+                });
             });
-        });
-    </script>
+        </script>
 
-    <div class="container" style="text-align: center">
-        <h1>
-            <span style="color: green"> Ready for Application </span>
-        </h1>
-    </div>
-    <div class="container" style=" align-content: center">
-        <table style="background-color: lightgray" ; id="ReportTable" class="table">
-            <thead>
-                <tr>
-                    <th scope="col"> Student ID </th>
-                    <th scope="col"> Student Name </th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (DataRow row in Model)
-                {
+        <div class="container" style="text-align: center">
+            <h1>
+                <span style="color: yellow"> Ready for Application </span>
+            </h1>
+        </div>
+        <div class="container" style="align-content: center">
+            <table style="background-color: yellow" ; id="ReportTable" class="table">
+                <thead>
                     <tr>
-                        <td>@row["student_email"]</td>
-                        <td>@row["student_name"]</td>
+                        <th scope="col"> Student ID </th>
+                        <th scope="col"> Student Name </th>
+
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (DataRow row in Model)
+                    {
+                        <tr>
+                            <td>@row["student_email"]</td>
+                            <td>@row["student_name"]</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
