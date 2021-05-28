@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/HomePage.css" />
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/ReportGen.css" />
 
     <!-- script files references -->
     <script src="~/lib/jquery/jquery.min.js"></script>
@@ -27,12 +28,12 @@
 
     <!--RP Logo Area-->
     <section id="banner" class="rp-logo">
-        <img src="~/images/RP_Logo.png" width="200" height="80" />
+        <a href="https://localhost:44383/Admin">
+            <img src="~/images/RP_Logo.png" width="200" height="80" />
+        </a>
     </section>
 
-    <div class="container">
 
-    </div>
 
     <script>
         $(document).ready(function () {
@@ -47,11 +48,7 @@
         });
     </script>
 
-    <div class="container" style="text-align: center">
-        <h1>
-            <span style="color: lime"> Card Dispatched </span>
-        </h1>
-    </div>
+    
 
     @if (TempData["Message"] != null)
     {
@@ -59,10 +56,17 @@
             @TempData["Message"]
         </div>
     }
+<section id="main-area">
+    <div class="container" style="text-align: center">
+        <h1>
+            <span style="color: black"> Card Dispatched </span>
+        </h1>
+    </div>
+
 
     <div class="container" style=" align-content: center">
         <table style="background-color: lightgray" ; id="ReportTable" class="table">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col"> Student ID </th>
                     <th scope="col"> Student Name </th>
@@ -80,6 +84,8 @@
             </tbody>
         </table>
     </div>
+</section>
+    
 </body>
 </html>
 
