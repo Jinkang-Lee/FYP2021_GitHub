@@ -106,13 +106,16 @@
             <tbody>
                 @foreach (DataRow row in Model)
                 {
-                    <tr>
-                        <td align='center'><input type='checkbox' name='check' id='check_4' onchange='checkChange();'></td>
-                        <td>@row["student_email"]</td>
-                        <td>@row["student_name"]</td>
-                        <td>@row["ph_num"]</td>
-                        <td>@row["card_status"]</td>
-                    </tr>
+                <tr>
+                        <td align='center'> <input type='checkbox' name='check' id='@row["student_email"]' onchange='checkChange();'>
+                        </td>
+
+
+                    <td>@row["student_email"]</td>
+                    <td>@row["student_name"]</td>
+                    <td>@row["ph_num"]</td>
+                    <td>@row["card_status"]</td>
+                </tr>
                 }
             </tbody>
 
