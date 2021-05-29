@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FYP2021.Models;
 using Microsoft.AspNetCore.Http;
-using System.Runtime.Serialization.Formatters.Binary;
+
 using System.IO;
 using System.Dynamic;
 using Microsoft.AspNetCore.Authorization;
@@ -87,7 +87,7 @@ namespace FYP2021.Controllers
         //HTTP GET FOR EDITING STUDENT IN THE LIST
         public IActionResult ListEditStudent(string email)
         {
-            string select = ("SELECT * FROM Student WHERE student_email = {0}");
+            string select = ("SELECT * FROM Student WHERE student_email = '{0}'");
             List<Student> list = DBUtl.GetList<Student>(select, email);
 
             if(list.Count == 1)
