@@ -52,5 +52,5 @@ jobs:
       with:
         app-name: 'ConcessionCard-myrp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d34508413d364d87afac49a569629e87 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5680eb4cbb214e6c9a83567c6d3ed380 }}
         package: .
