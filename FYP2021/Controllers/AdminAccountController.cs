@@ -168,7 +168,7 @@ namespace FYP2021.Controllers
                                     <a href='https://localhost:44383/AdminAccountController/ChangePassword?AdminEmail={1}'>Click Here!</a>";
 
                 string body = String.Format(template, user.AdminName, user.AdminEmail);
-                string subject = "";
+                string subject = "Forget Password";
                 string result;
 
                 if (EmailUtl.SendEmail(AdminEmail,subject, body, out result))
