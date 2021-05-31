@@ -76,9 +76,7 @@ namespace FYP2021.Controllers
 
         public IActionResult ListStudent()
         {
-            string sql = "SELECT * FROM Student";
-            DataTable dt = DBUtl.GetTable(sql);
-            return View(dt.Rows);
+            return View();
         }
 
 
@@ -134,6 +132,47 @@ namespace FYP2021.Controllers
                 return RedirectToAction("ListStudent");
             }
         }
+
+
+
+
+
+
+
+
+
+
+        //public IActionResult SendEmail()
+        //{
+
+        //    string sql = "SELECT * FROM Student";
+        //    string sql = "SELECT * FROM Student";
+        //    DataTable dt = DBUtl.GetTable(sql);
+
+        //    if{  == "Card Ready"}
+        //    {
+
+        //    }
+
+
+
+        //    string template =
+        //    @"Dear {0}, <br/>
+        //    <p>Your new card status is {1}.</p>
+        //    Sincerely RP Team";
+
+        //    string email = "19044856@myrp.edu.sg";
+        //    string cust = "Valerie Teo";
+        //    string prod = "cosmetics";
+        //    string msg = String.Format(template, cust, prod);
+        //    string title = "Thank You for Registering";
+        //    string result;
+        //    EmailUtl.SendEmail(email, title, msg, out result);
+
+
+
+        //    return View("Index");
+        //}
 
 
     }

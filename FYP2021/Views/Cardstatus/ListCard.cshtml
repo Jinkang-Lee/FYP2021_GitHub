@@ -84,46 +84,52 @@
     @{
         // Table for the update card status
     }
-    <div class="container" style=" align-content: center">
+<div class="container" style=" align-content: center">
 
 
-        <table id="StudentCardsTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-            <thead>
+    <table id="StudentCardsTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                @{
+                    //Sorting in the table
+                }
+
+                <th><input type='checkbox' name='showhide' onchange="checkAll(this)"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Card Status</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (DataRow row in Model)
+            {
                 <tr>
-                    @{
-                        //Sorting in the table
-                    }
-
-                    <th><input type='checkbox' name='showhide' onchange="checkAll(this)"></th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone Number</th>
-                    <th scope="col">Card Status</th>
-                    
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach (DataRow row in Model)
-                {
-                <tr>
-                        <td align='center'> <input type='checkbox' name='check' id='@row["student_email"]' onchange='checkChange();'>
-                        </td>
+                    <td align='center'>
+                        <input type='checkbox' name='check' id='@row["student_email"]' onchange='checkChange();'>
+                    </td>
 
 
                     <td>@row["student_email"]</td>
                     <td>@row["student_name"]</td>
                     <td>@row["ph_num"]</td>
                     <td>@row["card_status"]</td>
+
+
+
                 </tr>
-                }
-            </tbody>
+            }
+        </tbody>
 
 
 
 
-        </table>
-    </div>
+    </table>
+    
+
+</div>
 
 
     <!--Test by Yiyang-->
