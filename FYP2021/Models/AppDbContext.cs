@@ -15,26 +15,47 @@ namespace FYP2021.Models
         {
         }
 
-        public virtual DbSet<LoginUser> LoginUser { get; set; }
+        //public virtual DbSet<LoginUser> LoginUser { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
+
 
         
-
-        //FOR LOGIN USER MODEL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<LoginUser>(entity =>
+            //modelBuilder.Entity<LoginUser>(entity =>
+            //{
+            //    entity.Property(e => e.Email)
+            //        .HasMaxLength(20)
+            //        .IsUnicode(false);
+
+            //    entity.Property(e => e.Password)
+            //        .IsRequired()
+            //        .HasMaxLength(50);
+
+            //});
+
+
+            modelBuilder.Entity<Student>(entity =>
             {
-                entity.Property(e => e.Email)
-                    .HasMaxLength(10)
+                entity.Property(e => e.StudEmail)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Password)
+                entity.Property(e => e.StudName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.StudPhNum)
+                    .IsRequired()
+                    .HasMaxLength(9);
+
+                entity.Property(e => e.CardStatus)
                     .IsRequired()
                     .HasMaxLength(50);
 
             });
 
-     
+
 
             OnModelCreatingPartial(modelBuilder);
         }

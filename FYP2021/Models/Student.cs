@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace FYP2021.Models
 {
-    public class Student
+    public partial class Student
     {
         [Required(ErrorMessage = "Email cannot be empty!")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Enter the correct Email format!")]

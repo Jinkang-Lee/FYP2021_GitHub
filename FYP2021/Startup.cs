@@ -9,7 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
-
+using Microsoft.EntityFrameworkCore;
+using FYP2021.Models;
 
 namespace FYP2021
 {
@@ -27,6 +28,11 @@ namespace FYP2021
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddDbContext<AppDbContext>(
+                  options =>
+                     options
+                        .UseSqlServer(
+                             Configuration.GetConnectionString("DefaultConnection")));
             // adding authentication handler for Account using authentication scheme "AdminAccount"
             services
                .AddAuthentication("AdminAccount")
