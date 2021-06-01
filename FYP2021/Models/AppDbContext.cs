@@ -15,24 +15,24 @@ namespace FYP2021.Models
         {
         }
 
-        //public virtual DbSet<LoginUser> LoginUser { get; set; }
+        public virtual DbSet<LoginUser> LoginUser { get; set; }
         public virtual DbSet<Student> Student { get; set; }
 
 
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<LoginUser>(entity =>
-            //{
-            //    entity.Property(e => e.Email)
-            //        .HasMaxLength(20)
-            //        .IsUnicode(false);
+            modelBuilder.Entity<LoginUser>(entity =>
+            {
+                entity.Property(e => e.Email)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
-            //    entity.Property(e => e.Password)
-            //        .IsRequired()
-            //        .HasMaxLength(50);
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
-            //});
+            });
 
 
             modelBuilder.Entity<Student>(entity =>
