@@ -43,15 +43,18 @@ namespace FYP2021.Models
 
                 entity.Property(e => e.StudName)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.StudPhNum)
                     .IsRequired()
-                    .HasMaxLength(9);
+                    .HasMaxLength(9)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CardStatus)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
             });
 

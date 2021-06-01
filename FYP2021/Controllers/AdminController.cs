@@ -84,45 +84,53 @@ namespace FYP2021.Controllers
 
         public IActionResult ListStudent()
         {
-            return View();
+            //DbSet<Student> dbs = _dbContext.Student;
+            //List<Student> model = dbs.ToList();
+            //var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            //if(User.IsInRole("Admin"))
+            //    model = model.Where(s => s.StudEmail == email).ToList();
+
+
+            DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
+            return View("ListStudent", dt.Rows);
         }
 
 
 
 
         //HTTP GET FOR EDITING STUDENT IN THE LIST
-        public IActionResult ListEditStudent(string id)
+        public IActionResult ListEditStudent(string email)
         {
-            DbSet<Student> dbs = _dbContext.Student;
-            Student stud = dbs.Where(s => s.StudEmail == id).FirstOrDefault();
+            //DbSet<Student> dbs = _dbContext.Student;
+            //Student stud = dbs.Where(s => s.StudEmail == email).FirstOrDefault();
 
-            if (stud != null)
-            {
-                DbSet<Student> dbsStud = _dbContext.Student;
-                var lstStud = dbsStud.ToList();
-                return View(stud);
-            }
-            else
-            {
-                TempData["Msg"] = "Student Not Found!";
-                return RedirectToAction("Index");
-            }
-
-
-
-            //string select = ("SELECT * FROM Student WHERE student_email = '{0}'");
-            //List<Student> list = DBUtl.GetList<Student>(select, email);
-
-            //if (list.Count == 1)
+            //if (stud != null)
             //{
-            //    return View(list[0]);
+            //    DbSet<Student> dbsStud = _dbContext.Student;
+            //    var lstStud = dbsStud.ToList();
+            //    return View(stud);
             //}
             //else
             //{
-            //    TempData["Message"] = "Student Not Found!";
-            //    TempData["MsgType"] = "warning";
+            //    TempData["Msg"] = "Student Not Found!";
             //    return RedirectToAction("Index");
             //}
+
+
+
+            string select = ("SELECT * FROM Student WHERE student_email = '{0}'");
+            List<Student> list = DBUtl.GetList<Student>(select, email);
+
+            if (list.Count == 1)
+            {
+                return View(list[0]);
+            }
+            else
+            {
+                TempData["Message"] = "Student Not Found!";
+                TempData["MsgType"] = "warning";
+                return RedirectToAction("Index");
+            }
         }
 
 
@@ -132,65 +140,65 @@ namespace FYP2021.Controllers
         [HttpPost]
         public IActionResult ListEditStudentPost(Student student)
         {
-            if (ModelState.IsValid)
-            {
-                DbSet<Student> dbs = _dbContext.Student;
-                Student stud = dbs.Where(s => s.StudEmail == student.StudEmail).FirstOrDefault();
-
-                if (stud != null)
-                {
-                    stud.StudEmail = student.StudEmail;
-                    stud.StudName = student.StudName;
-                    stud.StudPhNum = student.StudPhNum;
-                    stud.CardStatus = student.CardStatus;
-
-                    if (_dbContext.SaveChanges() == 1)
-                        TempData["Msg"] = "Student Updated!";
-                    else
-                        TempData["Msg"] = "Student Updated Failed!";
-
-                }
-
-                else
-                {
-                    TempData["Msg"] = "Student Updated!";
-                    return RedirectToAction("Index");
-                }
-
-            }
-            else
-            {
-                TempData["Msg"] = "Invalid information entered";
-            }
-            return RedirectToAction("Index");
-
-
-
-
-            //if (!ModelState.IsValid)
+            //if (ModelState.IsValid)
             //{
-            //    TempData["Message"] = "Invalid Input!";
-            //    TempData["MsgType"] = "warning";
-            //    return View("ListStudent");
+            //    DbSet<Student> dbs = _dbContext.Student;
+            //    Student stud = dbs.Where(s => s.StudEmail == student.StudEmail).FirstOrDefault();
+
+            //    if (stud != null)
+            //    {
+            //        stud.StudEmail = student.StudEmail;
+            //        stud.StudName = student.StudName;
+            //        stud.StudPhNum = student.StudPhNum;
+            //        stud.CardStatus = student.CardStatus;
+
+            //        if (_dbContext.SaveChanges() == 1)
+            //            TempData["Msg"] = "Student Updated!";
+            //        else
+            //            TempData["Msg"] = "Student Updated Failed!";
+
+            //    }
+
+            //    else
+            //    {
+            //        TempData["Msg"] = "Student Updated!";
+            //        return RedirectToAction("Index");
+            //    }
+
             //}
             //else
             //{
-            //    string update = @"UPDATE Student SET student_email='{0}', student_name='{1}', ph_num={2}, card_status='{3}'";
-
-            //    int res = DBUtl.ExecSQL(update, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus);
-
-            //    if (res == 1)
-            //    {
-            //        TempData["Message"] = "Success!";
-            //        TempData["MsgType"] = "success";
-            //    }
-            //    else
-            //    {
-            //        TempData["Message"] = DBUtl.DB_Message;
-            //        TempData["MsgType"] = "danger";
-            //    }
-            //    return RedirectToAction("ListStudent");
+            //    TempData["Msg"] = "Invalid information entered";
             //}
+            //return RedirectToAction("Index");
+
+
+
+
+            if (!ModelState.IsValid)
+            {
+                TempData["Message"] = "Invalid Input!";
+                TempData["MsgType"] = "warning";
+                return View("ListStudent");
+            }
+            else
+            {
+                string update = @"UPDATE Student SET student_email='{0}', student_name='{1}', ph_num={2}, card_status='{3}'";
+
+                int res = DBUtl.ExecSQL(update, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus);
+
+                if (res == 1)
+                {
+                    TempData["Message"] = "Success!";
+                    TempData["MsgType"] = "success";
+                }
+                else
+                {
+                    TempData["Message"] = DBUtl.DB_Message;
+                    TempData["MsgType"] = "danger";
+                }
+                return RedirectToAction("ListStudent");
+            }
         }
 
 
