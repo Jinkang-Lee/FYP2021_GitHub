@@ -70,16 +70,19 @@
                     <tr>
                         <th scope="col"> Student ID </th>
                         <th scope="col"> Student Name </th>
+                        <th scope="col"> Start Date </th>
+
 
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (DataRow row in Model)
                     {
-                        <tr>
-                            <td>@row["student_email"]</td>
-                            <td>@row["student_name"]</td>
-                        </tr>
+                    <tr>
+                        <td>@row["student_email"]</td>
+                        <td>@row["student_name"]</td>
+                        <td>@row["Date_card"]</td>
+                    </tr>
                     }
                 </tbody>
             </table>
