@@ -8,6 +8,10 @@ namespace FYP2021.Controllers
 {
     public class AnnouncementController : Controller
     {
+        public IActionResult Options()
+        {
+            return View();
+        }
         public IActionResult Create()
         {
             return View();
@@ -20,5 +24,6 @@ namespace FYP2021.Controllers
         {
             return View();
         }
+
     }
 }

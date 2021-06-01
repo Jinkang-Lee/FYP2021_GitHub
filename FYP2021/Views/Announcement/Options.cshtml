@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Announcement - Admin</title>
+
+    <!-- style sheets references -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!--INSERT CSS FILE HERE-->
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- script files references -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+</head>
+
+<body>
+    <!--RP Logo Area-->
+    <section id="banner" class="rp-logo">
+        <img src="~/images/RP_Logo.png" width="200" height="80" />
+    </section>
+
+    <section id="banner" class="button-area" style=" align-content: center" ;>
+        <div class="container">
+            <div class="row">
+                <form method="get" action="/Announcement/Create">
+                    <div class="col-md-6" id="first-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg"> Create </button>
+                    </div>
+                </form>
+                </div>
+            <div class="row">
+                <form method="get" action="/Announcement/Delete">
+                    <div class="col-md-6" id="second-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg"> Delete </button>
+                    </div>
+                </form>
+                </div>
+            <div class="row">
+                <form method="get" action="/Announcement/Update">
+                    <div class="col-md-6" id="second-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg"> Update </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+</body>
+
+</html>
