@@ -166,7 +166,7 @@ namespace FYP2021.Controllers
                 Admin user = search[0];
                 string template = @"Hi {0},
                                <p>Your request for a password change has been acknowledged. Click the link to change your password.</p>
-                                    <a href='http://concessioncard-myrp.azurewebsites.net/AdminAccount/ChangePassword?AdminEmail={1}'>Click Here!</a>";
+                                    <a href='https://localhost:44383/AdminAccount/ChangePassword?AdminEmail={1}'>Click Here!</a>";
 
                 string body = String.Format(template, user.AdminName, user.AdminEmail);
                 string subject = "Forget Password";
@@ -187,7 +187,7 @@ namespace FYP2021.Controllers
             return View();
         }
 
-
+        [AllowAnonymous]
         public IActionResult ChangePassword()
         {
             return View();
