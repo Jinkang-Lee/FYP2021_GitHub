@@ -248,6 +248,11 @@ namespace FYP2021.Controllers
         //    return View("Index");
         //}
 
-
+        public IActionResult ListCard()
+        {
+            string sql = "SELECT * FROM Student";
+            DataTable dt = DBUtl.GetTable(sql);
+            return View(dt.Rows);
+        }
     }
 }
