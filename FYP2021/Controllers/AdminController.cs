@@ -99,6 +99,7 @@ namespace FYP2021.Controllers
 
 
         //HTTP GET FOR EDITING STUDENT IN THE LIST
+        [Authorize]
         public IActionResult ListEditStudent(string email)
         {
             //DbSet<Student> dbs = _dbContext.Student;
@@ -118,12 +119,16 @@ namespace FYP2021.Controllers
 
 
 
-            string select = ("SELECT * FROM Student WHERE student_email = '{0}'");
-            List<Student> list = DBUtl.GetList<Student>(select, email);
+            //string select = ("SELECT * FROM Student WHERE student_email = '{0}'");
+            //List<Student> list = DBUtl.GetList<Student>(select, email);
 
+
+            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_email = {0}", email);
+            Student model = null;
             if (list.Count == 1)
             {
-                return View(list[0]);
+                model = list[0];
+                return View("ListEditStudent", model);
             }
             else
             {
@@ -138,6 +143,7 @@ namespace FYP2021.Controllers
 
         //HTTP POST FOR EDITING STUDENT IN THE LIST
         [HttpPost]
+        [Authorize]
         public IActionResult ListEditStudentPost(Student student)
         {
             //if (ModelState.IsValid)
