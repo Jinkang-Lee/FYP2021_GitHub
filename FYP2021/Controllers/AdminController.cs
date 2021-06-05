@@ -18,12 +18,12 @@ namespace FYP2021.Controllers
     [Authorize(AuthenticationSchemes = "AdminAccount")]
     public class AdminController : Controller
     {
-        private AppDbContext _dbContext;
+        //private AppDbContext _dbContext;
 
-        public AdminController(AppDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        //public AdminController(AppDbContext dbContext)
+        //{
+        //    _dbContext = dbContext;
+        //}
 
 
 
@@ -100,30 +100,11 @@ namespace FYP2021.Controllers
 
         //HTTP GET FOR EDITING STUDENT IN THE LIST
         [Authorize]
-        public IActionResult ListEditStudent(string email)
+        public IActionResult ListEditStudent(int id)
         {
-            //DbSet<Student> dbs = _dbContext.Student;
-            //Student stud = dbs.Where(s => s.StudEmail == email).FirstOrDefault();
-
-            //if (stud != null)
-            //{
-            //    DbSet<Student> dbsStud = _dbContext.Student;
-            //    var lstStud = dbsStud.ToList();
-            //    return View(stud);
-            //}
-            //else
-            //{
-            //    TempData["Msg"] = "Student Not Found!";
-            //    return RedirectToAction("Index");
-            //}
 
 
-
-            //string select = ("SELECT * FROM Student WHERE student_email = '{0}'");
-            //List<Student> list = DBUtl.GetList<Student>(select, email);
-
-
-            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_email = {0}", email);
+            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_id = {0}", id);
             Student model = null;
             if (list.Count == 1)
             {
@@ -136,6 +117,8 @@ namespace FYP2021.Controllers
                 TempData["MsgType"] = "warning";
                 return RedirectToAction("Index");
             }
+
+
         }
 
 
@@ -146,40 +129,6 @@ namespace FYP2021.Controllers
         [Authorize]
         public IActionResult ListEditStudentPost(Student student)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    DbSet<Student> dbs = _dbContext.Student;
-            //    Student stud = dbs.Where(s => s.StudEmail == student.StudEmail).FirstOrDefault();
-
-            //    if (stud != null)
-            //    {
-            //        stud.StudEmail = student.StudEmail;
-            //        stud.StudName = student.StudName;
-            //        stud.StudPhNum = student.StudPhNum;
-            //        stud.CardStatus = student.CardStatus;
-
-            //        if (_dbContext.SaveChanges() == 1)
-            //            TempData["Msg"] = "Student Updated!";
-            //        else
-            //            TempData["Msg"] = "Student Updated Failed!";
-
-            //    }
-
-            //    else
-            //    {
-            //        TempData["Msg"] = "Student Updated!";
-            //        return RedirectToAction("Index");
-            //    }
-
-            //}
-            //else
-            //{
-            //    TempData["Msg"] = "Invalid information entered";
-            //}
-            //return RedirectToAction("Index");
-
-
-
 
             if (!ModelState.IsValid)
             {
@@ -189,9 +138,9 @@ namespace FYP2021.Controllers
             }
             else
             {
-                string update = @"UPDATE Student SET student_email='{0}', student_name='{1}', ph_num={2}, card_status='{3}'";
+                string update = @"UPDATE Student SET student_email='{0}', student_name='{1}', ph_num={2}, card_status='{3}' WHERE student_id = {4}";
 
-                int res = DBUtl.ExecSQL(update, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus);
+                int res = DBUtl.ExecSQL(update, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus, student.Id);
 
                 if (res == 1)
                 {
@@ -242,7 +191,6 @@ namespace FYP2021.Controllers
         //    string title = "Thank You for Registering";
         //    string result;
         //    EmailUtl.SendEmail(email, title, msg, out result);
-
 
 
         //    return View("Index");

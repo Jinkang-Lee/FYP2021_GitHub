@@ -52,7 +52,7 @@
 //        {
 //            if (!AuthenticateUser(user.Email, user.Password, out ClaimsPrincipal principal))
 //            {
-//                ViewData["Message"] = "Incorrect Email or Password";
+//                ViewData["Message"] = "Incorrect Email";
 //                ViewData["MsgType"] = "warning";
 //                return View(LOGIN_VIEW);
 //            }

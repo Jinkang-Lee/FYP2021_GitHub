@@ -22,21 +22,13 @@ namespace FYP2021.Models
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<LoginUser>(entity =>
-            //{
-            //    entity.Property(e => e.Email)
-            //        .HasMaxLength(20)
-            //        .IsUnicode(false);
-
-            //    entity.Property(e => e.Password)
-            //        .IsRequired()
-            //        .HasMaxLength(50);
-
-            //});
-
 
             modelBuilder.Entity<Student>(entity =>
             {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.StudEmail)
                     .HasMaxLength(20)
                     .IsUnicode(false);
