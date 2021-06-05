@@ -21,5 +21,20 @@ namespace FYP2021.Controllers
         {
             return View();
         }
+
+        public IActionResult Test2()
+        {
+            return View();
+        }
+
+        public IActionResult Test3()
+        {
+            return View();
+        }
+
+        public IActionResult Test4()
+        {
+            return View();
+        }
     }
 }

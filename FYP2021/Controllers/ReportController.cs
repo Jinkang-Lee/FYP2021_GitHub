@@ -49,5 +49,35 @@ namespace FYP2021.Controllers
         {
             return View();
         }
+        public IActionResult Pie()
+        {
+            ViewData["Chart"] = "pie";
+            ViewData["Title"] = "Report Summary";
+            ViewData["ShowLegend"] = "true";
+            return View("Chart");
+        }
+
+        public IActionResult SummaryChart()
+        {
+            return View();
+        }
+
+        private void PrepareData(int x)
+        {
+            int[] dataPendingTransitLink = new int[] { 0, 0, 0, 0, 0 };
+            int[] dataReadyApplication = new int[] { 0, 0, 0, 0, 0 };
+            int[] dataCardReady = new int[] { 0, 0, 0, 0, 0 };
+            int[] dataCardDispatched = new int[] { 0, 0, 0, 0, 0 };
+
+            string sql = "SELECT card_status FROM Student";
+            DataTable dt = DBUtl.GetTable(sql);
+
+            string[] colors = new[] { "cyan", "lightgreen", "yellow", "pink", "lightgrey" };
+            string[] grades = new[] { "A", "B", "C", "D", "F" };
+            ViewData["Legend"] = "Cadets";
+            ViewData["Colors"] = colors;
+            ViewData["Labels"] = grades;
+        }
+
     }
 }

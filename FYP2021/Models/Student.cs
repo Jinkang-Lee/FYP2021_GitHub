@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace FYP2021.Models
 {
-    public partial class Student
+    public class Student
     {
         [Key]
         public int Id { get; set; }
@@ -24,5 +24,7 @@ namespace FYP2021.Models
         public int StudPhNum { get; set; }
 
         public string CardStatus { get; set; }
+
+        public string PendingDate { get; set; }
     }
 }
