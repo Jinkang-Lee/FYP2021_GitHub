@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
+using FYP2021.Models;
 
 namespace FYP2021.Controllers
 {
@@ -69,6 +70,7 @@ namespace FYP2021.Controllers
             int[] dataCardReady = new int[] { 0, 0, 0, 0, 0 };
             int[] dataCardDispatched = new int[] { 0, 0, 0, 0, 0 };
 
+            //List<ReportChart> list = DBUtl.GetList(@"");
             string sql = "SELECT card_status FROM Student";
             DataTable dt = DBUtl.GetTable(sql);
 

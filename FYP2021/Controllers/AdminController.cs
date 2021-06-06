@@ -102,8 +102,7 @@ namespace FYP2021.Controllers
         [Authorize]
         public IActionResult ListEditStudent(int id)
         {
-
-
+ 
             List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_id = {0}", id);
             Student model = null;
             if (list.Count == 1)

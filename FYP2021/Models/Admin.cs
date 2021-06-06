@@ -8,6 +8,7 @@ namespace FYP2021.Models
 {
     public class Admin
     {
+        [Key]
         [Required(ErrorMessage = "Email cannot be empty!")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Enter the correct Email format!")]
         public string AdminEmail { get; set; }

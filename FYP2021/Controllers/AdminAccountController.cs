@@ -164,11 +164,11 @@ namespace FYP2021.Controllers
             else
             {
                 Admin user = search[0];
-                string template = @"Hi {0},
-                               <p>Your request for a password change has been acknowledged. Click the link to change your password.</p>
-                                    <a href='https://localhost:44383/AdminAccount/ChangePassword?AdminEmail={1}'>Click Here!</a>";
+                string template = @"Password Change Request,
+                               <p>Hello! Your request for a password change has been acknowledged. Click the link to change your password.</p>
+                                    <a href='https://localhost:44383/AdminAccount/ChangePassword?AdminEmail={0}'>Click Here!</a>";
 
-                string body = String.Format(template, user.AdminName, AdminEmail);
+                string body = String.Format(template, AdminEmail);
                 string subject = "Forget Password";
                 string result;
 
@@ -194,16 +194,16 @@ namespace FYP2021.Controllers
         }
 
 
-        [Authorize]
+
         public JsonResult VerifyCurrentPassword(string CurrentPassword)
         {
-            DbSet<LoginUser> dbs = _dbContext.LoginUser;
+            DbSet<Admin> dbs = _dbContext.Admin;
             var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             //Convert to ASCII Byte array first
              var pw_bytes = System.Text.Encoding.ASCII.GetBytes(CurrentPassword);
 
-            LoginUser user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
+            Admin user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
 
             //IF NOT NULL
              if (user != null)
@@ -213,17 +213,17 @@ namespace FYP2021.Controllers
         }
 
 
-        [Authorize]
+
         public JsonResult VerifyNewPassword(string NewPassword)
         {
 
-            DbSet<LoginUser> dbs = _dbContext.LoginUser;
+            DbSet<Admin> dbs = _dbContext.Admin;
             var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             //Convert to ASCII Byte array first
              var pw_bytes = System.Text.Encoding.ASCII.GetBytes(NewPassword);
 
-            LoginUser user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
+            Admin user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
 
             //IF NULL
              if (user == null)
@@ -239,7 +239,6 @@ namespace FYP2021.Controllers
 
         //ChangePassword HttpPost
         [HttpPost]
-        [Authorize]
         public IActionResult ChangePassword(UpdatePassword pu)
         {
             var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
