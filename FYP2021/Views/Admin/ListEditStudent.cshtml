@@ -45,7 +45,7 @@
                    <div class="form-group row">
                        <label class="control-label col-sm-2" asp-for="StudEmail">Student Email: </label>
                        <div class="col-sm-8">
-                           <input asp-for="@Model.StudEmail" class="form-control" />
+                           <input asp-for="StudEmail" class="form-control" readonly="readonly"/>
                        </div>
                        <span asp-validation-for="StudEmail" class="text-danger"></span>
                    </div>
@@ -53,7 +53,7 @@
                    <div class="form-group row">
                        <label class="control-label col-sm-2" asp-for="StudName">Student Name: </label>
                        <div class="col-sm-8">
-                           <input asp-for="@Model.StudName" class="form-control" />
+                           <input asp-for="StudName" class="form-control" />
                        </div>
                        <span asp-validation-for="StudName" class="text-danger"></span>
                    </div>
@@ -61,7 +61,7 @@
                    <div class="form-group row">
                        <label class="control-label col-sm-2" asp-for="StudPhNum">Phone Number: </label>
                        <div class="col-sm-8">
-                           <input  asp-for="@Model.StudPhNum" class="form-control" />
+                           <input  asp-for="StudPhNum" class="form-control" />
                        </div>
                    </div>
 

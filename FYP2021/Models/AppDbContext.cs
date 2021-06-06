@@ -15,7 +15,7 @@ namespace FYP2021.Models
         {
         }
 
-        //public virtual DbSet<LoginUser> LoginUser { get; set; }
+        public virtual DbSet<LoginUser> Admin { get; set; }
         public virtual DbSet<Student> Student { get; set; }
 
 

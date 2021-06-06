@@ -40,12 +40,12 @@ namespace FYP2021.Controllers
         private const string LOGIN_VIEW = "Login";
 
         //AppdbContext
-        //private AppDbContext _dbContext;
+        private AppDbContext _dbContext;
 
-        //public AdminAccountController(AppDbContext dbContext)
-        //{
-        //    _dbContext = dbContext;
-        //}
+        public AdminAccountController(AppDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
@@ -168,7 +168,7 @@ namespace FYP2021.Controllers
                                <p>Your request for a password change has been acknowledged. Click the link to change your password.</p>
                                     <a href='https://localhost:44383/AdminAccount/ChangePassword?AdminEmail={1}'>Click Here!</a>";
 
-                string body = String.Format(template, user.AdminName, user.AdminEmail);
+                string body = String.Format(template, user.AdminName, AdminEmail);
                 string subject = "Forget Password";
                 string result;
 
@@ -194,77 +194,72 @@ namespace FYP2021.Controllers
         }
 
 
-        // [Authorize]
-        // public JsonResult VerifyCurrentPassword(string CurrentPassword)
-        // {
-        //     DbSet<LoginUser> dbs = _dbContext.LoginUser;
-        //     var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        [Authorize]
+        public JsonResult VerifyCurrentPassword(string CurrentPassword)
+        {
+            DbSet<LoginUser> dbs = _dbContext.LoginUser;
+            var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-        //     Convert to ASCII Byte array first
-        //     var pw_bytes = System.Text.Encoding.ASCII.GetBytes(CurrentPassword);
+            //Convert to ASCII Byte array first
+             var pw_bytes = System.Text.Encoding.ASCII.GetBytes(CurrentPassword);
 
-        //     LoginUser user = dbs.FromSqlInterpolated($"SELECT * FROM Login WHERE Id = {email} AND Password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
+            LoginUser user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
 
-        //     IF NOT NULL
-        //     if (user != null)
-        //         return Json(true);
-        //     else
-        //         return Json(false);
-        // }
-
-
-        // [Authorize]
-        // public JsonResult VerifyNewPassword(string NewPassword)
-        // {
-
-        //     DbSet<LoginUser> dbs = _dbContext.LoginUser;
-        //     var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-        //     Convert to ASCII Byte array first
-        //     var pw_bytes = System.Text.Encoding.ASCII.GetBytes(NewPassword);
-
-        //     LoginUser user = dbs.FromSqlInterpolated($"SELECT * FROM AppUser WHERE Id = {email} AND Password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
-
-        //     IF NULL
-        //     if (user == null)
-        //         return Json(true);
-        //     else
-        //         return Json(false);
+            //IF NOT NULL
+             if (user != null)
+                return Json(true);
+            else
+                return Json(false);
+        }
 
 
-        // }
+        [Authorize]
+        public JsonResult VerifyNewPassword(string NewPassword)
+        {
+
+            DbSet<LoginUser> dbs = _dbContext.LoginUser;
+            var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            //Convert to ASCII Byte array first
+             var pw_bytes = System.Text.Encoding.ASCII.GetBytes(NewPassword);
+
+            LoginUser user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
+
+            //IF NULL
+             if (user == null)
+                return Json(true);
+            else
+                return Json(false);
+
+
+        }
 
 
 
-        // ChangePassword HttpGet
-        // public IActionResult ChangePassword()
-        // {
-        //     return View();
-        // }
 
-        // ChangePassword HttpPost
-        //[HttpPost]
-        // [Authorize]
-        // public IActionResult ChangePassword(UpdatePassword pu)
-        // {
-        //     var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        //     var npw_bytes = System.Text.Encoding.ASCII.GetBytes(pu.NewPassword);
-        //     var cpw_bytes = System.Text.Encoding.ASCII.GetBytes(pu.CurrentPassword);
+        //ChangePassword HttpPost
+        [HttpPost]
+        [Authorize]
+        public IActionResult ChangePassword(UpdatePassword pu)
+        {
+            var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var npw_bytes = System.Text.Encoding.ASCII.GetBytes(pu.NewPassword);
+            var cpw_bytes = System.Text.Encoding.ASCII.GetBytes(pu.CurrentPassword);
 
-        //     int num = _dbContext.Database.ExecuteSqlInterpolated($"UPDATE AppUser SET Password = HASHBYTES('SHA1', {npw_bytes}) WHERE Id = {email} AND Password = HASHBYTES('SHA1', {cpw_bytes})");
+            int num = _dbContext.Database.ExecuteSqlInterpolated($"UPDATE Admin SET admin_password = HASHBYTES('SHA1', {npw_bytes}) WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {cpw_bytes})");
 
 
-        //     if (num == 1)
-        //     {
-        //         ViewData["Msg"] = "Password successfully updated!";
-        //     }
-        //     else
-        //     {
-        //         ViewData["Msg"] = "Failed to update password!";
-        //     }
+            if (num == 1)
+            {
+                ViewData["Msg"] = "Password successfully updated!";
+            }
+            else
+            {
+                ViewData["Msg"] = "Failed to update password!";
+            }
 
-        //     return View();
+            return View("Login");
 
-        // }
+        }
     }
 }
