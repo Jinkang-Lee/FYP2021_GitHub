@@ -11,6 +11,7 @@ namespace FYP2021.Models
         [Required(ErrorMessage = "Email cannot be empty!")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Enter the correct Email format!")]
         //[Remote(action: "ListEditStudentPost", controller: "Admin")]
+
         public string StudEmail { get; set; }
 
 

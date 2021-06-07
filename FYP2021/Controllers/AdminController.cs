@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace FYP2021.Controllers
 {
@@ -102,7 +103,7 @@ namespace FYP2021.Controllers
         [Authorize]
         public IActionResult ListEditStudent(int id)
         {
- 
+
             List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_id = {0}", id);
             Student model = null;
             if (list.Count == 1)
@@ -126,7 +127,7 @@ namespace FYP2021.Controllers
         //HTTP POST FOR EDITING STUDENT IN THE LIST
         [HttpPost]
         [Authorize]
-        public IActionResult ListEditStudentPost(Student student)
+        public IActionResult ListEditStudentPost(Student student, IFormCollection form)
         {
 
             if (!ModelState.IsValid)
@@ -153,55 +154,44 @@ namespace FYP2021.Controllers
                 {
                     TempData["Message"] = "Success!";
                     TempData["MsgType"] = "success";
+
+                    string custname = form["StudName"].ToString().Trim();
+                    string email = form["StudEmail"].ToString().Trim();
+                    string cardStatus = form["CardStatus"].ToString().Trim();
+                    string subject = "New Card Status";
+
+                    string template =
+                            @"Dear {0}, <br/>
+                                <p>Your new updated card status is {1}. For more information, visit the website.</p>
+                                Sincerely RP Team";
+
+                    string msg = String.Format(template, custname, cardStatus);
+                    string result;
+                    if (EmailUtl.SendEmail(email, subject, msg, out result))
+                    {
+
+                        ViewData["Message"] = "Email Successfully Sent!";
+                        ViewData["MsgType"] = "success";
+                    }
+
+                    else
+                    {
+                        ViewData["Message"] = result;
+                        ViewData["MsgType"] = "warning";
+                    }
+
+                    return View("Index");
                 }
+
                 else
                 {
                     TempData["Message"] = DBUtl.DB_Message;
                     TempData["MsgType"] = "danger";
                 }
+
                 return RedirectToAction("ListStudent");
             }
         }
-
-
-
-
-
-
-
-
-
-
-        //public IActionResult SendEmail()
-        //{
-
-        //    string sql = "SELECT * FROM Student";
-        //    string sql = "SELECT * FROM Student";
-        //    DataTable dt = DBUtl.GetTable(sql);
-
-        //    if{  == "Card Ready"}
-        //    {
-
-        //    }
-
-
-
-        //    string template =
-        //    @"Dear {0}, <br/>
-        //    <p>Your new card status is {1}.</p>
-        //    Sincerely RP Team";
-
-        //    string email = "19044856@myrp.edu.sg";
-        //    string cust = "Valerie Teo";
-        //    string prod = "cosmetics";
-        //    string msg = String.Format(template, cust, prod);
-        //    string title = "Thank You for Registering";
-        //    string result;
-        //    EmailUtl.SendEmail(email, title, msg, out result);
-
-
-        //    return View("Index");
-        //}
 
         public IActionResult ListCard()
         {

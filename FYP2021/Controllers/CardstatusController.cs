@@ -29,14 +29,15 @@ namespace FYP2021.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditCardstatus(string StudEmail)
+        public IActionResult EditCardstatus(int Id)
         {
-            String studentSql = @"SELECT card_status FROM Student WHERE student_email = '{0}'";
-            List<Student> list = DBUtl.GetList<Student>(studentSql, StudEmail);
+            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_id = {0}", Id);
+            Student model = null;
 
             if (list.Count == 1)
             {
-                return View(list[0]);
+                model = list[0];
+                return View("EditCardstatus", model);
             }
             else
             {
@@ -60,8 +61,9 @@ namespace FYP2021.Controllers
             //    }
             }
 
-            [HttpPost]
-        public IActionResult EditCardstatus(Student student)
+        [HttpPost]
+        [Authorize]
+        public IActionResult EditCardstatusPost(Student student)
         {
             if (!ModelState.IsValid)
             {
@@ -71,9 +73,9 @@ namespace FYP2021.Controllers
             }
             else
             {
-                string update = @"UPDATE Student card_status='{3}' WHERE student_email={0}";
+                string update = @"UPDATE Student SET card_status='{0}' WHERE student_id={1}";
 
-                int result = DBUtl.ExecSQL(update, student.CardStatus);
+                int result = DBUtl.ExecSQL(update, student.CardStatus, student.Id);
                 if (result == 1)
                 {
                     TempData["Message"] = "Card Status Updated";
@@ -84,7 +86,7 @@ namespace FYP2021.Controllers
                     TempData["Message"] = DBUtl.DB_Message;
                     TempData["MsgType"] = "danger";
                 }
-                return RedirectToAction("ListStudent");
+                return RedirectToAction("ListCard");
             }
 
         }
