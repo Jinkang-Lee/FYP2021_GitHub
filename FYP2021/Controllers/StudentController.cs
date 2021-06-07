@@ -23,10 +23,16 @@ namespace FYP2021.Controllers
         {
             return View();
         }
-
+        
         public IActionResult StudentLoginpage()
         {
             return View();
         }
+
+        public IActionResult StudentOTPpage()
+        {
+            return View();
+        }
+
     }
 }

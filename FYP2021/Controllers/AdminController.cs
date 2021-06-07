@@ -137,14 +137,6 @@ namespace FYP2021.Controllers
             }
             else
             {
-                //string select = $"SELECT * FROM Student WHERE student_email='{student.StudEmail}'";
-                //if (DBUtl.GetTable(select).Rows.Count > 0)
-                //{
-                //    return Json($"[{student.StudEmail}] already in use");
-                //}
-
-
-
                 string update = @"UPDATE Student SET student_email='{0}', student_name='{1}', ph_num={2}, card_status='{3}' WHERE student_id = {4}";
 
                 int res = DBUtl.ExecSQL(update, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus, student.Id);
