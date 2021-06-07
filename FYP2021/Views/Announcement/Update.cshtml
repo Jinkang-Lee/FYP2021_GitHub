@@ -1,5 +1,69 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model DataRowCollection
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Announcement</title>
+
+    <!-- style sheets references -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!--INSERT CSS FILE HERE-->
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- script files references -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.unobtrusive.min.js"></script>
+
+</head>
+
+<body>
+    <!--RP Logo Area-->
+    <section id="banner" class="rp-logo">
+        <img src="~/images/RP_Logo.png" width="200" height="80" />
+    </section>
+
+    <div class="container">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Announcement</th>
+                    
+                </tr>
+            </thead>
+
+
+            @foreach (DataRow row in Model)
+            {
+                <tr>
+                    <td>@row["Id"]</td>
+                    <td>@row["Announcement"]</td>
+                    <td>
+                        <a asp-controller="Announcement"
+                           asp-action="AnnouncementEdit"
+                           asp-route-id="@row["Id"]">Edit</a>
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+        @if (ViewData["Message"] != null)
+        {
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-5">
+                    <div class="alert alert-@ViewData["MsgType"]">
+                        @ViewData["Message"]
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</body>
+</html>

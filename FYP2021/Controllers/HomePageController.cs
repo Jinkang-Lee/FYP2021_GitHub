@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data;
+using FYP2021.Models;
 
 namespace FYP2021.Controllers
 {
@@ -10,7 +12,10 @@ namespace FYP2021.Controllers
     {
         public IActionResult Index()
         {
-            return View("Index");
+            string sql = "SELECT * FROM Announcement";
+            DataTable dt = DBUtl.GetTable(sql);
+            return View(dt.Rows);
+            
         }
 
 
