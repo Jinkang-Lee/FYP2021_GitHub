@@ -13,6 +13,6 @@ namespace FYP2021.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-
+        public int OTP { get; set; }
     }
 }

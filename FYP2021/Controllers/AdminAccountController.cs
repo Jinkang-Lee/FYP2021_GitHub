@@ -132,10 +132,6 @@ namespace FYP2021.Controllers
 
 
 
-
-
-
-
         //HTTP GET FORGETPASSWORD
         [AllowAnonymous]
         public IActionResult ForgetPassword()
@@ -166,7 +162,8 @@ namespace FYP2021.Controllers
                 Admin user = search[0];
                 string template = @"Password Change Request,
                                <p>Hello! Your request for a password change has been acknowledged. Click the link to change your password.</p>
-                                    <a href='https://localhost:44383/AdminAccount/ChangePassword?AdminEmail={0}'>Click Here!</a>";
+                                    <a href='https://localhost:44383/AdminAccount/ChangePassword?AdminEmail={0}'>Click Here!</a>
+                                                <p>Sincerely, RP Team</p>";
 
                 string body = String.Format(template, AdminEmail);
                 string subject = "Forget Password";
