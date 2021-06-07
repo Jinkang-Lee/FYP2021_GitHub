@@ -10,5 +10,14 @@ namespace FYP2021.Models
     {
         public string ReportChartGUID { get; set; }
 
+        public int PendingForTransitLink { get; set; }
+
+        public int ReadyForApplication { get; set; }
+
+        public int CardReady { get; set; }
+
+        public int CardDispatched { get; set; }
+
     }
+
 }
