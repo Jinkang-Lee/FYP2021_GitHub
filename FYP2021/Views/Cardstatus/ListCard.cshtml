@@ -84,7 +84,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Phone Number</th>
                     <th scope="col">Card Status</th>
-                    <th scope="col">Date</th>
+                    @*<th scope="col">Date</th>*@
                     <th>Action</th>
 
                 </tr>
@@ -94,16 +94,16 @@
                 @foreach (DataRow row in Model)
                 {
                     <tr>
-                        <td>@row["student_id"]</td>
+                        <td>@row["student_Id"]</td>
                         <td>@row["student_email"]</td>
                         <td>@row["student_name"]</td>
                         <td>@row["ph_num"]</td>
                         <td>@row["card_status"]</td>
-                        <td>@row["pending_date"]</td>
+                        @*<td>@row["pending_date"]</td>*@
                         <td>
                             <a asp-controller="Cardstatus"
                                asp-action="EditCardstatus"
-                               asp-route-id="@row["student_id"]">Edit</a>
+                               asp-route-id="@row["student_Id"]">Edit</a>
                         </td>
 
 

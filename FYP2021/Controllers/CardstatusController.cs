@@ -15,13 +15,16 @@ using System.Data;
 
 namespace FYP2021.Controllers
 {
+
+    [Authorize(AuthenticationSchemes = "AdminAccount")]
     public class CardstatusController : Controller
     {
+        [Authorize]
         public IActionResult ListCard()
         {
-            string sql = "SELECT * FROM Student";
-            DataTable dt = DBUtl.GetTable(sql);
-            return View(dt.Rows);
+            //string sql = "SELECT * FROM Student";
+            DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
+            return View("ListCard",dt.Rows);
 
             //List<Student> student = DBUtl.GetList<Student>(
             //   @"SELECT * FROM Student");
@@ -29,9 +32,10 @@ namespace FYP2021.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult EditCardstatus(int Id)
         {
-            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_id = {0}", Id);
+            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_Id = {0}", Id);
             Student model = null;
 
             if (list.Count == 1)
@@ -69,11 +73,11 @@ namespace FYP2021.Controllers
             {
                 TempData["Message"] = "Invalid Input!";
                 TempData["MsgType"] = "warning";
-                return View("ListCard");
+                return View("UpdateOptions");
             }
             else
             {
-                string update = @"UPDATE Student SET card_status='{0}' WHERE student_id={1}";
+                string update = @"UPDATE Student SET card_status='{0}' WHERE student_Id={1}";
 
                 int result = DBUtl.ExecSQL(update, student.CardStatus, student.Id);
                 if (result == 1)
@@ -86,16 +90,18 @@ namespace FYP2021.Controllers
                     TempData["Message"] = DBUtl.DB_Message;
                     TempData["MsgType"] = "danger";
                 }
-                return RedirectToAction("ListCard");
+                return RedirectToAction("UpdateOptions");
             }
 
         }
 
+        [Authorize]
         public IActionResult UpdateOptions()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult ListCardCSV()
         {
             string sql = "SELECT * FROM Student";
