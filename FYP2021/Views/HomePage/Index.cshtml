@@ -88,16 +88,18 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>PLEASE READ THE ANNOUNCEMENTS</th>
+                                <th>DATE</th>
                             </tr>
                         </thead>
 
 
                         @foreach (DataRow row in Model)
                         {
-                            <tr>
-                                
-                                <td>@row["Announcement"]</td>
-                            </tr>
+                    <tr>
+
+                        <td>@row["Announcement"]</td>
+                        <td>@String.Format("{0:yyyy-MM-dd}", row["Announcement_Date"])</td>
+                    </tr>
                         }
 
                     </table>

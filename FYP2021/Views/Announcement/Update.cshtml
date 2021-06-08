@@ -32,7 +32,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Announcement</th>
-                    
+                    <th>Date</th>
                 </tr>
             </thead>
 
@@ -42,10 +42,18 @@
                 <tr>
                     <td>@row["Id"]</td>
                     <td>@row["Announcement"]</td>
+                    <td>@String.Format("{0:yyyy-MM-dd}", row["Announcement_Date"])</td>
                     <td>
                         <a asp-controller="Announcement"
                            asp-action="AnnouncementEdit"
                            asp-route-id="@row["Id"]">Edit</a>
+                        |
+                        <a asp-controller="Announcement"
+                           asp-action="Delete"
+                           asp-route-id="@row["Id"]"
+                           onclick="return confirm('Are you sure you want to delete: @row["Announcement"]?')">
+                            Delete
+                        </a>
                     </td>
                 </tr>
             }
@@ -64,6 +72,18 @@
         }
 
     </div>
+
+    <section id="banner">
+        <div class="container" style=" align-content: center">
+            <div class="row">
+                <form method="get" action="/Announcement/Create">
+                    <div class="col-md-6" id="first-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg"> Create New Announcement </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>

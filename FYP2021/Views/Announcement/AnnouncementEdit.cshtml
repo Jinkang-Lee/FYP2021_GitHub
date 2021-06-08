@@ -1,4 +1,4 @@
-﻿@Model Announcement
+﻿@model Announcement
 
 <!DOCTYPE html>
 <html>
@@ -11,12 +11,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <!--INSERT CSS FILE HERE-->
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/dtpicker/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- script files references -->
+    <script src="~/lib/moment/moment.min.js"></script>
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/lib/jquery/jquery.validate.min.js"></script>
     <script src="~/lib/jquery/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/dtpicker/js/tempusdominus-bootstrap-4.min.js"></script>
 
 </head>
 
@@ -26,37 +29,57 @@
         <img src="~/images/RP_Logo.png" width="200" height="80" />
     </section>
 
+    <script language="javascript">
+
+        $(document).ready(function () {
+            $('#JSPerformDT')
+                .datetimepicker({
+                    format: 'YYYY-MM-DD HH:mm',
+                    sideBySide: true
+                });
+        });
+    </script>
 
 
-    @*<div class="container">
+    <div class="container">
         <div class="row">
-            <form method="post" action="/Report/AnnouncementEdit">
-                <div class="form-group row row">
-                    <label class="control-label col-2" asp-for="Id">Id : </label>
-                    <div class="col-5">
-                        <input asp-for="Id" class="form-control" readonly="readonly" />
-                    </div>
-                </div>
-
+            <form asp-controller="Announcement"
+                  asp-action="AnnouncementEdit"
+                  method="post">
 
                 <div class="form-group row">
                     <label class="control-label col-sm-2" asp-for="ViewAnnouncement">New Announcement: </label>
-                    <div class="col-sm-8">
+                    <div class="col-sm-12">
                         <input asp-for="ViewAnnouncement" class="form-control" />
                     </div>
-                    <span asp-validation-for="ViewAnnouncement" class="text-danger"></span>
+                    <div>
+                        <span asp-validation-for="ViewAnnouncement" class="text-danger"></span>
+                    </div>
                 </div>
+
 
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" asp-for="Announcement_Date">New Date: </label>
-                    <div class="col-sm-8">
-                        <input asp-for="Announcement_Date" class="form-control" />
+                    <label class="control-label col-sm-2" asp-for="Announcement_Date">New Announcement Date: </label>
+                    <div class="col-sm-12">
+                        <div class="input-group date" id="JSPerformDT"
+                             data-target-input="nearest">
+                            <input type="text" class="form-control"
+                                    asp-for="Announcement_Date" asp-format="{0:yyyy-MM-dd}" />
+                            <div class="input-group-append"
+                                 data-target="#JSPerformDT" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>  
                     </div>
-                    <span asp-validation-for="Announcement_Date" class="text-danger"></span>
+
+                    <div class="col-sm-2">
+                        <span asp-validation-for="ViewAnnouncement" class="text-danger"></span>
+                    </div>
                 </div>
 
+
                 <div class="form-group">
-                    <input type="submit" style="margin-left: 200px;" class="btn btn-lg btn-primary" value="Update Announcement" />
+                    <input type="submit" style="margin-left: 300px;" class="btn btn-lg btn-primary" value="Update Announcement" />
                 </div>
 
                 @if (ViewData["Message"] != null)
@@ -71,7 +94,6 @@
                 }
             </form>
         </div>
-    </div>*@
-
+    </div>
 </body>
 </html>
