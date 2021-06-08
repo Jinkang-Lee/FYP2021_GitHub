@@ -50,15 +50,29 @@
                     </div>
                 </div>
 
+                @*<div class="form-group row row">
+                    <label class="control-label col-2" asp-for="StudEmail">Email : </label>
+                    <div class="col-5">
+                        <input asp-for="StudEmail" class="form-control" readonly="readonly" />
+                    </div>
+                </div>
+
+                <div class="form-group row row">
+                    <label class="control-label col-2" asp-for="StudName">Name : </label>
+                    <div class="col-5">
+                        <input asp-for="StudName" class="form-control" readonly="readonly" />
+                    </div>
+                </div>*@
+
 
                 <div class="form-group row">
                     <label class="control-label col-sm-2" asp-for="CardStatus">Card Status: </label>
                     <div class="col-sm-5">
                         <select class="form-control col-12" asp-for="CardStatus">
-                            <option value="Pending">Pending for Transitlink</option>
-                            <option value="Application">Ready for Application</option>
-                            <option value="Ready">Card Ready</option>
-                            <option value="Dispatched">Card Dispatched</option>
+                            <option value="Pending for TransitLink">Pending for Transitlink</option>
+                            <option value="Ready for Application">Ready for Application</option>
+                            <option value="Card Ready">Card Ready</option>
+                            <option value="Card Dispatched">Card Dispatched</option>
                         </select>
                     </div>
                 </div>
