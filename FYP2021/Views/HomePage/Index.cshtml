@@ -88,6 +88,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>PLEASE READ THE ANNOUNCEMENTS</th>
+                            <th>DATE</th>
                         </tr>
                     </thead>
 
@@ -97,6 +98,7 @@
                         <tr>
 
                             <td>@row["Announcement"]</td>
+                            <td>@String.Format("{0:yyyy-MM-dd}", row["Announcement_Date"])</td>
                         </tr>
                     }
 
@@ -104,6 +106,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 
