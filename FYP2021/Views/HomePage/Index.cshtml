@@ -75,37 +75,37 @@
 
     <!--Announcement Area-->
 
-        <h1 class="text-center" id="announcement-text">Announcements</h1>
-        <div class="container" id="announcement-area">
-            <div class="row">
-                <!--Image beside announcement-->
-                <div class="col-sm-5" id="announcement-image">
-                    <img src="~/images/Calendar2.png" class="img-fluid" />
-                </div>
+    <h1 class="text-center" id="announcement-text">Announcements</h1>
+    <div class="container" id="announcement-area">
+        <div class="row">
+            <!--Image beside announcement-->
+            <div class="col-sm-5" id="announcement-image">
+                <img src="~/images/Calendar2.png" class="img-fluid" />
+            </div>
 
-                <div class="col-sm-7 text-center" >
-                    <table class="table table-striped table-bordered" id="announcement-table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>PLEASE READ THE ANNOUNCEMENTS</th>
-                                <th>DATE</th>
-                            </tr>
-                        </thead>
+            <div class="col-sm-7 text-center">
+                <table class="table table-striped table-bordered" id="announcement-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>PLEASE READ THE ANNOUNCEMENTS</th>
+                            <th>DATE</th>
+                        </tr>
+                    </thead>
 
 
-                        @foreach (DataRow row in Model)
-                        {
-                    <tr>
+                    @foreach (DataRow row in Model)
+                    {
+                        <tr>
 
-                        <td>@row["Announcement"]</td>
-                        <td>@String.Format("{0:yyyy-MM-dd}", row["Announcement_Date"])</td>
-                    </tr>
-                        }
+                            <td>@row["Announcement"]</td>
+                            <td>@String.Format("{0:yyyy-MM-dd}", row["Announcement_Date"])</td>
+                        </tr>
+                    }
 
-                    </table>
-                </div>
+                </table>
             </div>
         </div>
+    </div>
 
 
 
