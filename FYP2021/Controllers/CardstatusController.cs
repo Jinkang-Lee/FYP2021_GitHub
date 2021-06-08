@@ -67,13 +67,13 @@ namespace FYP2021.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult EditCardstatusPost(Student student)
+        public IActionResult EditCardstatusPost(Student student, IFormCollection form)
         {
             if (!ModelState.IsValid)
             {
                 TempData["Message"] = "Invalid Input!";
                 TempData["MsgType"] = "warning";
-                return View("UpdateOptions");
+                return View("ListCard");
             }
             else
             {
@@ -84,13 +84,40 @@ namespace FYP2021.Controllers
                 {
                     TempData["Message"] = "Card Status Updated";
                     TempData["MsgType"] = "success";
+
+                    //string custname = form["StudName"].ToString().Trim();
+                    //string email = form["StudEmail"].ToString().Trim();
+                    //string cardStatus = form["CardStatus"].ToString().Trim();
+                    //string subject = "New Card Status";
+
+                    //string template =
+                    //        @"Dear {0}, <br/>
+                    //            <p>Your new updated card status is {1}. For more information, visit the website.</p>
+                    //            Sincerely RP Team";
+
+                    //string msg = String.Format(template, custname, cardStatus);
+                    //string res; 
+                    //if (EmailUtl.SendEmail(email, subject, msg, out res))
+                    //{
+
+                    //    ViewData["Message"] = "Email Successfully Sent!";
+                    //    ViewData["MsgType"] = "success";
+                    //}
+
+                    //else
+                    //{
+                    //    ViewData["Message"] = result;
+                    //    ViewData["MsgType"] = "warning";
+                    //}
+
+                    //return View("Index");
                 }
                 else
                 {
                     TempData["Message"] = DBUtl.DB_Message;
                     TempData["MsgType"] = "danger";
                 }
-                return RedirectToAction("UpdateOptions");
+                return RedirectToAction("ListCard");
             }
 
         }
