@@ -185,6 +185,34 @@ namespace FYP2021.Controllers
             }
         }
 
+
+        public IActionResult DeleteStudent(int id)
+        {
+            string select = @"SELECT * FROM Student WHERE student_id={0}";
+            DataTable ds = DBUtl.GetTable(select, id);
+            if (ds.Rows.Count != 1)
+            {
+                TempData["Message"] = "Student does not exist";
+                TempData["MsgType"] = "warning";
+            }
+            else
+            {
+                string delete = "DELETE FROM Student WHERE student_id={0}";
+                int res = DBUtl.ExecSQL(delete, id);
+                if (res == 1)
+                {
+                    TempData["Message"] = "Student Deleted";
+                    TempData["MsgType"] = "success";
+                }
+                else
+                {
+                    TempData["Message"] = DBUtl.DB_Message;
+                    TempData["MsgType"] = "danger";
+                }
+            }
+            return RedirectToAction("ListStudent");
+        }
+
         public IActionResult ListCard()
         {
             string sql = "SELECT * FROM Student";
