@@ -80,11 +80,11 @@
                 <tbody>
                     @foreach (DataRow row in Model)
                     {
-                        <tr>
-                            <td>@row["student_email"]</td>
-                            <td>@row["student_name"]</td>
-                            <td>@row["pending_date"]</td>
-                        </tr>
+                    <tr>
+                        <td>@row["student_email"]</td>
+                        <td>@row["student_name"]</td>
+                        <td>@String.Format("{0:yyyy-MM-dd}", @row["pending_date"])</td>
+                    </tr>
                     }
                 </tbody>
             </table>
