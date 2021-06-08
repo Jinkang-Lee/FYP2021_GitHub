@@ -34,14 +34,14 @@
                         <button class="btn btn-primary btn-toolbar btn-lg">Generate Report</button>
                     </div>
                 </form>
-                
+
 
                 <form method="get" action="/Announcement/Options">
                     <div class="col-md-6" id="first-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg" >Announcement</button>
+                        <button class="btn btn-primary btn-toolbar btn-lg">Announcement</button>
                     </div>
                 </form>
-                
+
             </div>
 
 
@@ -56,10 +56,10 @@
                     @if (User.IsInRole("SuperAdmin"))
                     {
                         <div class="col-md-6" id="second-row-btn">
-                            <button class="btn btn-primary btn-toolbar btn-lg" >Edit Admin User</button>
+                            <button class="btn btn-primary btn-toolbar btn-lg">Edit Admin User</button>
                         </div>
                     }
-                </form>      
+                </form>
             </div>
 
 
@@ -67,6 +67,12 @@
                 <form method="get" action="/Admin/EditStudent">
                     <div class="col-md-6" id="third-row-btn">
                         <button class="btn btn-primary btn-toolbar btn-lg">Edit Student User</button>
+                    </div>
+                </form>
+
+                <form method="get" action="/Admin/QueryCardHistory">
+                    <div class="col-md-6" id="third-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg">Query Card History</button>
                     </div>
                 </form>
             </div>

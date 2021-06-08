@@ -51,7 +51,7 @@ namespace FYP2021.Controllers
         [HttpPost]
         public IActionResult Login(LoginUser user)
         {
-            if (!AuthenticateUser(user.Email, user.Password, out ClaimsPrincipal principal))
+            if (!AuthenticateUser(user.Email, user.OTP, out ClaimsPrincipal principal))
             {
                 ViewData["Message"] = "Incorrect Email";
                 ViewData["MsgType"] = "warning";
