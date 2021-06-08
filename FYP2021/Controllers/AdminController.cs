@@ -147,32 +147,32 @@ namespace FYP2021.Controllers
                     TempData["Message"] = "Success!";
                     TempData["MsgType"] = "success";
 
-                    string custname = form["StudName"].ToString().Trim();
-                    string email = form["StudEmail"].ToString().Trim();
-                    string cardStatus = form["CardStatus"].ToString().Trim();
-                    string subject = "New Card Status";
+                //    string custname = form["StudName"].ToString().Trim();
+                //    string email = form["StudEmail"].ToString().Trim();
+                //    string cardStatus = form["CardStatus"].ToString().Trim();
+                //    string subject = "New Card Status";
 
-                    string template =
-                            @"Dear {0}, <br/>
-                                <p>Your new updated card status is {1}. For more information, visit the website.</p>
-                                Sincerely RP Team";
+                //    string template =
+                //            @"Dear {0}, <br/>
+                //                <p>Your new updated card status is {1}. For more information, visit the website.</p>
+                //                Sincerely RP Team";
 
-                    string msg = String.Format(template, custname, cardStatus);
-                    string result;
-                    if (EmailUtl.SendEmail(email, subject, msg, out result))
-                    {
+                //    string msg = String.Format(template, custname, cardStatus);
+                //    string result;
+                //    if (EmailUtl.SendEmail(email, subject, msg, out result))
+                //    {
 
-                        ViewData["Message"] = "Email Successfully Sent!";
-                        ViewData["MsgType"] = "success";
-                    }
+                //        ViewData["Message"] = "Email Successfully Sent!";
+                //        ViewData["MsgType"] = "success";
+                //    }
 
-                    else
-                    {
-                        ViewData["Message"] = result;
-                        ViewData["MsgType"] = "warning";
-                    }
+                //    else
+                //    {
+                //        ViewData["Message"] = result;
+                //        ViewData["MsgType"] = "warning";
+                //    }
 
-                    return View("Index");
+                //    return View("Index");
                 }
 
                 else
