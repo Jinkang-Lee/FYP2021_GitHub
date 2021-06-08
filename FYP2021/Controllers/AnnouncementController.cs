@@ -14,13 +14,59 @@ namespace FYP2021.Controllers
         {
             return View();
         }
+
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
-        public IActionResult Delete()
+
+        [HttpPost]
+        public IActionResult Create(Announcement anmt)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                ViewData["Message"] = "Invalid Input";
+                ViewData["MsgType"] = "warning";
+                return View("Create");
+            } 
+            else
+            {
+                string sql = @"INSERT INTO Announcement
+                                            (Announcement, Announcement_Date)
+                                            VALUES ('{0}', '{1:yyyy-MM-dd}')";
+
+                if (DBUtl.ExecSQL(sql, anmt.ViewAnnouncement, anmt.Announcement_Date) == 1)
+                    TempData["Msg"] = "New Announcement Added!";
+                    return RedirectToAction("Update");
+            }
+        }
+
+        public IActionResult Delete(int Id)
+        {
+            string select = @"SELECT * FROM Announcement WHERE Id={0}";
+            DataTable ds = DBUtl.GetTable(select, Id);
+            if (ds.Rows.Count != 1)
+            {
+                TempData["Message"] = "Announcement does not exist";
+                TempData["MsgType"] = "warning";
+            }
+            else
+            {
+                string delete = "DELETE FROM Announcement WHERE Id={0}";
+                int res = DBUtl.ExecSQL(delete, Id);
+                if (res == 1)
+                {
+                    TempData["Message"] = "Announcement Deleted";
+                    TempData["MsgType"] = "success";
+                }
+                else
+                {
+                    TempData["Message"] = DBUtl.DB_Message;
+                    TempData["MsgType"] = "danger";
+                }
+            }
+            return RedirectToAction("Update");
         }
 
         public IActionResult Update()

@@ -30,7 +30,6 @@
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th>ID</th>
                     <th>Announcement</th>
                     <th>Date</th>
                 </tr>
@@ -40,7 +39,6 @@
             @foreach (DataRow row in Model)
             {
                 <tr>
-                    <td>@row["Id"]</td>
                     <td>@row["Announcement"]</td>
                     <td>@String.Format("{0:yyyy-MM-dd}", row["Announcement_Date"])</td>
                     <td>
