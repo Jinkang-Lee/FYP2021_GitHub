@@ -1,27 +1,31 @@
 ﻿@model Student
-
+ 
 
 
 
 <!DOCTYPE html>
 <html>
-   <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Student Concession Card - Admin</title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Concession Card - Admin</title>
 
-        <!-- style sheets references -->
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-        <!--INSERT CSS FILE HERE-->
-        <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- style sheets references -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <!--INSERT CSS FILE HERE-->
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/dtpicker/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
-        <!-- script files references -->
-        <script src="~/lib/jquery/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
-        <script src="~/lib/jquery/jquery.validate.min.js"></script>
-        <script src="~/lib/jquery/jquery.validate.unobtrusive.min.js"></script>
+    <!-- script files references -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.unobtrusive.min.js"></script>
 
-    </head>
+
+   
+
+</head>
 
    <body>
        <!--RP Logo Area-->
@@ -78,21 +82,29 @@
                        </div>
                    </div>
 
-                   <div class="form-group">
-                       <input type="submit" style="margin-left: 200px;" class="btn btn-lg btn-primary" value="Update Student" />
+
+                   <div class="form-group row">
+                       <label class="control-label col-sm-2" asp-for="CardStatusDate">Card Status Date: </label>
+                       <div class="col-sm-5">
+                           <input type="text" class="form-control" asp-for="CardStatusDate" value="@DateTime.Now.ToString("M/d/yyyy")"/>
+                       </div>
                    </div>
 
-                   @if (ViewData["Message"] != null)
-                   {
-                       <div class="form-group row">
-                           <div class="offset-sm-2 col-sm-5">
-                               <div class="alert alert-@ViewData["MsgType"]">
-                                   @ViewData["Message"]
+                       <div class="form-group">
+                           <input type="submit" style="margin-left: 200px;" class="btn btn-lg btn-primary" value="Update Student" />
+                       </div>
+
+                       @if (ViewData["Message"] != null)
+                       {
+                           <div class="form-group row">
+                               <div class="offset-sm-2 col-sm-5">
+                                   <div class="alert alert-@ViewData["MsgType"]">
+                                       @ViewData["Message"]
+                                   </div>
                                </div>
                            </div>
-                       </div>
-                   }
-               </form>
+                       }
+</form>
            </div>
 
            

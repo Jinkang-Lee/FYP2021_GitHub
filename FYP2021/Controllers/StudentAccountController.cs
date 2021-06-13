@@ -25,13 +25,12 @@ namespace FYP2021.Controllers
 
         private const string LOGIN_SQL =
         @"SELECT * FROM Student
-         WHERE student_email = '{0}'";
-        //NEED TO THINK ABOUT HOW TO DO THE 6 DIGIT PIN THING
+         WHERE student_email = '{0}' AND passcode = {1}";
 
 
-        private const string ROLE_COL = "Role";
-        private const string NAME_COL = "student_email";
+        private const string NAME_COL = "student_name";
 
+        //Where to redirect to after sign in
         private const string REDIRECT_CNTR = "Student";
         private const string REDIRECT_ACTN = "Index";
 
@@ -53,7 +52,7 @@ namespace FYP2021.Controllers
         {
             if (!AuthenticateUser(user.Email, user.OTP, out ClaimsPrincipal principal))
             {
-                ViewData["Message"] = "Incorrect Email";
+                ViewData["Message"] = "Incorrect Email or OTP";
                 ViewData["MsgType"] = "warning";
                 return View(LOGIN_VIEW);
             }
@@ -92,20 +91,19 @@ namespace FYP2021.Controllers
 
 
         // FOR AUTHENTICATING USERS
-        private bool AuthenticateUser(string uid, string pw, out ClaimsPrincipal principal)
+        private bool AuthenticateUser(string Email, string OTP, out ClaimsPrincipal principal)
         {
             principal = null;
 
-            DataTable ds = DBUtl.GetTable(LOGIN_SQL, uid, pw);
+            DataTable ds = DBUtl.GetTable(LOGIN_SQL, Email, OTP);
             if (ds.Rows.Count == 1)
             {
                 principal =
                    new ClaimsPrincipal(
                       new ClaimsIdentity(
                          new Claim[] {
-                        new Claim(ClaimTypes.NameIdentifier, ds.Rows[0]["Id"].ToString()),
-                        new Claim(ClaimTypes.Name, ds.Rows[0][NAME_COL].ToString()),
-                        new Claim(ClaimTypes.Role, ds.Rows[0][ROLE_COL].ToString())
+                        new Claim(ClaimTypes.NameIdentifier, ds.Rows[0]["student_email"].ToString()),
+                        new Claim(ClaimTypes.Name, ds.Rows[0][NAME_COL].ToString())
                          }, "Basic"
                       )
                    );
@@ -114,17 +112,34 @@ namespace FYP2021.Controllers
             return false;
         }
 
+
+
+
+
+
+
+
+        Random rand1 = new Random();
+
         [AllowAnonymous]
         [HttpPost]
         public IActionResult SendEmailOTP(string email)
         {
             //Random 6 digit pin number
-            Random rand1 = new Random();
+            
             int pin_num = rand1.Next(000001, 999999);
 
 
             IFormCollection form = HttpContext.Request.Form;
             string StudentEmail = form["Email"].ToString().Trim();
+
+            //Insert 6 digit passcode to Student table
+            string insert = @"UPDATE Student SET passcode={0} WHERE student_email = '{1}'";
+            if (DBUtl.ExecSQL(insert, pin_num, StudentEmail) == 1)
+            {
+                ViewData["Message"] = "Passcode added";
+                ViewData["MsgType"] = "success";
+            }
 
             string select = ("SELECT * FROM Student WHERE student_email = '{0}'");
             List<Student> search = DBUtl.GetList<Student>(select, email);
@@ -136,14 +151,17 @@ namespace FYP2021.Controllers
             }
             else
             {
+
+
+
                 Student user = search[0];
                 string template = @"Login Request has been received,
-                               <p>Hello! Your OTP for login is {0}. Click the link below and enter your OTP.</p>
-                                    <a href='https://localhost:44383/StudentAccount/EnterOTP?StudEmail={1}'>Click Here!</a>
+                               <p>Hello! Your OTP for login is {0}. Click the link below to proceed to login page.</p>
+                                    <a href='https://localhost:44383/StudentAccount/Login'>Click Here!</a>
                                                 <p>Sincerely, </p>
                                                 <p>RP Team</p>";
 
-                string body = String.Format(template, pin_num, StudentEmail);
+                string body = String.Format(template, pin_num);
                 string subject = "Student Login Request";
                 string result;
 
@@ -158,18 +176,24 @@ namespace FYP2021.Controllers
                     ViewData["MsgType"] = "warning";
                 }
 
-               
+                
+
             }
-            return View("Login");
+            return View("GetOTP");
         }
 
-        
+
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult EnterOTP()
+        public IActionResult GetOTP()
         {
             return View();
         }
+
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
     }
 }

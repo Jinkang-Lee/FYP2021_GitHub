@@ -149,7 +149,7 @@ namespace FYP2021.Controllers
             string AdminEmail = form["Email"].ToString().Trim();
 
             string select = ("SELECT * FROM Admin WHERE admin_email = '{0}'");
-            List<Admin> search = DBUtl.GetList<Admin>(select, email);
+            List<Admin> search = DBUtl.GetList<Admin>(select, AdminEmail);
 
             
             if(search.Count == 0)
@@ -184,11 +184,7 @@ namespace FYP2021.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        public IActionResult ChangePassword()
-        {
-            return View();
-        }
+
 
 
 
@@ -198,17 +194,16 @@ namespace FYP2021.Controllers
             var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             //Convert to ASCII Byte array first
-             var pw_bytes = System.Text.Encoding.ASCII.GetBytes(CurrentPassword);
+            var pw_bytes = System.Text.Encoding.ASCII.GetBytes(CurrentPassword);
 
             Admin user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
 
             //IF NOT NULL
-             if (user != null)
+            if (user != null)
                 return Json(true);
             else
                 return Json(false);
         }
-
 
 
         public JsonResult VerifyNewPassword(string NewPassword)
@@ -218,12 +213,12 @@ namespace FYP2021.Controllers
             var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             //Convert to ASCII Byte array first
-             var pw_bytes = System.Text.Encoding.ASCII.GetBytes(NewPassword);
+            var pw_bytes = System.Text.Encoding.ASCII.GetBytes(NewPassword);
 
             Admin user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
 
             //IF NULL
-             if (user == null)
+            if (user == null)
                 return Json(true);
             else
                 return Json(false);
@@ -234,18 +229,33 @@ namespace FYP2021.Controllers
 
 
 
+
+
+
+        [AllowAnonymous]
+        public IActionResult ChangePassword(string email)
+        {
+            //ViewData["Email"] = email;
+            return View();
+        }
+
         //ChangePassword HttpPost
         [HttpPost]
-        public IActionResult ChangePassword(UpdatePassword pu)
+        public IActionResult ChangePassword(Admin pu)
         {
-            var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var npw_bytes = System.Text.Encoding.ASCII.GetBytes(pu.NewPassword);
-            var cpw_bytes = System.Text.Encoding.ASCII.GetBytes(pu.CurrentPassword);
-
-            int num = _dbContext.Database.ExecuteSqlInterpolated($"UPDATE Admin SET admin_password = HASHBYTES('SHA1', {npw_bytes}) WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {cpw_bytes})");
+            //var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            //var npw_bytes = System.Text.Encoding.ASCII.GetBytes(pu.NewPassword);
+            //var cpw_bytes = System.Text.Encoding.ASCII.GetBytes(pu.CurrentPassword);
 
 
-            if (num == 1)
+            //@"UPDATE Admin SET admin_password = HASHBYTES('SHA1', '{0}') WHERE admin_email = '{1}'";
+            //int num = DBUtl.ExecSQL(update, npw_bytes, email);
+
+            string update = @"UPDATE Admin SET admin_password = HASHBYTES('SHA1','{0}' WHERE admin_email = '{1}'";
+
+
+            var res = DBUtl.ExecSQL(update, pu.AdminPassword, pu.AdminEmail);
+            if (res == 1)
             {
                 ViewData["Msg"] = "Password successfully updated!";
             }

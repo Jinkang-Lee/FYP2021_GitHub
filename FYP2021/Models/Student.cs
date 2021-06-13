@@ -24,6 +24,8 @@ namespace FYP2021.Models
 
         public string CardStatus { get; set; }
 
-        public string PendingDate { get; set; }
+        public string CardStatusDate { get; set; }
+
+        public string OTP { get; set; }
     }
 }

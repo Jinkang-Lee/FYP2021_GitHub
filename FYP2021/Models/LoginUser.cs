@@ -13,6 +13,8 @@ namespace FYP2021.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+
+        [Required(ErrorMessage = "OTP cannot be empty!")]
         public string OTP { get; set; }
     }
 }
