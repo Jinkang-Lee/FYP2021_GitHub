@@ -5,11 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using FYP2021.Models;
+using Rotativa.AspNetCore;
 
 namespace FYP2021.Controllers
 {
     public class ReportController : Controller
     {
+
+        public IActionResult ReportViewAsPDF()
+        {
+            return new ViewAsPdf("ReportViewAsPDF");
+        }
+
         // View to the generate report in Admin folder
         public IActionResult PendingForTransitLink()
         {
