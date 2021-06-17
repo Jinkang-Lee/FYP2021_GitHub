@@ -16,5 +16,7 @@ namespace FYP2021.Models
 
         [Required(ErrorMessage = "OTP cannot be empty!")]
         public string OTP { get; set; }
+
+        public int Attempts { get; set; }
     }
 }

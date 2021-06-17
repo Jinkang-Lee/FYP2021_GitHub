@@ -50,12 +50,33 @@ namespace FYP2021.Controllers
         [HttpPost]
         public IActionResult Login(LoginUser user)
         {
+
+            //Collect student Email from the form
+            IFormCollection form = HttpContext.Request.Form;
+            string studentEmail = form["Email"].ToString().Trim();
+
+            //string select = ("SELECT * FROM Student WHERE student_email = '{0}' AND attempts = {1}");
+            //List<Student> search = DBUtl.GetList<Student>(select, studentEmail);
+
             if (!AuthenticateUser(user.Email, user.OTP, out ClaimsPrincipal principal))
             {
+                user.Attempts = user.Attempts + 1;
+
+                string update = @"UPDATE Student SET attempts = {0} WHERE student_email = '{1}'";
+                int res = DBUtl.ExecSQL(update, user.Attempts, studentEmail);
+
                 ViewData["Message"] = "Incorrect Email or OTP";
                 ViewData["MsgType"] = "warning";
+
+                //If User has more than 9 failed attempts, error message will be sent
+                if(user.Attempts > 9)
+                {
+                    ViewData["Message"] = "You have exceeded the maximum amount of tries! Your account is now locked.";
+                    ViewData["MsgType"] = "warning";
+                }
                 return View(LOGIN_VIEW);
             }
+
 
             //Sign in using the assigned AUTH SCHEME
             else
