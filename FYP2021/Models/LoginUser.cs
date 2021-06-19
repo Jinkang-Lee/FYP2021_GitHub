@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace FYP2021.Models
@@ -17,6 +18,7 @@ namespace FYP2021.Models
         [Required(ErrorMessage = "OTP cannot be empty!")]
         public string OTP { get; set; }
 
+        [Remote(action: "UserAttempts", controller: "StudentAccount")]
         public int Attempts { get; set; }
     }
 }

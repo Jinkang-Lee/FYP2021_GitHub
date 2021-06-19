@@ -45,6 +45,8 @@ namespace FYP2021.Controllers
 
 
 
+
+
         // FOR LOGIN
         [AllowAnonymous]
         [HttpPost]
@@ -55,41 +57,53 @@ namespace FYP2021.Controllers
             IFormCollection form = HttpContext.Request.Form;
             string studentEmail = form["Email"].ToString().Trim();
 
-            //string select = ("SELECT * FROM Student WHERE student_email = '{0}' AND attempts = {1}");
-            //List<Student> search = DBUtl.GetList<Student>(select, studentEmail);
 
-            if (!AuthenticateUser(user.Email, user.OTP, out ClaimsPrincipal principal))
+
+            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_email = '{0}' AND attempts > 9", studentEmail);
+
+
+            //Need to set value to user.Attempts
+            //!!ISSUE: Right now user.Attempts always starts with 0!!
+            if (user.Email == studentEmail && list.Count > 0)
             {
-                user.Attempts = user.Attempts + 1;
-
-                string update = @"UPDATE Student SET attempts = {0} WHERE student_email = '{1}'";
-                int res = DBUtl.ExecSQL(update, user.Attempts, studentEmail);
-
-                ViewData["Message"] = "Incorrect Email or OTP";
-                ViewData["MsgType"] = "warning";
-
-                //If User has more than 9 failed attempts, error message will be sent
-                if(user.Attempts > 9)
-                {
-                    ViewData["Message"] = "You have exceeded the maximum amount of tries! Your account is now locked.";
-                    ViewData["MsgType"] = "warning";
-                }
+                //If login attempt is more than 9
+                ViewData["Message"] = "You have exceeded the maximum amount of tries! Your account is now locked.";
+                ViewData["MsgType"] = "danger";
                 return View(LOGIN_VIEW);
             }
-
-
-            //Sign in using the assigned AUTH SCHEME
             else
             {
-                HttpContext.SignInAsync(
-                   AUTHSCHEME,
-                   principal,
-               new AuthenticationProperties
-               {
-                   IsPersistent = false
-               });
+                
+                //If Sign in attempt fails
+                if (!AuthenticateUser(user.Email, user.OTP, out ClaimsPrincipal principal))
+                {
+                    //+1 to the number of attempts
+                    //user.Attempts += 1;
 
-                return RedirectToAction(REDIRECT_ACTN, REDIRECT_CNTR);
+                    string update = @"UPDATE Student SET attempts = attempts +1 WHERE student_email = '{0}'";
+                    int res = DBUtl.ExecSQL(update, studentEmail);
+
+                    ViewData["Message"] = "Incorrect Email or OTP";
+                    ViewData["MsgType"] = "warning";
+
+
+                    return View(LOGIN_VIEW);
+                }
+
+
+                //If Sign in attempt pass
+                else
+                {
+                    HttpContext.SignInAsync(
+                       AUTHSCHEME,
+                       principal,
+                   new AuthenticationProperties
+                   {
+                       IsPersistent = false
+                   });
+
+                    return RedirectToAction(REDIRECT_ACTN, REDIRECT_CNTR);
+                }
             }
         }
 
