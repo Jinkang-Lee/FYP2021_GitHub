@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using FYP2021.Models;
+using Rotativa.AspNetCore;
 
 namespace FYP2021
 {
@@ -20,9 +21,13 @@ namespace FYP2021
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public IConfiguration Configuration { get; }
-        public Startup(IConfiguration configuration)
+
+        // For report to be in PDF/Printing
+        public Startup(IConfiguration configuration,
+            Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             Configuration = configuration;
+            RotativaConfiguration.Setup(env);
         }
 
         public void ConfigureServices(IServiceCollection services)
