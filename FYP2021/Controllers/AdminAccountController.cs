@@ -241,27 +241,44 @@ namespace FYP2021.Controllers
 
         //ChangePassword HttpPost
         [HttpPost]
-        public IActionResult ChangePassword(Admin pu)
+        public IActionResult ChangePassword(string email, string password)
         {
             //var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             //var npw_bytes = System.Text.Encoding.ASCII.GetBytes(pu.NewPassword);
             //var cpw_bytes = System.Text.Encoding.ASCII.GetBytes(pu.CurrentPassword);
 
-
+            
             //@"UPDATE Admin SET admin_password = HASHBYTES('SHA1', '{0}') WHERE admin_email = '{1}'";
             //int num = DBUtl.ExecSQL(update, npw_bytes, email);
 
-            string update = @"UPDATE Admin SET admin_password = HASHBYTES('SHA1','{0}' WHERE admin_email = '{1}'";
+
+            IFormCollection form = HttpContext.Request.Form;
+            string AdminEmail = form["Email"].ToString().Trim();
+            string AdminPass = form["Password"].ToString().Trim();
+
+            string select = ("SELECT * FROM Admin WHERE admin_email = '{0}'");
+            List<Admin> search = DBUtl.GetList<Admin>(select, AdminEmail);
 
 
-            var res = DBUtl.ExecSQL(update, pu.AdminPassword, pu.AdminEmail);
-            if (res == 1)
+            if (search.Count == 0)
             {
-                ViewData["Msg"] = "Password successfully updated!";
+                ViewData["Message"] = "Email does not exist!";
+                ViewData["MsgType"] = "warning";
             }
             else
             {
-                ViewData["Msg"] = "Failed to update password!";
+
+
+                string update = @"UPDATE Admin SET admin_password = HASHBYTES('SHA1','{0}') WHERE admin_email = '{1}'";
+                var res = DBUtl.ExecSQL(update, AdminPass, AdminEmail);
+                if (res == 1)
+                {
+                    ViewData["Msg"] = "Password successfully updated!";
+                }
+                else
+                {
+                    ViewData["Msg"] = "Failed to update password!";
+                }
             }
 
             return View("Login");
