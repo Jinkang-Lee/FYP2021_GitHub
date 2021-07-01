@@ -10,7 +10,6 @@
     body {
         margin: 0;
         padding: 0;
-        background-color: #eee;
     }
 
     .step_progressbar {
@@ -97,6 +96,12 @@
                     <li>Card Ready</li>
                     <li>Card Dispatched</li>
 
+                    <li class="container" style="text-align: center">
+
+                        Your card status is Pending for TransitLink
+
+                    </li>
+
                 }
 
                 else if (st.CardStatus == "Ready for Application")
@@ -105,6 +110,13 @@
                     <li class="active">Ready for Application</li>
                     <li>Card Ready</li>
                     <li>Card Dispatched</li>
+
+                    <li class="container" style="text-align: center">
+
+                        Your card status is Ready for Application
+
+                    </li>
+
                 }
 
                 else if (st.CardStatus == "Card Ready")
@@ -113,6 +125,13 @@
                     <li class="active">Ready for Application</li>
                     <li class="active">Card Ready</li>
                     <li>Card Dispatched</li>
+
+                    <li class="container" style="text-align: center">
+
+                        Your card status is Card Ready
+
+                    </li>
+
                 }
 
                 else
@@ -121,6 +140,13 @@
                     <li class="active">Ready for Application</li>
                     <li class="active">Card Ready</li>
                     <li class="active">Card Dispatched</li>
+
+                    <li class="container" style="text-align: center">
+
+                        Your card status is Card Dispatched
+
+                    </li>
+
                 }
             }
 

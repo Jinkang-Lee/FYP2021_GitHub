@@ -1,0 +1,5 @@
+Id,StudEmail,StudName,StudPhNum,CardStatus,CardStatusDate,Attempts,OTP
+2000,19000000@myrp.edu.sg,Syakir,90000000,Card Dispatched,15/6/2021,0,NULL
+2001,19011111@myrp.edu.sg,Jin Kang,91111111,Card Ready,16/6/2021,1,NULL
+2002,19022222@myrp.edu.sg,Zhenni,92222222,Ready for Application,17/6/2021,2,NULL
+2003,19033333@myrp.edu.sg,Yi Yang,93333333,Pening for TransitLink,18/6/2021,3,NULL

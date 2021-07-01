@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Student>
+@{ 
+    Layout = null;
+}
+
+<section id="banner" class="rp-logo">
+    <img src="~/images/RP_Logo.png" width="200" height="80" />
+</section>
+
+<form asp-controller="CSVHelperTest" asp-action="IndexTest" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <hr />
+    <button type="submit">Upload</button>
+</form>
+
+@if (Model.Count() > 0)
+{
+    <hr />
+    <table cellpadding="0" cellspacing="0" border="1">
+        <tr>
+            <td>ID</td>
+            <td>Email</td>
+            <td>Name</td>
+            <td>Phone Number</td>
+            <td>Card Status</td>
+            <td>Date</td>
+            <td>attempts</td>
+        </tr>
+        @foreach (Student student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.StudEmail</td>
+                <td>@student.StudName</td>
+                <td>@student.StudPhNum</td>
+                <td>@student.CardStatus</td>
+                <td>@student.CardStatusDate</td>
+                <td>@student.Attempts</td>
+            </tr>
+        }
+    </table>
+}

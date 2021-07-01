@@ -20,15 +20,25 @@ namespace FYP2021.Controllers
     public class CardstatusController : Controller
     {
         [Authorize]
-        public IActionResult ListCard()
+        public IActionResult ListCard(Student CardStatusDate)
         {
+            //List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE cardstatus_date = {0}", CardStatusDate);
+            //string dateInString = Student.CardStatusDate;
+
+            //DateTime startDate = DateTime.Parse(dateInString);
+            //DateTime expiryDate = startDate.AddDays(90);
+            //if (DateTime.Now > expiryDate)
+            //{
+            //    string delete = "DELETE FROM Student";
+            //    DBUtl.ExecSQL(delete);
+            //}
+
             //string sql = "SELECT * FROM Student";
             DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
             return View("ListCard",dt.Rows);
 
-            //List<Student> student = DBUtl.GetList<Student>(
-            //   @"SELECT * FROM Student");
-            //return View(student);
+            
+
         }
 
         [HttpGet]
@@ -134,6 +144,19 @@ namespace FYP2021.Controllers
             string sql = "SELECT * FROM Student";
             DataTable dt = DBUtl.GetTable(sql);
             return View(dt.Rows);
+        }
+
+        public static void Main(Student student)
+        {
+            string dateInString = student.CardStatusDate;
+
+            DateTime startDate = DateTime.Parse(dateInString);
+            DateTime expiryDate = startDate.AddDays(90);
+            if (DateTime.Now > expiryDate)
+            {
+                string delete = "DELETE FROM Student";
+                DBUtl.ExecSQL(delete);
+            }
         }
     }
 }

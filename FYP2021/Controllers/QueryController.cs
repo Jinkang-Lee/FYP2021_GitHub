@@ -10,10 +10,9 @@ namespace FYP2021.Controllers
 {
     public class QueryController : Controller
     {
-        public IActionResult QueryCardStatus()
+        public IActionResult QueryCardStatus(Student student)
         {
-            string sql = "SELECT * FROM Student WHERE student_email = '{0}'";
-            DataTable dt = DBUtl.GetTable(sql);
+            
             return View();
         }
 
