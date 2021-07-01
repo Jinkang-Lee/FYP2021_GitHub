@@ -96,18 +96,21 @@
             <tbody>
                 @foreach (DataRow row in Model)
                 {
-                    <tr>
-                        <td>@row["student_Id"]</td>
-                        <td>@row["student_email"]</td>
-                        <td>@row["student_name"]</td>
-                        <td>@row["ph_num"]</td>
-                        <td>@row["card_status"]</td>
-                        <td>@row["CardStatusDate"]</td>
-                        @*<td>@row["pending_date"]</td>
-                        <td>@row["Readyapplication_date"]</td>
-                        <td>@row["cardready_date"]</td>
-                        <td>@row["carddispatched_date"]</td>*@
-                    </tr>
+                <tr>
+                    <td>@row["student_Id"]</td>
+                    <td>@row["student_email"]</td>
+                    <td>@row["student_name"]</td>
+                    <td>@row["ph_num"]</td>
+                    <td>@row["card_status"]</td>
+                    <td>@row["cardStatus_date"]</td>
+                    <td>@row["cardStatus_date"]</td>
+                    <td>@row["cardStatus_date"]</td>
+                    <td>@row["cardStatus_date"]</td>
+                    @*<td>@row["pending_date"]</td>
+        <td>@row["Readyapplication_date"]</td>
+        <td>@row["cardready_date"]</td>
+        <td>@row["carddispatched_date"]</td>*@
+                </tr>
                 }
             </tbody>
 
