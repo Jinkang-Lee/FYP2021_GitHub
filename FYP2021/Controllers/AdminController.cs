@@ -138,9 +138,9 @@ namespace FYP2021.Controllers
             }
             else
             {
-                string update = @"UPDATE Student SET student_email='{0}', student_name='{1}', ph_num={2}, card_status='{3}' WHERE student_id = {4}";
+                string update = @"UPDATE Student SET student_email='{0}', student_name='{1}', ph_num={2}, card_status='{3}', attempts={4} WHERE student_id = {5}";
 
-                int res = DBUtl.ExecSQL(update, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus, student.Id);
+                int res = DBUtl.ExecSQL(update, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus, student.StudAttempts, student.Id);
 
                 if (res == 1)
                 {

@@ -153,7 +153,7 @@ namespace FYP2021.Controllers
 
 
 
-
+        //Create a Random Variable
         Random rand1 = new Random();
 
         [AllowAnonymous]
@@ -186,9 +186,6 @@ namespace FYP2021.Controllers
             }
             else
             {
-
-
-
                 Student user = search[0];
                 string template = @"Login Request has been received,
                                <p>Hello! Your OTP for login is {0}. Click the link below to proceed to login page.</p>

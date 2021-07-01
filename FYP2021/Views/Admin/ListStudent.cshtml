@@ -46,7 +46,7 @@
     </section>
     
     <div class="container">
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
@@ -54,6 +54,7 @@
                     <th>Student Name</th>
                     <th>Student Phone No.</th>
                     <th>Card Status</th>
+                    <th>Failed Attempts</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -67,6 +68,7 @@
                     <td>@row["student_name"]</td>
                     <td>@row["ph_num"]</td>
                     <td>@row["card_status"]</td>
+                    <td>@row["attempts"]</td>
                     <td>
                         <a asp-controller="Admin"
                            asp-action="ListEditStudent"
