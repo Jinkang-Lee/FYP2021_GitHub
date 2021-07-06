@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/HomePage.css" />
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
     <!-- script files references -->
     <script src="~/lib/jquery/jquery.min.js"></script>
@@ -18,14 +19,99 @@
     <script src="~/lib/jquery/jquery.validate.min.js"></script>
     <script src="~/lib/jquery/jquery.validate.unobtrusive.min.js"></script>
 
+
+
+    <!--jQuery functions-->
+    <script>
+        //Scroll to content -> on click
+        $(document).ready(function () {
+            $('a[href^="#"]').on('click', function (e) {
+                e.preventDefault();
+
+                var target = this.hash;
+                var $target = $(target);
+
+                $('html, body').animate({
+                    scrollTop: $target.offset().top
+                }, 1000, 'swing', function () {
+                    window.location.hash = target;
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $('.about-button').on('click', function (e) {
+                e.preventDefault();
+
+                var target = this.hash;
+                var $target = $(target);
+
+                $('html, body').animate({
+                    scrollTop: $target.offset().top
+                }, 1000, 'swing', function () {
+                    window.location.hash = target;
+                });
+            });
+        });
+
+
+        //Scroll to top
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 700) {
+                    $('#topBtn').fadeIn();
+                }
+                else {
+                    $('#topBtn').fadeOut();
+                }
+            });
+
+            $("#topBtn").click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 800)
+            });
+        });
+
+    </script>
+
 </head>
 
 
 <body>
+
+    <!--NAVIGATION BAR-->
+    <header class="header_area">
+
+        <nav class="navbar navbar-expand-lg navbar-light  ">
+            <a class="navbar-brand" href="#"><img src="~/images/RP_Logo.png" width="200" height="80" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="mr-auto"></div>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#Home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#announcement-text">Announcements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
     <!--RP Logo Area-->
-    <section id="banner" class="rp-logo">
+    <!--<section id="banner" class="rp-logo">
         <img src="~/images/RP_Logo.png" width="200" height="80" />
-    </section>
+    </section>-->
 
 
     <!--Image + Student or Admin login choice-->
@@ -108,7 +194,89 @@
     </div>
 
 
+    <!--About Me Area-->
+    <section class="about-area" id="about">
+        <div class="container-fluid about">
+            <div class="row">
+
+                <div class="col-sm-6 about-title">
+                    <h2 class="text-uppercase pt-5">
+                        <span><u>About Us</u></span>
+                    </h2>
+                    <div class="fa-paragraph ">
+                        <p class="para">
+                            This website is developed to improve the processing of concession card for all students in Republic Polytechnic. As students are currently unable to self-check their student concession card status and have to physically go or email One-Stop-Centre to check their card status.
+
+                        </p>
+                        <p class="para">
+                            Therefore, this self-check portal is built to allow students to self-check the status of the his/her student concession card.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="about-image">
+                        <img src="~/images/about.png" alt="About" class="img-fluid" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
 
+
+    <!--Contact Us Area-->
+    <section id="banner" class="contact-area">
+        <div class="container" id="contact">
+            <h1 class="text-uppercase pt-5 text-center">
+                <span>Contact Us</span>
+            </h1>
+            <div class="row">
+
+
+                <div class="col-md-6 text-center" id="colour-side">
+                    <h2>How does it work?</h2>
+                    <p>Fill in your personal particulars and feedback to us and click send!</p>
+                </div>
+
+                <div class="col-md-6" id="login-side">
+
+
+                    <form method="post">
+
+                        <div class="form-group">
+                            <label class="contact-labels">FIRST NAME</label>
+                            <input type="text" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="contact-labels">LAST NAME</label>
+                            <input type="text" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="contact-labels">EMAIL ADDRESS</label>
+                            <input type="email" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="contact-labels">Message</label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="submit" style="margin-left: 100px;" class="btn btn-lg btn-primary" value="Send Message" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--Scroll to top button-->
+    <button id="topBtn"><i class="fas fa-arrow-up"></i></button>
 </body>
 </html>

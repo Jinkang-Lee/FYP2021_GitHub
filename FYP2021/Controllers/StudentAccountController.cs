@@ -161,7 +161,6 @@ namespace FYP2021.Controllers
         public IActionResult SendEmailOTP(string email)
         {
             //Random 6 digit pin number
-            
             int pin_num = rand1.Next(000001, 999999);
 
 

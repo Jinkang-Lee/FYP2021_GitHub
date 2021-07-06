@@ -8,6 +8,27 @@ body {
 }
 
 
+/*Nav bar*/
+.header_area {
+    transition: .5s;
+}
+
+    /*.header_area .navbar .navbar-brand {
+        padding: 0 2rem 0 5rem;
+    }*/
+
+    .header_area .navbar {
+        padding: 0rem 5rem;
+    }
+
+    .header_area .nav-item .nav-link {
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: 500;
+        color: black;
+    }
+
+
 
 /*RP Logo area*/
 .rp-logo
@@ -20,7 +41,7 @@ body {
 
 /*Main area with intro about website and image*/
 .main-area {
-    height: 650px;
+    height: 700px;
     background: #11998e; /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #38ef7d, #11998e); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -67,4 +88,62 @@ body {
 #announcement-table
 {
     margin-top: 100px;
+}
+
+
+
+
+/*About us area*/
+.about-area{
+    padding: 5rem 10rem;
+}
+
+.about-area .about-title .paragraph > p{
+    padding: .4rem 0;
+    
+}
+
+.para {
+    font-size: 18px;
+}
+
+
+/*Contact us area*/
+#colour-side {
+    height: 500px;
+    margin-top: 50px;
+    background-color: yellow;
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+#login-side {
+    height: 500px;
+    margin-top: 50px;
+    background-color: white;
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+.contact-labels
+{
+    font-weight: 650;
+    font-size: 17px;
+}
+
+
+
+
+/*To top button*/
+#topBtn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    font-size: 22px;
+    width: 60px;
+    height: 60px;
+    background: #28DF99;
+    border: none;
+    cursor: pointer;
+    color: white;
 }
