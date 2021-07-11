@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using FYP2021.Models;
@@ -14,7 +11,22 @@ namespace FYP2021.Controllers
 
         public IActionResult ReportViewAsPDF()
         {
-            return new ViewAsPdf("ReportViewAsPDF");
+            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student");
+
+            //DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
+
+            if (list != null)
+                return new ViewAsPdf("ReportViewAsPDF", list)
+                {
+                    PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape
+
+                };
+            else
+            {
+                TempData["Msg"] = "FAILED";
+                return RedirectToAction("SummaryReport");
+            }
         }
 
         // View to the generate report in Admin folder
