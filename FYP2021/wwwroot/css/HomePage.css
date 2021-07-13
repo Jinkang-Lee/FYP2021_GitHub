@@ -109,6 +109,11 @@ body {
 
 
 /*Contact us area*/
+#contact
+{
+    height: 800px;
+}
+
 #colour-side {
     height: 500px;
     margin-top: 50px;

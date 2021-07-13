@@ -57,21 +57,22 @@ namespace FYP2021.Controllers
             return View();
         }
 
+
         [HttpPost]
         [Authorize]
         public IActionResult CreateStudent(Student student)
         {
+            student.StudAttempts = 0;
             string userid = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (ModelState.IsValid)
             {
                 string sql = @"INSERT INTO Student
-                                            (student_email, student_name, ph_num, card_status)
-                                            VALUES ('{0}', '{1}', {2}, '{3}')";
+                                            (student_email, student_name, ph_num, card_status, attempts)
+                                            VALUES ('{0}', '{1}', {2}, '{3}', {4})";
 
-                if (DBUtl.ExecSQL(sql, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus) == 1)
+                if (DBUtl.ExecSQL(sql, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus, student.StudAttempts) == 1)
                     TempData["Msg"] = "New student Added!";
                 return RedirectToAction("EditStudent");
-
             }
             else
             {
@@ -85,13 +86,6 @@ namespace FYP2021.Controllers
 
         public IActionResult ListStudent()
         {
-            //DbSet<Student> dbs = _dbContext.Student;
-            //List<Student> model = dbs.ToList();
-            //var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            //if(User.IsInRole("Admin"))
-            //    model = model.Where(s => s.StudEmail == email).ToList();
-
-
             DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
             return View("ListStudent", dt.Rows);
         }
@@ -146,33 +140,6 @@ namespace FYP2021.Controllers
                 {
                     TempData["Message"] = "Success!";
                     TempData["MsgType"] = "success";
-
-                //    string custname = form["StudName"].ToString().Trim();
-                //    string email = form["StudEmail"].ToString().Trim();
-                //    string cardStatus = form["CardStatus"].ToString().Trim();
-                //    string subject = "New Card Status";
-
-                //    string template =
-                //            @"Dear {0}, <br/>
-                //                <p>Your new updated card status is {1}. For more information, visit the website.</p>
-                //                Sincerely RP Team";
-
-                //    string msg = String.Format(template, custname, cardStatus);
-                //    string result;
-                //    if (EmailUtl.SendEmail(email, subject, msg, out result))
-                //    {
-
-                //        ViewData["Message"] = "Email Successfully Sent!";
-                //        ViewData["MsgType"] = "success";
-                //    }
-
-                //    else
-                //    {
-                //        ViewData["Message"] = result;
-                //        ViewData["MsgType"] = "warning";
-                //    }
-
-                //    return View("Index");
                 }
 
                 else
@@ -225,6 +192,15 @@ namespace FYP2021.Controllers
             string sql = "SELECT * FROM Student";
             DataTable dt = DBUtl.GetTable(sql);
             return View(dt.Rows);
+        }
+
+
+
+
+        //ENHANCEMENT: Settings page for 2 FA
+        public IActionResult Settings()
+        {
+            return View();
         }
     }
 }
