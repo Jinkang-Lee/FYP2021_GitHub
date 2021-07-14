@@ -188,47 +188,43 @@ namespace FYP2021.Controllers
 
 
 
-        public JsonResult VerifyCurrentPassword(string CurrentPassword)
-        {
-            DbSet<Admin> dbs = _dbContext.Admin;
-            var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        //public JsonResult VerifyCurrentPassword(string CurrentPassword)
+        //{
+        //    DbSet<Admin> dbs = _dbContext.Admin;
+        //    var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            //Convert to ASCII Byte array first
-            var pw_bytes = System.Text.Encoding.ASCII.GetBytes(CurrentPassword);
+        //    //Convert to ASCII Byte array first
+        //    var pw_bytes = System.Text.Encoding.ASCII.GetBytes(CurrentPassword);
 
-            Admin user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
+        //    Admin user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
 
-            //IF NOT NULL
-            if (user != null)
-                return Json(true);
-            else
-                return Json(false);
-        }
-
-
-        public JsonResult VerifyNewPassword(string NewPassword)
-        {
-
-            DbSet<Admin> dbs = _dbContext.Admin;
-            var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            //Convert to ASCII Byte array first
-            var pw_bytes = System.Text.Encoding.ASCII.GetBytes(NewPassword);
-
-            Admin user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
-
-            //IF NULL
-            if (user == null)
-                return Json(true);
-            else
-                return Json(false);
+        //    //IF NOT NULL
+        //    if (user != null)
+        //        return Json(true);
+        //    else
+        //        return Json(false);
+        //}
 
 
-        }
+        //public JsonResult VerifyNewPassword(string NewPassword)
+        //{
+
+        //    DbSet<Admin> dbs = _dbContext.Admin;
+        //    var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+        //    //Convert to ASCII Byte array first
+        //    var pw_bytes = System.Text.Encoding.ASCII.GetBytes(NewPassword);
+
+        //    Admin user = dbs.FromSqlInterpolated($"SELECT * FROM Admin WHERE admin_email = {email} AND admin_password = HASHBYTES('SHA1', {pw_bytes})").FirstOrDefault();
+
+        //    //IF NULL
+        //    if (user == null)
+        //        return Json(true);
+        //    else
+        //        return Json(false);
 
 
-
-
+        //}
 
 
 
@@ -267,22 +263,24 @@ namespace FYP2021.Controllers
             }
             else
             {
-
-
-                string update = @"UPDATE Admin SET admin_password = HASHBYTES('SHA1','{0}') WHERE admin_email = '{1}'";
+                string update = @"UPDATE Admin SET admin_password = HASHBYTES('SHA1', '{0}') WHERE admin_email = '{1}'";
                 var res = DBUtl.ExecSQL(update, AdminPass, AdminEmail);
                 if (res == 1)
                 {
-                    ViewData["Msg"] = "Password successfully updated!";
+                    ViewData["Message"] = "Password successfully updated!";
                 }
                 else
                 {
-                    ViewData["Msg"] = "Failed to update password!";
+                    ViewData["Message"] = "Failed to update password!";
                 }
             }
 
             return View("Login");
 
         }
+
+
+
+        
     }
 }
