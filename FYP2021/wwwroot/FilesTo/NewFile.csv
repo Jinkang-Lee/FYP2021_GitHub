@@ -1,5 +1,0 @@
-Id,StudEmail,StudName,StudPhNum,CardStatus,StudAttempts,CardStatusDate,Attempts,OTP
-3000,20000000@myrp.edu.sg,John,80000000,Pening for TransitLink,0,22/6/2021,0,NULL
-3001,20111111@myrp.edu.sg,Bob,81111111,Ready for Application,1,23/6/2021,1,NULL
-3002,20222222@myrp.edu.sg,Mary,82222222,Card Ready,2,24/6/2021,2,NULL
-3003,20333333@myrp.edu.sg,Jane,83333333,Card Dispatched,3,25/6/2021,3,NULL

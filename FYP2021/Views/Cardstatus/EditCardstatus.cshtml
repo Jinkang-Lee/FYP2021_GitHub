@@ -53,16 +53,16 @@
                 <div class="form-group row row">
                     <label class="control-label col-2" asp-for="StudEmail">Email : </label>
                     <div class="col-5">
-                        <input asp-for="StudEmail" class="form-control" readonly="readonly" />
+                        <input asp-for="StudEmail" class="form-control" />
                     </div>
                 </div>
 
-                <div class="form-group row row">
+                @*<div class="form-group row row">
                     <label class="control-label col-2" asp-for="StudName">Name : </label>
                     <div class="col-5">
                         <input asp-for="StudName" class="form-control" readonly="readonly" />
                     </div>
-                </div>
+                </div>*@
 
 
                 <div class="form-group row">
@@ -74,6 +74,13 @@
                             <option value="Card Ready">Card Ready</option>
                             <option value="Card Dispatched">Card Dispatched</option>
                         </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-sm-2" asp-for="CardStatusDate">Today's Date: </label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" asp-for="CardStatusDate" value="@DateTime.Now.ToString("MM/dd/yyyy")" />
                     </div>
                 </div>
 

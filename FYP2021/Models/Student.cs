@@ -28,8 +28,6 @@ namespace FYP2021.Models
 
         public string CardStatusDate { get; set; }
 
-        public string Attempts { get; set; }
-
         public string OTP { get; set; }
     }
 }

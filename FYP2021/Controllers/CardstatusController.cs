@@ -20,7 +20,7 @@ namespace FYP2021.Controllers
     public class CardstatusController : Controller
     {
         [Authorize]
-        public IActionResult ListCard(Student CardStatusDate)
+        public IActionResult ListCard(/*Student CardStatusDate*/)
         {
             //List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE cardstatus_date = {0}", CardStatusDate);
             //string dateInString = Student.CardStatusDate;
@@ -34,6 +34,8 @@ namespace FYP2021.Controllers
             //}
 
             //string sql = "SELECT * FROM Student";
+
+
             DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
             return View("ListCard",dt.Rows);
 
@@ -87,40 +89,39 @@ namespace FYP2021.Controllers
             }
             else
             {
-                string update = @"UPDATE Student SET card_status='{0}' WHERE student_Id={1}";
+                string update = @"UPDATE Student SET card_status='{0}', cardstatus_date ='{1}' WHERE student_Id={2}";
 
-                int result = DBUtl.ExecSQL(update, student.CardStatus, student.Id);
+                int result = DBUtl.ExecSQL(update, student.CardStatus, student.CardStatusDate, student.Id);
                 if (result == 1)
                 {
                     TempData["Message"] = "Card Status Updated";
                     TempData["MsgType"] = "success";
 
-                    //string custname = form["StudName"].ToString().Trim();
-                    //string email = form["StudEmail"].ToString().Trim();
-                    //string cardStatus = form["CardStatus"].ToString().Trim();
-                    //string subject = "New Card Status";
+                    string email = form["StudEmail"].ToString().Trim();
+                    string cardStatus = form["CardStatus"].ToString().Trim();
+                    string subject = "New Card Status";
 
-                    //string template =
-                    //        @"Dear {0}, <br/>
-                    //            <p>Your new updated card status is {1}. For more information, visit the website.</p>
-                    //            Sincerely RP Team";
+                    string template =
+                            @"Dear student, <br/>
+                                <p>Your new updated card status is {0}. For more information, visit the website.</p>
+                                Sincerely RP Team";
 
-                    //string msg = String.Format(template, custname, cardStatus);
-                    //string res; 
-                    //if (EmailUtl.SendEmail(email, subject, msg, out res))
-                    //{
+                    string msg = String.Format(template, cardStatus);
+                    string res;
+                    if (EmailUtl.SendEmail(email, subject, msg, out res))
+                    {
 
-                    //    ViewData["Message"] = "Email Successfully Sent!";
-                    //    ViewData["MsgType"] = "success";
-                    //}
+                        ViewData["Message"] = "Email Successfully Sent!";
+                        ViewData["MsgType"] = "success";
+                    }
 
-                    //else
-                    //{
-                    //    ViewData["Message"] = result;
-                    //    ViewData["MsgType"] = "warning";
-                    //}
+                    else
+                    {
+                        ViewData["Message"] = result;
+                        ViewData["MsgType"] = "warning";
+                    }
 
-                    //return View("Index");
+                    return View("Index");
                 }
                 else
                 {
@@ -146,12 +147,12 @@ namespace FYP2021.Controllers
             return View(dt.Rows);
         }
 
-        public static void Main(Student student)
+        public void Delete(Student student)
         {
             string dateInString = student.CardStatusDate;
 
             DateTime startDate = DateTime.Parse(dateInString);
-            DateTime expiryDate = startDate.AddDays(90);
+            DateTime expiryDate = startDate.AddDays(1);
             if (DateTime.Now > expiryDate)
             {
                 string delete = "DELETE FROM Student";
@@ -159,4 +160,4 @@ namespace FYP2021.Controllers
             }
         }
     }
-}
+}  
