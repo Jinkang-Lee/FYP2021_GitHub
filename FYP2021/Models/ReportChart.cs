@@ -8,6 +8,7 @@ namespace FYP2021.Models
 {
     public class ReportChart
     {
+
         public string ReportChartGUID { get; set; }
 
         public int PendingForTransitLink { get; set; }
