@@ -62,15 +62,16 @@ namespace FYP2021.Controllers
         [Authorize]
         public IActionResult CreateStudent(Student student)
         {
+            DateTime now = DateTime.Now;
             student.StudAttempts = 0;
             string userid = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (ModelState.IsValid)
             {
                 string sql = @"INSERT INTO Student
-                                            (student_email, student_name, ph_num, card_status, attempts)
-                                            VALUES ('{0}', '{1}', {2}, '{3}', {4})";
+                                            (student_email, student_name, ph_num, card_status, cardstatus_date, attempts)
+                                            VALUES ('{0}', '{1}', {2}, '{3}', '{4}', {5})";
 
-                if (DBUtl.ExecSQL(sql, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus, student.StudAttempts) == 1)
+                if (DBUtl.ExecSQL(sql, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus, now, student.StudAttempts) == 1)
                     TempData["Msg"] = "New student Added!";
                 return RedirectToAction("EditStudent");
             }
