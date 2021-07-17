@@ -31,7 +31,7 @@
 
     <!--RP Logo Area-->
     <section id="banner" class="rp-logo">
-        <a href="https://localhost:44383/Admin">
+        <a href="https://localhost:44383/Report/ChooseReport">
             <img src="~/images/RP_Logo.png" width="200" height="80" />
         </a>
     </section>
@@ -62,7 +62,7 @@
     <section id="main-area">
         <div class="container" style="text-align: center">
             <h1>
-                <span style="color: black"> All Students </span>
+                <span style="color: black"> Report Generation </span>
             </h1>
         </div>
 
@@ -73,6 +73,7 @@
                     <tr>
                         <th scope="col"> Student ID </th>
                         <th scope="col"> Student Name </th>
+                        <th scope="col"> Card Status </th>
                         <th scope="col"> Start Date </th>
 
                     </tr>
@@ -83,6 +84,7 @@
                     <tr>
                         <td>@row["student_email"]</td>
                         <td>@row["student_name"]</td>
+                        <td>@row["card_status"]</td>
                         <td>@String.Format("{0:yyyy-MM-dd}", @row["cardstatus_date"])</td>
                     </tr>
                     }
@@ -95,15 +97,21 @@
 
     <div class="container" style=" margin-left: 835px">
 
-        <form method="get" action="/Report/SummaryChart">
+        @*<form method="get" action="/Report/SummaryChart">
             <div class="col-md-6" id="first-row-btn" style=" margin-top: 100px">
                 <button class="btn btn-primary btn-toolbar btn-lg"> Summary Chart </button>
             </div>
-        </form>
+        </form>*@
 
         <form method="get" action="/Report/ReportViewAsPDF">
             <div class="col-md-6" id="second-row-btn">
                 <button class="btn btn-primary btn-toolbar btn-lg"> View as PDF </button>
+            </div>
+        </form>
+
+        <form method="post" asp-controller="Report" asp-action="ReportToCSV">
+            <div class="col-md-6" id="second-row-btn">
+                <button class="btn btn-primary btn-toolbar btn-lg"> Download as CSV </button>
             </div>
         </form>
 

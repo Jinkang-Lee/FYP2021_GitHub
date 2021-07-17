@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using FYP2021.Models;
 using Rotativa.AspNetCore;
+using System.Text;
 
 namespace FYP2021.Controllers
 {
@@ -13,10 +14,15 @@ namespace FYP2021.Controllers
         {
             List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student");
 
+            List<Student> list2 = new List<Student>
+            {
+                new Student{Id=1, StudEmail="19030130@myrp.edu.sg", StudName="Syakir", CardStatus="Pending for TransitLink", CardStatusDate="9/7/2201"}
+            };
+
             //DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
 
-            if (list != null)
-                return new ViewAsPdf("ReportViewAsPDF", list)
+            if (list2 != null)
+                return new ViewAsPdf("ReportViewAsPDF", list2)
                 {
                     PageSize = Rotativa.AspNetCore.Options.Size.A4,
                     PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape
@@ -27,6 +33,25 @@ namespace FYP2021.Controllers
                 TempData["Msg"] = "FAILED";
                 return RedirectToAction("SummaryReport");
             }
+        }
+
+        private List<Student> list2 = new List<Student>
+        {
+            new Student{Id=1, StudEmail="19030130@myrp.edu.sg",StudName="Syakir", CardStatus="Pending for TransitLink", CardStatusDate="9/7/2021"}
+        };
+
+        public IActionResult ReportToCSV()
+        {
+            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student");
+
+            var builder = new StringBuilder();
+            builder.AppendLine("Id,StudentEmail,StudentName,CardStatus,CardStatusDate");
+            foreach (var student in list)
+            {
+                builder.AppendLine($"{student.Id},{student.StudEmail},{student.StudName},{student.CardStatus},{student.CardStatusDate}");
+
+            }
+            return File(Encoding.UTF8.GetBytes(builder.ToString()), "text/csv", "students.csv");
         }
 
         // View to the generate report in Admin folder
@@ -72,51 +97,65 @@ namespace FYP2021.Controllers
 
         public IActionResult SummaryChart()
         {
-            PrepareData(0);
+            PrepareData();
             ViewData["Chart"] = "pie";
             ViewData["Title"] = "Report Summary";
             ViewData["ShowLegend"] = "true";
             return View("SummaryChart");
         }
 
-
-        private void PrepareData(int x)
+        private int Count(int count)
         {
-            int[] dataPendingTransitLink = new int[] { 0, 5, 7, 6 };
-            int[] dataReadyApplication = new int[] { 0, 0, 0, 0 };
-            int[] dataCardReady = new int[] { 0, 0, 0, 0 };
-            int[] dataCardDispatched = new int[] { 0, 0, 0, 0 };
+            //List<ReportChart> list = DBUtl.GetList<ReportChart>("SELECT DISTINCT card_status FROM Student");
 
+            if (count.Equals("Pending for TransitLink"))
+                return 0;
 
-            List<ReportChart> list = DBUtl.GetList<ReportChart>("SELECT card_status FROM Student");
+            else if (count.Equals("Ready for Application"))
+                return 1;
+
+            else if (count.Equals("Card Ready"))
+                return 2;
+
+            else if (count.Equals("Card Dispatched"))
+                return 3;
+
+            else return 4;
+        }
+
+        private void PrepareData()
+        {
+            int[] dataStatus = new int[] { 0, 0, 0, 0 };
+
+            List<ReportChart> list = DBUtl.GetList<ReportChart>("SELECT DISTINCT card_status FROM Student");
 
             foreach (ReportChart rpt in list)
-            { 
-                dataPendingTransitLink[rpt.PendingForTransitLink]++;
+            {
+                if (rpt.Equals("Pending for TransitLink"))
+                {
+                    dataStatus[Count(rpt.PendingForTransitLink)]++;
+                }
+                else if (rpt.Equals("Ready for Application"))
+                {
+                    dataStatus[Count(rpt.ReadyForApplication)]++;
+                }
+                else if (rpt.Equals("Card Ready"))
+                {
+                    dataStatus[Count(rpt.CardReady)]++;
+                }
+                else if (rpt.Equals("Card Dispatched"))
+                {
+                    dataStatus[Count(rpt.CardDispatched)]++;
+                }
+            }
 
-                dataReadyApplication[rpt.ReadyForApplication]++;
-
-                dataCardReady[rpt.CardReady]++;
-
-                dataCardDispatched[rpt.CardDispatched]++;
-
-        }
-    
             string[] colors = new[] { "cyan", "lightgreen", "yellow", "pink" };
             string[] cardstatus = new[] { "Pending for TransitLink", "Ready for Application", "Card Ready", "Card Dispatched" };
 
             ViewData["Legend"] = "Report";
             ViewData["Colors"] = colors;
             ViewData["Labels"] = cardstatus;
-
-            if (x == 0)
-                ViewData["Data"] = dataPendingTransitLink;
-            else if (x == 1)
-                ViewData["Data"] = dataReadyApplication;
-            else if (x == 2)
-                ViewData["Data"] = dataCardReady;
-            else
-                ViewData["Data"] = dataCardDispatched;
+            ViewData["Data"] = dataStatus;
         }
     }
 }
