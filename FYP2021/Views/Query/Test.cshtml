@@ -1,85 +1,84 @@
 ﻿<!DOCTYPE html>
 <head>
     <meta charset="utf-8" />
-    <meta name"viewport" content="width=device-width, initial"/>
+    <meta name"viewport" content="width=device-width, initial" />
     <mata http-equiv="X-US-Compatible" content="ie-edge" />
     <title>Step Progressbar</title>
 </head>
 
 <style>
-    body{
-        margin:0;
-        padding:0;
+    body {
+        margin: 0;
+        padding: 0;
     }
 
-    .step_progressbar{
-        
+    .step_progressbar {
     }
-    ul{
-        display:flex;
+
+    ul {
+        display: flex;
         list-style: none;
         align-items: center;
         justify-content: space-between;
-        counter-reset: step; 
+        counter-reset: step;
     }
-    li{
+
+    li {
         display: inline-block;
         position: relative;
         width: 33.33%;
         text-align: center;
         margin: 15px 0;
-        
     }
 
-    li:before{
-        display:block;
-        width:50px;
-        height:50px;
-        border-radius: 50%;
-        background-color: #bdbdbd;
-        line-height: 50px;
-        text-align: center;
-        content: counter(step);
-        counter-increment: step;
-        margin: 10px auto;
-        position: relative;
-        z-index: 2;
-        font-size: 20px;
-    }
+        li:before {
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #bdbdbd;
+            line-height: 50px;
+            text-align: center;
+            content: counter(step);
+            counter-increment: step;
+            margin: 10px auto;
+            position: relative;
+            z-index: 2;
+            font-size: 20px;
+        }
 
-    li.active{
-        color: green;
-        font-weight:bold;
+        li.active {
+            color: green;
+            font-weight: bold;
+        }
 
-    }
+        li:after {
+            content: "";
+            width: 100%;
+            height: 3px;
+            background-color: #bdbdbd;
+            position: absolute;
+            top: 35px;
+            left: -50%;
+            z-index: 1;
+        }
 
-    li:after{
-        content: "";
-        width: 100%;
-        height: 3px;
-        background-color: #bdbdbd;
-        position: absolute;
-        top: 35px;
-        left: -50%;
-        z-index: 1;
+        li:first-child:after {
+            content: none;
+        }
 
-    }
+        li.active + li:after {
+            background-color: green;
+        }
 
-    li:first-child:after{
-        content: none;
-    }
-
-    li.active + li:after{
-        background-color: green;
-    }
-
-    li.active:before{
-        background-color: green;
-        color: #fff;
-    }
-
-
+        li.active:before {
+            background-color: green;
+            color: #fff;
+        }
 </style>
+
+
+
 
 <body>
 
@@ -88,24 +87,260 @@
         <img src="~/images/RP_Logo.png" width="200" height="80" />
     </section>
 
-    <div class="step_progressbar">
-        <ul>
-            
-            
+    <section id="banner" class="main-area">
+
+        <div class="step_progressbar">
+            <ul>
+
+
                 <li class="active">Pending for TransitLink</li>
                 <li>Ready for Application</li>
                 <li>Card Ready</li>
                 <li>Card Dispatched</li>
-            
 
-            
 
-        </ul>
-    </div>
 
-    <div class="container" style="text-align: center">
 
-        Your card status is Pending for TransitLink
+            </ul>
+        </div>
 
+        <div class="container" style="text-align: center">
+
+            Your card status is Pending for TransitLink
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+</body>
+
+<style>
+    body {
+        margin: 0;
+        font-family: tohoma;
+        background-image: url();
+    }
+
+    h1 {
+        color: black;
+        font-weight: 700;
+        margin-top: 125px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        line-height: 23px;
+    }
+
+        h1 span {
+            color: deepskyblue;
+        }
+
+    .progress-wrapper {
+        margin: auto;
+        max-width: 1080px;
+    }
+
+    #progress-bar-container {
+        position: relative;
+        width: 90%;
+        margin: auto;
+        height: 100px;
+        margin-top: 59px;
+    }
+
+        #progress-bar-container ul {
+            padding: 0;
+            margin: 0;
+            padding-top: 15px;
+            z-index: 9999;
+            position: absolute;
+            width: 100%;
+            margin-top: -40px;
+        }
+
+        #progress-bar-container li:before {
+            content: "";
+            display: block;
+            margin: auto;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: solid 2px #aaa;
+            transition: all ease 0.3s;
+        }
+
+        #progress-bar-container li.active:before,
+        #progress-bar-container li:hover:before {
+            background: deepskyblue;
+        }
+
+        #progress-bar-container li {
+            list-style: none;
+            float: left;
+            width: 20%;
+            text-align: center;
+            color: #aaa;
+            text-transform: uppercase;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all ease 0.2s;
+            vertical-align: bottom;
+            height: 59px;
+            position: relative;
+        }
+
+        #progress-bar-container l1 .step-inner {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            font-size: 14px;
+        }
+
+        #progress-bar-container li.active,
+        #progress-bar-container li:hover {
+            color: deepskyblue;
+        }
+
+        #progress-bar-container li:after {
+            content: "";
+            display: block;
+            width: 5px;
+            height: 5px;
+            background: #777;
+            margin: auto;
+            border: solid 7px white;
+            border-radius: 50%;
+            margin-top: 40px;
+            box-shadow: 0 2px 13px -1px rgba(0,0,0,0.3);
+            transition: all ease 0.2s;
+        }
+
+        #progress-bar-container li:hover:after {
+            background: deepskyblue;
+        }
+
+        #progress-bar-container li:active:after {
+            background: deepskyblue;
+        }
+
+        #progress-bar-container #line {
+            width: 80%;
+            margin: auto;
+            background: #eee;
+            height: 5px;
+            position: absolute;
+            left: 10%;
+            top: 57px;
+            z-index: 1;
+            border-radius: 50px;
+            transition: all ease 0.9s;
+        }
+
+        #progress-bar-container #line-process {
+            content: "";
+            width: 3%;
+            height: 100%;
+            background: deepskyblue;
+            background: linear-gradient(to right, deepskyblue 0%, #2ea3b7 100%);
+            position: absolute;
+            z-index: 2;
+            border-radius: 50px;
+            transition: all ease 0.9s;
+        }
+
+    #progress-content-section {
+        width: 90%;
+        margin: auto;
+        background: #f3f3f3;
+        border-radius: 4px;
+    }
+
+        #progress-content-section .section-content {
+            padding: 30px 40px;
+            text-align: center;
+        }
+</style>
+
+<h1 class="text-center" style="text-align: center" id="announcement-text">All Card Status</h1>
+@*<div class="container" id="AllStatus-area">*@
+
+@*<html lang="en">*@
+<head>
+    <meta charset="utf-8" />
+    <title>Creative timeline design</title>
+</head>
+
+<body>
+    <h1>CREATIVE <span>TIMELINE</span> </h1>
+    <br>
+    <div class="progress-wrapper">
+        <div id="progress-bar-container">
+            <ul>
+                <li class="step step01 active">
+                    <div class="step-inner">HOME WORK</div>
+                </li>
+
+                <li class="step step02">
+                    <div class="step-inner">RESPONSIVE PART</div>
+                </li>
+
+                <li class="step step03">
+                    <div class="step-inner">CREATION CREATIONS</div>
+                </li>
+
+                <li class="step step04">
+                    <div class="step-inner">TESTIMONIALS PART</div>
+                </li>
+            </ul>
+            <div id="line">
+                <div id="line-process"></div>
+            </div>
+        </div>
+
+
+        <div id="progress-content-section">
+            <div class="section-content discovery active">
+                <h2>HOME SECTION</h2>
+                <p>
+                    HELLO  HELLO  HELLO  HELLO  HELLO  HELLO  HELLO.
+                </p>
+            </div>
+
+            <div class="section-content strategy">
+                <h2>GALLERY SECTION</h2>
+                <p>
+                    HELLO  HELLO  HELLO  HELLO  HELLO  HELLO  HELLO.
+                </p>
+            </div>
+
+            <div class="section-content creation">
+                <h2>CREATIVE CREATION</h2>
+                <p>
+                    HELLO  HELLO  HELLO  HELLO  HELLO  HELLO  HELLO.
+                </p>
+            </div>
+
+            <div class="section-content STRATEGY">
+                <h2>TESTIMONIALS NOW</h2>
+                <p>
+                    HELLO  HELLO  HELLO  HELLO  HELLO  HELLO  HELLO.
+                </p>
+            </div>
+
+        </div>
     </div>
 </body>
+@*</html>*@
+@*</div>*@
+@*Style for all card status information to students.*@
+
+
+
+
+

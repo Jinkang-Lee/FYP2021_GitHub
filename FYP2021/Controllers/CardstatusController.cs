@@ -20,26 +20,53 @@ namespace FYP2021.Controllers
     public class CardstatusController : Controller
     {
         [Authorize]
-        public IActionResult ListCard(/*Student CardStatusDate*/)
+        public IActionResult ListCard()
         {
-            //List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE cardstatus_date = {0}", CardStatusDate);
-            //string dateInString = Student.CardStatusDate;
 
-            //DateTime startDate = DateTime.Parse(dateInString);
-            //DateTime expiryDate = startDate.AddDays(90);
-            //if (DateTime.Now > expiryDate)
+            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student");
+
+            //if (list.Count > 0)
             //{
-            //    string delete = "DELETE FROM Student";
-            //    DBUtl.ExecSQL(delete);
+
+            //    foreach (Student stud in list)
+            //    {
+
+            //        string dateInString = stud.CardStatusDate;
+
+            //        DateTime startDate = DateTime.Parse(dateInString);
+            //        DateTime expiryDate = startDate.AddDays(90);
+
+            //        if (DateTime.Now > expiryDate)
+            //        {
+            //            string delete = "DELETE FROM Student";
+            //            DBUtl.ExecSQL(delete);
+
+            //            TempData["Message"] = "Student Found!";
+            //            TempData["MsgType"] = "success";
+            //        }
+
+            //        else
+            //        {
+            //            TempData["Message"] = "Student Not Found!";
+            //            TempData["MsgType"] = "warning";
+            //        }
+
+
+            //    }
+            //    //TempData["Message"] = "Student Found!";
+            //    //TempData["MsgType"] = "success";
             //}
 
-            //string sql = "SELECT * FROM Student";
-
+            //else
+            //{
+            //    TempData["Message"] = "Student Not Found!";
+            //    TempData["MsgType"] = "warning";
+            //}
 
             DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
-            return View("ListCard",dt.Rows);
+            return View("ListCard", dt.Rows);
 
-            
+
 
         }
 
@@ -75,7 +102,7 @@ namespace FYP2021.Controllers
             //        TempData["MsgType"] = "warning";
             //        return RedirectToAction("Index");
             //    }
-            }
+        }
 
         [HttpPost]
         [Authorize]
@@ -85,50 +112,204 @@ namespace FYP2021.Controllers
             {
                 TempData["Message"] = "Invalid Input!";
                 TempData["MsgType"] = "warning";
-                return View("ListCard");
+                return View("Index");
             }
             else
             {
-                string update = @"UPDATE Student SET card_status='{0}', cardstatus_date ='{1}' WHERE student_Id={2}";
 
-                int result = DBUtl.ExecSQL(update, student.CardStatus, student.CardStatusDate, student.Id);
-                if (result == 1)
+                //Pending for Transitlink
+                if (student.CardStatus == "Pending for TransitLink")
                 {
-                    TempData["Message"] = "Card Status Updated";
-                    TempData["MsgType"] = "success";
+                    string update = @"UPDATE Student SET card_status='{0}', cardstatus_date ='{1}', pending_date ='{1}' WHERE student_Id={2}";
 
-                    string email = form["StudEmail"].ToString().Trim();
-                    string cardStatus = form["CardStatus"].ToString().Trim();
-                    string subject = "New Card Status";
 
-                    string template =
-                            @"Dear student, <br/>
-                                <p>Your new updated card status is {0}. For more information, visit the website.</p>
-                                Sincerely RP Team";
 
-                    string msg = String.Format(template, cardStatus);
-                    string res;
-                    if (EmailUtl.SendEmail(email, subject, msg, out res))
+                    int result = DBUtl.ExecSQL(update, student.CardStatus, student.CardStatusDate, student.Id);
+
+
+                    if (result == 1)
                     {
 
-                        ViewData["Message"] = "Email Successfully Sent!";
-                        ViewData["MsgType"] = "success";
+                        TempData["Message"] = "Card Status Updated";
+                        TempData["MsgType"] = "success";
+
+                        string email = form["StudEmail"].ToString().Trim();
+                        string cardStatus = form["CardStatus"].ToString().Trim();
+                        string subject = "New Card Status";
+
+                        string template =
+                                @"Dear student, <br/>
+                                    <p>Your new updated card status is {0}. For more information, visit the website.</p>
+                                    Sincerely RP Team";
+
+                        string msg = String.Format(template, cardStatus);
+                        string res;
+                        if (EmailUtl.SendEmail(email, subject, msg, out res))
+                        {
+
+                            ViewData["Message"] = "Email Successfully Sent!";
+                            ViewData["MsgType"] = "success";
+                        }
+
+                        else
+                        {
+                            ViewData["Message"] = result;
+                            ViewData["MsgType"] = "warning";
+                        }
+
+                        return View("UpdateOptions");
                     }
 
-                    else
-                    {
-                        ViewData["Message"] = result;
-                        ViewData["MsgType"] = "warning";
-                    }
 
-                    return View("Index");
                 }
+
+                //Ready for Application
+                else if (student.CardStatus == "Ready for Application")
+                {
+                    string update = @"UPDATE Student SET card_status='{0}', cardstatus_date ='{1}', readyapplication_date ='{1}' WHERE student_Id={2}";
+
+
+
+                    int result = DBUtl.ExecSQL(update, student.CardStatus, student.CardStatusDate, student.Id);
+
+
+                    if (result == 1)
+                    {
+
+                        TempData["Message"] = "Card Status Updated";
+                        TempData["MsgType"] = "success";
+
+                        string email = form["StudEmail"].ToString().Trim();
+                        string cardStatus = form["CardStatus"].ToString().Trim();
+                        string subject = "New Card Status";
+
+                        string template =
+                                @"Dear student, <br/>
+                                    <p>Your new updated card status is {0}. For more information, visit the website.</p>
+                                    Sincerely RP Team";
+
+                        string msg = String.Format(template, cardStatus);
+                        string res;
+                        if (EmailUtl.SendEmail(email, subject, msg, out res))
+                        {
+
+                            ViewData["Message"] = "Email Successfully Sent!";
+                            ViewData["MsgType"] = "success";
+                        }
+
+                        else
+                        {
+                            ViewData["Message"] = result;
+                            ViewData["MsgType"] = "warning";
+                        }
+
+                        return View("UpdateOptions");
+                    }
+
+
+                }
+
+                //Card Ready
+                else if (student.CardStatus == "Card Ready")
+                {
+                    string update = @"UPDATE Student SET card_status='{0}', cardstatus_date ='{1}', cardready_date ='{1}' WHERE student_Id={2}";
+
+
+
+                    int result = DBUtl.ExecSQL(update, student.CardStatus, student.CardStatusDate, student.Id);
+
+
+                    if (result == 1)
+                    {
+
+                        TempData["Message"] = "Card Status Updated";
+                        TempData["MsgType"] = "success";
+
+                        string email = form["StudEmail"].ToString().Trim();
+                        string cardStatus = form["CardStatus"].ToString().Trim();
+                        string subject = "New Card Status";
+
+                        string template =
+                                @"Dear student, <br/>
+                                    <p>Your new updated card status is {0}. For more information, visit the website.</p>
+                                    Sincerely RP Team";
+
+                        string msg = String.Format(template, cardStatus);
+                        string res;
+                        if (EmailUtl.SendEmail(email, subject, msg, out res))
+                        {
+
+                            ViewData["Message"] = "Email Successfully Sent!";
+                            ViewData["MsgType"] = "success";
+                        }
+
+                        else
+                        {
+                            ViewData["Message"] = result;
+                            ViewData["MsgType"] = "warning";
+                        }
+
+                        return View("UpdateOptions");
+                    }
+
+
+                }
+
+                //Card Dispatched
+                else if (student.CardStatus == "Card Dispatched")
+                {
+                    string update = @"UPDATE Student SET card_status='{0}', cardstatus_date ='{1}', carddispatched_date ='{1}' WHERE student_Id={2}";
+
+
+
+                    int result = DBUtl.ExecSQL(update, student.CardStatus, student.CardStatusDate, student.Id);
+
+
+                    if (result == 1)
+                    {
+
+                        TempData["Message"] = "Card Status Updated";
+                        TempData["MsgType"] = "success";
+
+                        string email = form["StudEmail"].ToString().Trim();
+                        string cardStatus = form["CardStatus"].ToString().Trim();
+                        string subject = "New Card Status";
+
+                        string template =
+                                @"Dear student, <br/>
+                                    <p>Your new updated card status is {0}. For more information, visit the website.</p>
+                                    Sincerely RP Team";
+
+                        string msg = String.Format(template, cardStatus);
+                        string res;
+                        if (EmailUtl.SendEmail(email, subject, msg, out res))
+                        {
+
+                            ViewData["Message"] = "Email Successfully Sent!";
+                            ViewData["MsgType"] = "success";
+                        }
+
+                        else
+                        {
+                            ViewData["Message"] = result;
+                            ViewData["MsgType"] = "warning";
+                        }
+
+                        return View("UpdateOptions");
+                    }
+
+
+                }
+
+
+
                 else
                 {
                     TempData["Message"] = DBUtl.DB_Message;
                     TempData["MsgType"] = "danger";
                 }
-                return RedirectToAction("ListCard");
+
+                return RedirectToAction("UpdateOptions");
             }
 
         }
@@ -147,17 +328,41 @@ namespace FYP2021.Controllers
             return View(dt.Rows);
         }
 
-        public void Delete(Student student)
-        {
-            string dateInString = student.CardStatusDate;
+        //public IActionResult Delete(Student student)
+        //{
+        //    List<Student> list = DBUtl.GetList<Student>("SELECT cardstatus_date FROM Student");
 
-            DateTime startDate = DateTime.Parse(dateInString);
-            DateTime expiryDate = startDate.AddDays(1);
-            if (DateTime.Now > expiryDate)
-            {
-                string delete = "DELETE FROM Student";
-                DBUtl.ExecSQL(delete);
-            }
-        }
+        //    if (list.Count == 1)
+        //    {
+        //        foreach (Student stud in list)
+        //        {
+        //            DateTime startDate = DateTime.Parse(stud.CardStatusDate);
+        //            DateTime expiryDate = startDate.AddDays(90);
+
+        //            if (DateTime.Now > expiryDate)
+        //            {
+        //                string delete = "DELETE FROM Student";
+        //                DBUtl.ExecSQL(delete);
+        //            }
+        //        }
+        //    }
+
+        //    DateTime startDate = DateTime.Parse(student.CardStatusDate);
+        //    DateTime expiryDate = startDate.AddDays(90);
+        //    DateTime exDate = DateTime.Parse(student.CardStatusDate).AddDays(1);
+        //    if (DateTime.Now > expiryDate)
+        //    {
+        //        string delete = "DELETE FROM Student WHERE cardstatus_date < {0}";
+        //        DBUtl.ExecSQL(delete);
+        //    }
+
+        //    if (DBUtl.ExecSQL(@"DELETE FROM Student WHERE cardstatus_date < {0}", exDate) == 1)
+        //        return View("ListCard");
+        //    else
+        //        return View("ListCard");
+
+        //    return View("ListCard");
+
+        //}
     }
-}  
+}

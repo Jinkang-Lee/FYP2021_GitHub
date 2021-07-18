@@ -15,19 +15,27 @@ namespace FYP2021.Models
         public string StudEmail { get; set; }
 
 
-        [Required(ErrorMessage = "Name cannot be empty!")]
-        [RegularExpression(@"[^0-9]*", ErrorMessage = "Name Cannot contain numbers!")]
+        //[Required(ErrorMessage = "Name cannot be empty!")]
+        //[RegularExpression(@"[^0-9]*", ErrorMessage = "Name Cannot contain numbers!")]
         public string StudName { get; set; }
 
-        [RegularExpression(@"[0-9]{8}", ErrorMessage = "Phone Number must have 9 numbers!")]
+        //[RegularExpression(@"[0-9]{8}", ErrorMessage = "Phone Number must have 9 numbers!")]
         public int StudPhNum { get; set; }
 
         public string CardStatus { get; set; }
 
-        [Required(ErrorMessage = "Attempts cannot be empty!")]
-        public int StudAttempts { get; set; }
-
         public string CardStatusDate { get; set; }
+
+        public string PendingDate { get; set; }
+
+        public string ReadyapplicationDate { get; set; }
+
+        public string CardreadyDate { get; set; }
+
+        public string CarddispatchedDate { get; set; }
+
+        //[Required(ErrorMessage = "Attempts cannot be empty!")]
+        public int StudAttempts { get; set; }
 
         public string OTP { get; set; }
     }

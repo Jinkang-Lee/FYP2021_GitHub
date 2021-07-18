@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 using FYP2021.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
@@ -16,9 +17,9 @@ namespace FYP2021.Controllers
     public class CSVHelperTestController : Controller
     {
         [HttpGet]
-        public IActionResult IndexTest(List<Student> students = null)
+        public IActionResult IndexTest(List<CSV> students = null)
         {
-            students = students == null ? new List<Student>() : students;
+            students = students == null ? new List<CSV>() : students;
 
             return View(students);
         }
@@ -27,15 +28,12 @@ namespace FYP2021.Controllers
         public IActionResult IndexTest(IFormFile file, [FromServices] IHostingEnvironment hostingEnvironment)
         {
             #region Upload CSV
-
-                string fileName = $"{hostingEnvironment.WebRootPath}\\files\\{file.FileName}";
-
-                using (FileStream fileStream = System.IO.File.Create(fileName))
-                {
-                    file.CopyTo(fileStream);
-                    fileStream.Flush();
-                }
-            
+            string fileName = $"{hostingEnvironment.WebRootPath}\\files\\{file.FileName}";
+            using (FileStream fileStream = System.IO.File.Create(fileName))
+            {
+                file.CopyTo(fileStream);
+                fileStream.Flush();
+            }
             #endregion
 
             var students = this.GetStudentList(file.FileName);
@@ -43,34 +41,39 @@ namespace FYP2021.Controllers
 
         }
 
-        private List<Student> GetStudentList(string fileName)
+        public List<CSV> GetStudentList(string fileName)
         {
-            List<Student> students = new List<Student>();
+            List<CSV> students = new List<CSV>();
 
+            TempData["Msg"] = "Hi!";
+
+            
+
+            
             #region Read CSV
             var path = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\files"}" + "\\" + fileName;
             using (var reader = new StreamReader(path))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
+
                 csv.Read();
                 csv.ReadHeader();
                 while (csv.Read())
                 {
 
-                    var student = csv.GetRecord<Student>();
+                   
+
+                    var student = csv.GetRecord<CSV>();
                     students.Add(student);
 
-
-
                     string sql = @"INSERT INTO Student
-                                            (student_id, student_email, student_name, ph_num, card_status, cardstatus_date, attempts )
-                                            VALUES ('{0}', '{1}', {2}, '{3}', '{4}', '{5}', '{6}')";
+                                            (student_email, student_name, card_status, cardstatus_date)
+                                            VALUES ('{0}', '{1}', '{2}', {3})";
 
-                    TempData["Msg"] = "New student!";
-
-                    if (DBUtl.ExecSQL(sql, student.Id, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus, student.CardStatusDate) == 1)
+                    if (DBUtl.ExecSQL(sql, student.StudEmail, student.StudName, student.CardStatus, student.CardStatusDate) == 0)
                     {
                         TempData["Msg"] = "New student Added!";
+                        TempData["MsgType"] = "success";
                     }
 
                     else
@@ -79,24 +82,13 @@ namespace FYP2021.Controllers
                         TempData["MsgType"] = "warning";
                     }
 
-                    TempData["Msg"] = "New!";
-                    //foreach(var student in Model)
-                    //{
-                    //    string sql = @"INSERT INTO Student
-                    //                        (student_id, student_email, student_name, ph_num, card_status, cardstatus_date, attempts )
-                    //                        VALUES ('{0}', '{1}', {2}, '{3}', '{4}', '{5}', '{6}')";
+                    TempData["Student"] = "Very good";
 
-                    //    if (DBUtl.ExecSQL(sql, student.Id, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus, student.CardStatusDate) == 1)
-                    //    {
-                    //        TempData["Msg"] = "New student Added!";
-                    //    }
 
-                    //    else
-                    //    {
-                    //        TempData["Msg"] = "Invalid information entered!";
 
-                    //    }
-                    //}
+                    
+
+
 
 
 
@@ -131,16 +123,15 @@ namespace FYP2021.Controllers
             }
             #endregion
 
-            //#region Create CSV
-            //path = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\FilesTo"}";
-            //using (var write = new StreamWriter(path + "\\NewFile.csv"))
-            //using (var csv = new CsvWriter(write, CultureInfo.InvariantCulture))
-            //{
-            //    csv.WriteRecords(students);
-            //}
-            //#endregion
+
+
+
+
+           
 
             return students;
+
+
         }
 
     }
