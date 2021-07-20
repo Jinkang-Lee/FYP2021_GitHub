@@ -16,7 +16,11 @@ namespace FYP2021.Controllers
 
             List<Student> list2 = new List<Student>
             {
-                new Student{Id=1, StudEmail="19030130@myrp.edu.sg", StudName="Syakir", CardStatus="Pending for TransitLink", CardStatusDate="9/7/2201"}
+                new Student{Id=1, StudEmail="19030130@myrp.edu.sg", StudName="Syakir", CardStatus="Pending for TransitLink", CardStatusDate="9/7/2201"},
+                new Student{Id=2, StudEmail="19030131@myrp.edu.sg", StudName="YiYang", CardStatus="Ready for Application", CardStatusDate="15/7/2201"},
+                new Student{Id=3, StudEmail="19030132@myrp.edu.sg", StudName="Jinkang", CardStatus="Card Ready", CardStatusDate="20/7/2201"},
+                new Student{Id=4, StudEmail="19030133@myrp.edu.sg", StudName="Zhenni", CardStatus="Card Dispatched", CardStatusDate="29/7/2201"}
+
             };
 
             //DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
@@ -36,8 +40,12 @@ namespace FYP2021.Controllers
         }
 
         private List<Student> list2 = new List<Student>
+
         {
-            new Student{Id=1, StudEmail="19030130@myrp.edu.sg",StudName="Syakir", CardStatus="Pending for TransitLink", CardStatusDate="9/7/2021"}
+            new Student{Id=1,StudEmail="19030130@myrp.edu.sg",StudName="Syakir",CardStatus="Pending for TransitLink",CardStatusDate="9/7/2021"},
+            new Student{Id=2, StudEmail="19030131@myrp.edu.sg",StudName="YiYang",CardStatus="Ready for Application",CardStatusDate="15/7/2201"},
+            new Student{Id=3, StudEmail="19030132@myrp.edu.sg",StudName="Jinkang",CardStatus="Card Ready",CardStatusDate="20/7/2201"},
+            new Student{Id=4, StudEmail="19030133@myrp.edu.sg",StudName="Zhenni",CardStatus="Card Dispatched",CardStatusDate="29/7/2201"}
         };
 
         public IActionResult ReportToCSV()
@@ -46,7 +54,7 @@ namespace FYP2021.Controllers
 
             var builder = new StringBuilder();
             builder.AppendLine("Id,StudentEmail,StudentName,CardStatus,CardStatusDate");
-            foreach (var student in list)
+            foreach (var student in list2)
             {
                 builder.AppendLine($"{student.Id},{student.StudEmail},{student.StudName},{student.CardStatus},{student.CardStatusDate}");
 
@@ -106,28 +114,28 @@ namespace FYP2021.Controllers
 
         private int Count(int count)
         {
-            //List<ReportChart> list = DBUtl.GetList<ReportChart>("SELECT DISTINCT card_status FROM Student");
+            List<ReportChart> list = DBUtl.GetList<ReportChart>("SELECT card_status FROM Student");
 
-            if (count.Equals("Pending for TransitLink"))
-                return 0;
+            if (list.Equals("Pending for TransitLink"))
+                return count += 1;
 
-            else if (count.Equals("Ready for Application"))
-                return 1;
+            else if (list.Equals("Ready for Application"))
+                return count += 1;
 
-            else if (count.Equals("Card Ready"))
-                return 2;
+            else if (list.Equals("Card Ready"))
+                return count += 1;
 
-            else if (count.Equals("Card Dispatched"))
-                return 3;
+            else if (list.Equals("Card Dispatched"))
+                return count += 1;
 
-            else return 4;
+            else return count;
         }
 
         private void PrepareData()
         {
-            int[] dataStatus = new int[] { 0, 0, 0, 0 };
+            int[] dataStatus = new int[] { 3, 3, 5, 6 };
 
-            List<ReportChart> list = DBUtl.GetList<ReportChart>("SELECT DISTINCT card_status FROM Student");
+            List<ReportChart> list = DBUtl.GetList<ReportChart>("SELECT card_status FROM Student");
 
             foreach (ReportChart rpt in list)
             {

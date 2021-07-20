@@ -9,7 +9,6 @@
 
     <!-- style sheets references -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/HomePage.css" />
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/ReportGen.css" />
 
@@ -81,44 +80,80 @@
                 <tbody>
                     @foreach (DataRow row in Model)
                     {
-                    <tr>
-                        <td>@row["student_email"]</td>
-                        <td>@row["student_name"]</td>
-                        <td>@row["card_status"]</td>
-                        <td>@String.Format("{0:yyyy-MM-dd}", @row["cardstatus_date"])</td>
-                    </tr>
+                        <tr>
+                            <td>@row["student_email"]</td>
+                            <td>@row["student_name"]</td>
+                            <td>@row["card_status"]</td>
+                            <td>@String.Format("{0:yyyy-MM-dd}", @row["cardstatus_date"])</td>
+                        </tr>
                     }
                 </tbody>
             </table>
         </div>
+
+        <section class="button-area" style=" align-content: center" ;>
+
+            <div class="container" style=" margin-top: 100px">
+            </div>
+
+            <h1 class="text-center"> Other Available Options </h1>
+
+            <div class="container" style=" margin-left: 575px">
+
+                <div class="container" style=" margin-top: 100px">
+                </div>
+
+                <div class="row">
+
+                    @*<form method="get" action="/Report/SummaryChart">
+                            <div class="col-md-6" id="first-row-btn" style=" margin-top: 100px">
+                                <button class="btn btn-primary btn-toolbar btn-lg"> Summary Chart </button>
+                            </div>
+                        </form>*@
+
+                    <form method="get" action="/Report/ReportViewAsPDF">
+                        <div class="col-md-6" id="first-row-btn">
+                            <button class="btn btn-primary btn-toolbar btn-lg"> View as PDF </button>
+                        </div>
+                    </form>
+
+                    <form method="post" asp-controller="Report" asp-action="ReportToCSV">
+                        <div class="col-md-6" id="first-row-btn">
+                            <button class="btn btn-primary btn-toolbar btn-lg"> Download as CSV </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
     </section>
 
-    <h1 class="text-center" > Other Options </h1>
+    <!--<section class="button-area" style=" align-content: center" ;>
 
-    <div class="container" style=" margin-left: 835px">
+        <h1 class="text-center"> Other Options </h1>
 
-        @*<form method="get" action="/Report/SummaryChart">
+        <div class="container" style=" margin-left: 580px">
+            <div class="row">-->
+    @*<form method="get" action="/Report/SummaryChart">
             <div class="col-md-6" id="first-row-btn" style=" margin-top: 100px">
                 <button class="btn btn-primary btn-toolbar btn-lg"> Summary Chart </button>
             </div>
         </form>*@
 
-        <form method="get" action="/Report/ReportViewAsPDF">
-            <div class="col-md-6" id="second-row-btn">
-                <button class="btn btn-primary btn-toolbar btn-lg"> View as PDF </button>
+    <!--<form method="get" action="/Report/ReportViewAsPDF">
+                    <div class="col-md-6" id="first-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg"> View as PDF </button>
+                    </div>
+                </form>
+
+                <form method="post" asp-controller="Report" asp-action="ReportToCSV">
+                    <div class="col-md-6" id="first-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg"> Download as CSV </button>
+                    </div>
+                </form>
             </div>
-        </form>
-
-        <form method="post" asp-controller="Report" asp-action="ReportToCSV">
-            <div class="col-md-6" id="second-row-btn">
-                <button class="btn btn-primary btn-toolbar btn-lg"> Download as CSV </button>
-            </div>
-        </form>
-
-    </div>
-
-    <div class="container" style=" margin-top: 100px">
-    </div>
+        </div>
+    </section>-->
 
 </body>
 </html>
