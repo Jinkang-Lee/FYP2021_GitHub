@@ -24,6 +24,7 @@ namespace FYP2021.Models
 
         public string CardStatus { get; set; }
 
+        //[DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}")]
         public string CardStatusDate { get; set; }
 
         public string PendingDate { get; set; }
