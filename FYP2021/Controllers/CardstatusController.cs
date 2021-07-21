@@ -23,49 +23,40 @@ namespace FYP2021.Controllers
         public IActionResult ListCard()
         {
 
-            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student");
+            //List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student");
 
-            if (list.Count > 0)
+            DataTable list = DBUtl.GetTable("SELECT * FROM Student");
+
+            foreach (DataRow r in list.Rows)
             {
-                for(int i = 0; i <= list.Count; i++)
-                //foreach (Student stud in list)
+                string dateInString = r["cardstatus_date"].ToString();
+                
+
+                DateTime startDate = DateTime.Parse(dateInString);
+                DateTime expiryDate = startDate.AddDays(90);
+
+                if (DateTime.Now > expiryDate)
                 {
+                    string delete = ("DELETE FROM Student WHERE student_id={0}");
+                    DBUtl.ExecSQL(delete, r["student_id"]);
 
-                    //string dateInString = list[i].CardStatusDate;
-                    /*DateTime.Parse(dateInString);*/
-
-                    //!KEPT SAYING VALUE IS NULL!
-                    DateTime startDate = DateTime.Parse(list[i].CardStatusDate);
-                    DateTime expiryDate = startDate.AddDays(1);
-
-                        if (DateTime.Now > expiryDate)
-                        {
-                            string delete = "DELETE FROM Student";
-                            DBUtl.ExecSQL(delete);
-
-                            TempData["Message"] = "Student Found!";
-                            TempData["MsgType"] = "success";
-                        }
-
-                        else
-                        {
-                            TempData["Message"] = "Student Not Found!";
-                            TempData["MsgType"] = "warning";
-                        }
-                     
-                    
-
-
+                    //TempData["Message"] = "Student Found!";
+                    //TempData["MsgType"] = "success";
                 }
-                //TempData["Message"] = "Student Found!";
-                //TempData["MsgType"] = "success";
-            }
 
-            else
-            {
-                TempData["Message"] = "Student Not Found!";
-                TempData["MsgType"] = "warning";
+                //else
+                //{
+                //    TempData["Message"] = "Student Not Found!";
+                //    TempData["MsgType"] = "warning";
+                //}
             }
+                
+
+            //else
+            //{
+            //    TempData["Message"] = "Student Not Found!";
+            //    TempData["MsgType"] = "warning";
+            //}
 
             DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
             return View("ListCard", dt.Rows);

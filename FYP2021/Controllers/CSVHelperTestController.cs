@@ -61,26 +61,43 @@ namespace FYP2021.Controllers
                 while (csv.Read())
                 {
 
-                   
-
                     var student = csv.GetRecord<CSV>();
                     students.Add(student);
 
-                    string sql = @"INSERT INTO Student
+                    DataTable result = new DataTable();
+                    DataRow dr = result.NewRow();
+                    dr[1] = "yy@gmail.com";
+                    dr[2] = "Yy";
+                    dr[3] = "Card Ready";
+                    dr[4] = "21/7/2021";
+                    result.Rows.Add(dr);
+
+                    foreach (DataRow r in result.Rows)
+                    {
+                        string email = r[1].ToString();
+                        string name = r[2].ToString();
+                        string cardstatus = r[3].ToString();
+                        DateTime cardstatusdate = DateTime.Parse(r[4].ToString());
+
+                        string sql = @"INSERT INTO Student
                                             (student_email, student_name, card_status, cardstatus_date)
-                                            VALUES ('{0}', '{1}', '{2}', {3})";
+                                            VALUES ('{0}', '{1}', '{2}', '{3}')";
 
-                    if (DBUtl.ExecSQL(sql, student.StudEmail, student.StudName, student.CardStatus, student.CardStatusDate) == 0)
-                    {
-                        TempData["Msg"] = "New student Added!";
-                        TempData["MsgType"] = "success";
+
+                        if (DBUtl.ExecSQL(sql, email, name, cardstatus, cardstatusdate) < 0)
+                        {
+                            TempData["Msg"] = "New student Added!";
+                            TempData["MsgType"] = "success";
+                        }
+
+                        else
+                        {
+                            TempData["Msg"] = "Invalid information entered!";
+                            TempData["MsgType"] = "warning";
+                        }
                     }
 
-                    else
-                    {
-                        TempData["Msg"] = "Invalid information entered!";
-                        TempData["MsgType"] = "warning";
-                    }
+                    
 
                     TempData["Student"] = "Very good";
 
