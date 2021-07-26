@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <!--INSERT CSS FILE HERE-->
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/Index.css" />
 
     <!-- script files references -->
     <script src="~/lib/jquery/jquery.min.js"></script>
@@ -31,11 +32,11 @@
 
             <div class="row">
                 <div class="col-md-12" style="margin-top: 120px;">
-                    <div class="card-deck">
+                    <div class="card-deck text-center">
                         <div class="card col-md-6" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title text-center"><b>Create Student</b></h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text">Click here to Create Student User and specify their information.</p>
                                 <form method="get" action="/Admin/CreateStudent">
                                     <div class="col-md-4" id="first-row-btn">
                                         <button class="btn btn-primary btn-toolbar btn-lg">Create Student</button>
@@ -47,7 +48,7 @@
                         <div class="card col-md-6" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title text-center"><b>List Students</b></h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <p class="card-text">Click here to view and edit the list of students and their card status.</p>
                                 <form method="get" action="/Admin/ListStudent">
                                     <div class="col-md-4" id="first-row-btn">
                                         <button class="btn btn-primary btn-toolbar btn-lg">List Students</button>
