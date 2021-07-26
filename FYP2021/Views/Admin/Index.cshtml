@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <!--INSERT CSS FILE HERE-->
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/Index.css" />
 
     <!-- script files references -->
     <script src="~/lib/jquery/jquery.min.js"></script>
@@ -27,32 +28,128 @@
 
 
     <section id="banner" class="button-area">
-        <div class="container">
-            <div class="row">
-                <form method="get" action="/Report/ChooseReport">
-                    <div class="col-md-6" id="first-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">Generate Report</button>
+        <div class="container" style="height: 700px;">
+
+            <div class="row" >
+                <div class="col-md-12" style="margin-top: 120px;">
+                    <div class="card-deck">
+                        <div class="card col-md-4" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><b>Generate Report</b></h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <form method="get" action="/Report/ChooseReport">
+                                    <div class="col-md-6" id="first-row-btn">
+                                        <button class="btn btn-primary btn-toolbar btn-lg">Generate Report</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="card col-md-4" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><b>Announcement</b></h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <form method="get" action="/Announcement/Options">
+                                    <div class="col-md-6" id="first-row-btn">
+                                        <button class="btn btn-primary btn-toolbar btn-lg">Announcement</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="card col-md-4" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><b>Update Card Status</b></h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <form method="get" action="/Cardstatus/UpdateOptions">
+                                    <div class="col-md-6" id="second-row-btn">
+                                        <button class="btn btn-primary btn-toolbar btn-lg">Update Card Status</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
-                </form>
-
-
-                <form method="get" action="/Announcement/Options">
-                    <div class="col-md-6" id="first-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">Announcement</button>
-                    </div>
-                </form>
-
+                </div>
             </div>
 
 
-            <div class="row">
-                <form method="get" action="/Cardstatus/UpdateOptions">
-                    <div class="col-md-6" id="second-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">Update Card Status</button>
-                    </div>
-                </form>
 
-                <form method="get" action="/Controller/Action">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-deck">
+                        <div class="card col-md-4" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><b>Edit Student User</b></h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <form method="get" action="/Admin/EditStudent">
+                                    <div class="col-md-6" id="third-row-btn">
+                                        <button class="btn btn-primary btn-toolbar btn-lg">Edit Student User</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="card col-md-4" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><b>Query Card History</b></h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <form method="get" action="/Admin/QueryCardHistory">
+                                    <div class="col-md-6" id="third-row-btn">
+                                        <button class="btn btn-primary btn-toolbar btn-lg">Query Card History</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="card col-md-4" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><b>Edit Duration of Auto Delete</b></h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <form method="get" action="/Cardstatus/EditAutoDelete">
+                                    <div class="col-md-6" id="forth-row-btn">
+                                        <button class="btn btn-primary btn-toolbar btn-lg">Auto Delete Duration</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <!--<div class="row">-->
+                @*<form method="get" action="/Report/ChooseReport">
+                <div class="col-md-6" id="first-row-btn">
+                    <button class="btn btn-primary btn-toolbar btn-lg">Generate Report</button>
+                </div>
+            </form>*@
+
+
+                @*<form method="get" action="/Announcement/Options">
+                <div class="col-md-6" id="first-row-btn">
+                    <button class="btn btn-primary btn-toolbar btn-lg">Announcement</button>
+                </div>
+            </form>*@
+
+            <!--</div>
+
+
+            <div class="row">-->
+                @*<form method="get" action="/Cardstatus/UpdateOptions">
+                <div class="col-md-6" id="second-row-btn">
+                    <button class="btn btn-primary btn-toolbar btn-lg">Update Card Status</button>
+                </div>
+            </form>*@
+
+                <!--<form method="get" action="/Controller/Action">
                     @if (User.IsInRole("SuperAdmin"))
                     {
                         <div class="col-md-6" id="second-row-btn">
@@ -84,7 +181,7 @@
                     </div>
                 </form>
 
-            </div>
+            </div>-->
         </div>
     </section>
 </body>

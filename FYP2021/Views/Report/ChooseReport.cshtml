@@ -44,46 +44,81 @@
             <div class="row">
 
                 @*<form method="get" action="/Report/PendingForTransitLink">
-                            <div class="col-md-6" id="first-row-btn">
-                                <button class="btn btn-primary btn-toolbar btn-lg"> Pending for TransitLink </button>
-                            </div>
-                        </form>
+                <div class="col-md-6" id="first-row-btn">
+                    <button class="btn btn-primary btn-toolbar btn-lg"> Pending for TransitLink </button>
+                </div>
+            </form>
 
-                        <form method="get" action="/Report/ReadyForApplication">
-                            <div class="col-md-6" id="first-row-btn">
-                                <button class="btn btn-primary btn-toolbar btn-lg"> Ready for Application </button>
+            <form method="get" action="/Report/ReadyForApplication">
+                <div class="col-md-6" id="first-row-btn">
+                    <button class="btn btn-primary btn-toolbar btn-lg"> Ready for Application </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <form method="get" action="/Report/CardReady">
+                <div class="col-md-6" id="second-row-btn">
+                    <button class="btn btn-primary btn-toolbar btn-lg"> Card Ready </button>
+                </div>
+            </form>
+
+            <form method="get" action="/Report/CardDispatched">
+                <div class="col-md-6" id="second-row-btn">
+                    <button class="btn btn-primary btn-toolbar btn-lg"> Card Dispatched </button>
+                </div>
+            </form>
+        </div>*@
+
+                <div class="row">
+                    <div class="col-md-12" style="margin-top: 50px;">
+                        <div class="card-deck">
+                            <div class="card col-md-6" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center"><b>Summary Chart</b></h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <form method="get" action="/Report/SummaryChart">
+                                        <div class="col-md-6" id="first-row-btn">
+                                            <button class="btn btn-primary btn-toolbar btn-lg"> Summary Chart </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        </form>
+
+                            <div class="card col-md-6" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center"><b>All Students </b></h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <form method="get" action="/Report/SummaryReport">
+                                        <div class="col-md-6" id="first-row-btn">
+                                            <button class="btn btn-primary btn-toolbar btn-lg"> All Students </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+                        </div>
                     </div>
+                </div>
 
-                    <div class="row">
-                        <form method="get" action="/Report/CardReady">
-                            <div class="col-md-6" id="second-row-btn">
-                                <button class="btn btn-primary btn-toolbar btn-lg"> Card Ready </button>
-                            </div>
-                        </form>
 
-                        <form method="get" action="/Report/CardDispatched">
-                            <div class="col-md-6" id="second-row-btn">
-                                <button class="btn btn-primary btn-toolbar btn-lg"> Card Dispatched </button>
-                            </div>
-                        </form>
-                    </div>*@
 
-                <form method="get" action="/Report/SummaryChart">
+                @*<form method="get" action="/Report/SummaryChart">
                     <div class="col-md-6" id="first-row-btn">
                         <button class="btn btn-primary btn-toolbar btn-lg"> Summary Chart </button>
                     </div>
-                </form>
+                </form>*@
 
-                <div class="row">
+                @*<div class="row">
                     <form method="get" action="/Report/SummaryReport">
                         <div class="col-md-6" id="first-row-btn">
                             <button class="btn btn-primary btn-toolbar btn-lg"> All Students </button>
                         </div>
                     </form>
 
-                </div>
+                </div>*@
 
             </div>
         </div>

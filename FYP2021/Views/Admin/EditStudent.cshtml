@@ -28,22 +28,57 @@
     <span style="color:red">@TempData["Msg"]</span>
     <section id="banner" class="button-area">
         <div class="container">
+
             <div class="row">
+                <div class="col-md-12" style="margin-top: 120px;">
+                    <div class="card-deck">
+                        <div class="card col-md-6" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><b>Create Student</b></h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <form method="get" action="/Admin/CreateStudent">
+                                    <div class="col-md-4" id="first-row-btn">
+                                        <button class="btn btn-primary btn-toolbar btn-lg">Create Student</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="card col-md-6" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><b>List Students</b></h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <form method="get" action="/Admin/ListStudent">
+                                    <div class="col-md-4" id="first-row-btn">
+                                        <button class="btn btn-primary btn-toolbar btn-lg">List Students</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!--<div class="row">
                 <form method="get" action="/Admin/CreateStudent">
                     <div class="col-md-4" id="first-row-btn">
                         <button class="btn btn-primary btn-toolbar btn-lg">Create Student</button>
                     </div>
-                </form>
+                </form>-->
 
 
                 <!--LOCK STUDENT FUNCTION WILL BE INSIDE LIST STUDENT-->
-                <form method="get" action="/Admin/ListStudent">
+                <!--<form method="get" action="/Admin/ListStudent">
                     <div class="col-md-4" id="first-row-btn">
                         <button class="btn btn-primary btn-toolbar btn-lg">List Students</button>
                     </div>
                 </form>
 
-            </div>
+            </div>-->
         </div>
     </section>
 </body>
