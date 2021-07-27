@@ -4,6 +4,7 @@ using System.Data;
 using FYP2021.Models;
 using Rotativa.AspNetCore;
 using System.Text;
+using System.Linq;
 
 namespace FYP2021.Controllers
 {
@@ -12,8 +13,10 @@ namespace FYP2021.Controllers
 
         public IActionResult ReportViewAsPDF()
         {
-            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student");
+            //Take entry from database
+            List<Student> list = DBUtl.GetList<Student>("SELECT student_id,student_email,student_name,card_status,cardstatus_date FROM Students");
 
+            //Manual Entry
             List<Student> list2 = new List<Student>
             {
                 new Student{Id=1, StudEmail="19030130@myrp.edu.sg", StudName="Syakir", CardStatus="Pending for TransitLink", CardStatusDate="9/7/2201"},
@@ -25,8 +28,8 @@ namespace FYP2021.Controllers
 
             //DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
 
-            if (list2 != null)
-                return new ViewAsPdf("ReportViewAsPDF", list2)
+            if (list != null)
+                return new ViewAsPdf("ReportViewAsPDF", list)
                 {
                     PageSize = Rotativa.AspNetCore.Options.Size.A4,
                     PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape
@@ -39,6 +42,7 @@ namespace FYP2021.Controllers
             }
         }
 
+        //Manual Entry for CSV file
         private List<Student> list2 = new List<Student>
 
         {
@@ -50,11 +54,12 @@ namespace FYP2021.Controllers
 
         public IActionResult ReportToCSV()
         {
-            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student");
+            //Entry from database
+            List<Student> list = DBUtl.GetList<Student>("SELECT student_id,student_email,student_name,card_status,cardstatus_date FROM Students");
 
             var builder = new StringBuilder();
             builder.AppendLine("Id,StudentEmail,StudentName,CardStatus,CardStatusDate");
-            foreach (var student in list2)
+            foreach (var student in list)
             {
                 builder.AppendLine($"{student.Id},{student.StudEmail},{student.StudName},{student.CardStatus},{student.CardStatusDate}");
 
