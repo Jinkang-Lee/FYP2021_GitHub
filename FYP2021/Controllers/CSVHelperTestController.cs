@@ -17,9 +17,9 @@ namespace FYP2021.Controllers
     public class CSVHelperTestController : Controller
     {
         [HttpGet]
-        public IActionResult IndexTest(List<CSV> students = null)
+        public IActionResult IndexTest(List<Student> students = null)
         {
-            students = students == null ? new List<CSV>() : students;
+            students = students == null ? new List<Student>() : students;
 
             return View(students);
         }
@@ -41,9 +41,9 @@ namespace FYP2021.Controllers
 
         }
 
-        public List<CSV> GetStudentList(string fileName)
+        public List<Student> GetStudentList(string fileName)
         {
-            List<CSV> students = new List<CSV>();
+            List<Student> students = new List<Student>();
 
             TempData["Msg"] = "Hi!";
 
@@ -61,81 +61,47 @@ namespace FYP2021.Controllers
                 while (csv.Read())
                 {
 
-                    var student = csv.GetRecord<CSV>();
+                    var student = csv.GetRecord<Student>();
                     students.Add(student);
 
-                    DataTable result = new DataTable();
-                    DataRow dr = result.NewRow();
-                    dr[1] = "yy@gmail.com";
-                    dr[2] = "Yy";
-                    dr[3] = "Card Ready";
-                    dr[4] = "21/7/2021";
-                    result.Rows.Add(dr);
+                    string cardstatus = student.CardStatus;
+                    string studentemail = student.StudEmail;
+                    //string date = csv.GetRecord(student.StudEmail);
+                    //DateTime cardstatusdate = DateTime.Parse(csv.GetField(5));
 
-                    foreach (DataRow r in result.Rows)
+                    //DataTable table = new DataTable();
+                    //table.Columns.Add(cardstatus);
+                    //table.Columns.Add(studentemail);
+                    //table.Columns.Add(date); 
+
+                    //foreach(Student st in students)
+                    //{
+                    List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_email = '{0}'", studentemail);
+
+                    if (list.Count > 0)
                     {
-                        string email = r[1].ToString();
-                        string name = r[2].ToString();
-                        string cardstatus = r[3].ToString();
-                        DateTime cardstatusdate = DateTime.Parse(r[4].ToString());
 
-                        string sql = @"INSERT INTO Student
-                                            (student_email, student_name, card_status, cardstatus_date)
-                                            VALUES ('{0}', '{1}', '{2}', '{3}')";
+                        string update = @"UPDATE Student SET card_status='{0}' WHERE student_email ='{1}'";
 
-
-                        if (DBUtl.ExecSQL(sql, email, name, cardstatus, cardstatusdate) < 0)
+                        int result = DBUtl.ExecSQL(update, cardstatus, student.StudEmail);
+                        if (result == 1)
                         {
-                            TempData["Msg"] = "New student Added!";
+                            TempData["Message"] = "Card Status Updated";
                             TempData["MsgType"] = "success";
                         }
 
                         else
                         {
-                            TempData["Msg"] = "Invalid information entered!";
-                            TempData["MsgType"] = "warning";
+                            TempData["Message"] = DBUtl.DB_Message;
+                            TempData["MsgType"] = "danger";
                         }
                     }
+                    else
+                    {
+                        TempData["Message"] = "Student Not Found!";
+                        TempData["MsgType"] = "warning";
 
-                    
-
-                    TempData["Student"] = "Very good";
-
-
-
-                    
-
-
-
-
-
-
-                    //List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_email = {0}", student.StudEmail);
-
-                    //if (list.Count > 0)
-                    //{
-
-                    //    string update = @"UPDATE Student SET card_status='{0}', cardstatus_date ='{1}' WHERE student_email ='{2}'";
-
-                    //    int result = DBUtl.ExecSQL(update, student.CardStatus, student.CardStatusDate, student.StudEmail);
-                    //    if (result == 1)
-                    //    {
-                    //        TempData["Message"] = "Card Status Updated";
-                    //        TempData["MsgType"] = "success";
-                    //    }
-
-                    //    else
-                    //    {
-                    //        TempData["Message"] = DBUtl.DB_Message;
-                    //        TempData["MsgType"] = "danger";
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    TempData["Message"] = "Student Not Found!";
-                    //    TempData["MsgType"] = "warning";
-
-                    //}
+                    }
                 }
             }
             #endregion

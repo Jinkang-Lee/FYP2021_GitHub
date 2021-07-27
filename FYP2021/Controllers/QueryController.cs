@@ -10,28 +10,22 @@ namespace FYP2021.Controllers
 {
     public class QueryController : Controller
     {
-        public IActionResult QueryCardStatus(Student student)
-        {
-            
-            return View();
-        }
-
-        public IActionResult Test()
+        public IActionResult Pending()
         {
             return View();
         }
 
-        public IActionResult Test2()
+        public IActionResult ReadyApplciation()
         {
             return View();
         }
 
-        public IActionResult Test3()
+        public IActionResult CardReady()
         {
             return View();
         }
 
-        public IActionResult Test4()
+        public IActionResult CardDispatched()
         {
             return View();
         }

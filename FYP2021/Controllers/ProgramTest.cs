@@ -9,7 +9,7 @@ namespace FYP2021.Controllers
 {
     class ProgramTest
     {
-         static void Program(string[] args)
+         public static void Program(string[] args)
         {
             var lineNumber = 0;
             using (SqlConnection conn = new SqlConnection(@"Data Source=(localdb)\\ProjectsV13;Initial Catalog=FYP_Database;Integrated Security=True"))

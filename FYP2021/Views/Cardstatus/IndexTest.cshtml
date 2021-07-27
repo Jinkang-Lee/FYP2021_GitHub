@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Student>
+﻿@model IEnumerable<CSV>
 @{
     Layout = null;
 }
@@ -38,8 +38,25 @@
             <td>Card Status</td>
             <td>Date</td>
         </tr>
-        @foreach (Student student in Model)
+        @foreach (CSV student in Model)
         {
+
+
+            //string sql = @"INSERT INTO Student
+            //                                (student_id, student_email, student_name, ph_num, card_status, cardstatus_date, attempts, passcode )
+            //                                VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}')";
+
+            //if (DBUtl.ExecSQL(sql, student.Id, student.StudEmail, student.StudName, student.StudPhNum, student.CardStatus, student.CardStatusDate, student.StudAttempts, student.OTP) == 1)
+            //{
+            //    TempData["Msg"] = "New Added!";
+            //    TempData["MsgType"] = "success";
+            //}
+
+            //else
+            //{
+            //    TempData["Msg"] = "Invalid entered!";
+            //    TempData["MsgType"] = "warning";
+            //}
 
             <tr>
                 <td>@student.StudEmail</td>
