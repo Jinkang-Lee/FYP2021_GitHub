@@ -19,10 +19,10 @@ namespace FYP2021.Controllers
     [Authorize(AuthenticationSchemes = "StudentAccount")]
     public class StudentController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
         
         public IActionResult StudentLoginpage()
         {
