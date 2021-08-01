@@ -102,10 +102,11 @@
                     <td>@row["student_name"]</td>
                     <td>@row["ph_num"]</td>
                     <td>@row["card_status"]</td>
-                    <td>@row["pending_date"]</td>
-                    <td>@row["readyapplication_date"]</td>
-                    <td>@row["cardready_date"]</td>
-                    <td>@row["carddispatched_date"]</td>
+                    <td>@String.Format("{0:yyyy-MM-dd}", @row["pending_date"])</td>
+                    <td>@String.Format("{0:yyyy-MM-dd}", @row["readyapplication_date"])</td>
+                    <td>@String.Format("{0:yyyy-MM-dd}", @row["cardready_date"])</td>
+                    <td>@String.Format("{0:yyyy-MM-dd}", @row["carddispatched_date"])</td>
+
                 </tr>
                 }
             </tbody>

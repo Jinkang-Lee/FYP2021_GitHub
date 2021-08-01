@@ -86,28 +86,26 @@
     </section>
 
     <div class="step_progressbar">
+        <br />
         <ul>
-
 
             <li class="active">Pending for TransitLink</li>
             <li class="active">Ready for Application</li>
             <li class="active">Card Ready</li>
             <li class="active">Card Dispatched</li>
 
-
-
-
-
         </ul>
     </div>
 
     <div class="container" style="text-align: center">
-        <h1>
-            Your card status is Card Dispatched
-        </h1>
+        <br />
+        <h2>
+            Your current card status is Card Dispatched
+        </h2>
+        <br />
     </div>
     <br>
-
+    <br>
 </body>
 
 @*Explaination of the card status*@
@@ -168,11 +166,12 @@
                 border-radius: 50%;
                 border: solid 2px;
                 transition: all ease 0.3s;
+                background: #CCFFBD; /*color of circle*/
             }
 
             #progress-bar-container li.active:before, #progress-bar-container li:hover:before {
                 border: solid 2px #fff;
-                background: #777;
+                background: #284E78; /*color when circle is active*/
             }
 
             #progress-bar-container li {
@@ -180,7 +179,7 @@
                 float: left;
                 width: 20%;
                 text-align: center;
-                color: #777;
+                color: #346751;
                 text-transform: uppercase;
                 font-size: 11px;
                 cursor: pointer;
@@ -199,7 +198,7 @@
                 }
 
                 #progress-bar-container li.active, #progress-bar-container li:hover {
-                    color: #777;
+                    color: #284E78;
                 }
 
                 #progress-bar-container li:after {
@@ -207,7 +206,7 @@
                     display: block;
                     width: 6px;
                     height: 6px;
-                    background: #777;
+                    background: #333;
                     left: 50%;
                     margin: -5%;
                     border: solid 7px #fff;
@@ -243,7 +242,7 @@
                 width: 3%;
                 height: 100%;
                 background: #207893;
-                background: linear-gradient(to right, #a29bfe 0%,#ff7675 100%);
+                background: linear-gradient();
                 position: relative;
                 z-index: 2;
                 border-radius: 50px;
@@ -253,9 +252,9 @@
         #progress-content-section {
             width: 90%;
             margin: auto;
-            background: #f3f3f3;
+            background: #F8EDE3; /*here for box*/
             border-radius: 4px;
-            background-image: linear-gradient(to right, #a29bfe 0%, #ff7675 100%);
+            background-image: linear-gradient();
         }
 
             #progress-content-section .section-content {
@@ -266,14 +265,14 @@
                 #progress-content-section .section-content h2 {
                     font-size: 17px;
                     text-transform: uppercase;
-                    color: #eee;
+                    color: black;
                     letter-spacing: 1px;
                 }
 
                 #progress-content-section .section-content p {
                     font-size: 16px;
                     line-height: 1.8em;
-                    color: #eee;
+                    color: black;
                 }
 
             #progress-content-section .section-content {
@@ -305,11 +304,12 @@
 
     <section class="main-area">
         <br>
-        <h1>Concession Card Status</h1>
+        <h1>Information About The Concession Card Status <br> <br> Click The Circles To Know More</h1>
         <br>
         <div class="process-wrapper">
             <div id="progress-bar-container">
                 <ul>
+
                     <li class="step step01 active"><div class="step-inner">PENDING FOR TRANSITLINK</div></li>
                     <li class="step step02"><div class="step-inner">READY FOR APPLICATION</div></li>
                     <li class="step step03"><div class="step-inner">CARD READY</div></li>
@@ -324,22 +324,30 @@
             <div id="progress-content-section">
                 <div class="section-content discovery active">
                     <h2>Pending for transitlink</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros, placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem. Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.</p>
+                    <p>
+                        Republc Polytechnic will sent the list of student's data to TransitLink. TransitLink will update the student data and will notify Republic Polytechnic when it will be updated. This will take about 3 to 5 working days.
+                    </p>
                 </div>
 
                 <div class="section-content strategy">
                     <h2>Ready for Applicaiton</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros, placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem. Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.</p>
+                    <p>
+                        Students will apply and make payment for their Concession Card on the TransitLink website upon receiving Email from Republic Polytechnic to apply for the Concession Card. This will take 1 working day.
+                    </p>
                 </div>
 
                 <div class="section-content creative">
                     <h2>Card Ready</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros, placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem. Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.</p>
+                    <p>
+                        TransitLink will print and arrange for delivery of the Concession Cards to Republic Polytechnic. Republic Polytechnic will receive and prepare all the Concession Cards for distribution. This will take 2 to 6 weeks.
+                    </p>
                 </div>
 
                 <div class="section-content production">
                     <h2>Card Dispatched</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros, placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem. Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.</p>
+                    <p>
+                        Republic Polytechnic will notify the students to collect their Concession Card in batches. This will take 1 to 2 working days.
+                    </p>
                 </div>
 
             </div>
@@ -375,5 +383,32 @@
 
         </script>
     </section>
+
+    <!--Contact Us Area-->
+    <section class="contact-area">
+        <br>
+        <h1>Contact Us</h1>
+        <br>
+
+        <div class="container" style="text-align: center">
+            <br />
+            <h2>
+                How Can We Help?
+            </h2>
+            <p>You may reach us via our Email: RP_Concession_Card@outlook.com</p>
+            <p>Our team will get in contact with you as soon as possible.</p>
+            <br />
+            <p><b>Address:</b> 9 Woodlands Avenue 9, Singapore 738964</p>
+            <p><b>Tel:</b> 6510 3000 (8 am to 6 pm, Monday to Friday)</p>
+            <br />
+            <br />
+            <div class="offset-sm-10 col-md-5" id="left-image">
+                <img src="~/images/RPSchoolCampus.png" class="img-fluid" style="height:auto; width:1262px;" />
+
+            </div>
+        </div>
+
+    </section>
+
 </body>
 </html>

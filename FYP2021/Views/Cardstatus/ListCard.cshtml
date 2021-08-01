@@ -99,7 +99,7 @@
                         <td>@row["student_name"]</td>
                         <td>@row["ph_num"]</td>
                         <td>@row["card_status"]</td>
-                        <td>@row["cardstatus_date"]</td>
+                        <td>@String.Format("{0:yyyy-MM-dd}", @row["cardstatus_date"])</td>
                         <td>
                             <a asp-controller="Cardstatus"
                                asp-action="EditCardstatus"

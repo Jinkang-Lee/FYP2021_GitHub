@@ -86,6 +86,7 @@
     </section>
 
     <div class="step_progressbar">
+        <br />
         <ul>
 
             <li class="active">Pending for TransitLink</li>
@@ -99,7 +100,7 @@
     <div class="container" style="text-align: center">
         <br />
         <h2>
-            Your card status is Pending for TransitLink
+            Your current card status is Pending for TransitLink
         </h2>
         <br />
     </div>
@@ -165,11 +166,12 @@
                 border-radius: 50%;
                 border: solid 2px;
                 transition: all ease 0.3s;
+                background: #CCFFBD; /*color of circle*/
             }
 
             #progress-bar-container li.active:before, #progress-bar-container li:hover:before {
                 border: solid 2px #fff;
-                background: #333;
+                background: #284E78; /*color when circle is active*/
             }
 
             #progress-bar-container li {
@@ -177,7 +179,7 @@
                 float: left;
                 width: 20%;
                 text-align: center;
-                color: #808080;
+                color: #346751;
                 text-transform: uppercase;
                 font-size: 11px;
                 cursor: pointer;
@@ -196,7 +198,7 @@
                 }
 
                 #progress-bar-container li.active, #progress-bar-container li:hover {
-                    color: #555;
+                    color: #284E78;
                 }
 
                 #progress-bar-container li:after {
@@ -250,7 +252,7 @@
         #progress-content-section {
             width: 90%;
             margin: auto;
-            background: #f3f3f3;
+            background: #F8EDE3; /*here for box*/
             border-radius: 4px;
             background-image: linear-gradient();
         }
@@ -302,11 +304,12 @@
 
     <section class="main-area">
         <br>
-        <h1>Information About The Concession Card Status</h1>
+        <h1>Information About The Concession Card Status <br> <br> Click The Circles To Know More</h1>
         <br>
         <div class="process-wrapper">
             <div id="progress-bar-container">
                 <ul>
+
                     <li class="step step01 active"><div class="step-inner">PENDING FOR TRANSITLINK</div></li>
                     <li class="step step02"><div class="step-inner">READY FOR APPLICATION</div></li>
                     <li class="step step03"><div class="step-inner">CARD READY</div></li>
@@ -380,5 +383,32 @@
 
         </script>
     </section>
+
+    <!--Contact Us Area-->
+    <section class="contact-area">
+        <br>
+        <h1>Contact Us</h1>
+        <br>
+
+        <div class="container" style="text-align: center">
+            <br />
+            <h2>
+                How Can We Help?
+            </h2>
+            <p>You may reach us via our Email: RP_Concession_Card@outlook.com</p>
+            <p>Our team will get in contact with you as soon as possible.</p>
+            <br />
+            <p><b>Address:</b> 9 Woodlands Avenue 9, Singapore 738964</p>
+            <p><b>Tel:</b> 6510 3000 (8 am to 6 pm, Monday to Friday)</p>
+            <br />
+            <br />
+            <div class="offset-sm-10 col-md-5" id="left-image">
+                <img src="~/images/RPSchoolCampus.png" class="img-fluid" style="height:auto; width:1262px;" />
+
+            </div>
+        </div>
+ 
+    </section>
+
 </body>
 </html>
