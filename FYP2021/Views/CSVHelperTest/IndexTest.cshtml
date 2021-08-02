@@ -3,51 +3,83 @@
     Layout = null;
 }
 
-<section id="banner" class="rp-logo">
-    <img src="~/images/RP_Logo.png" width="200" height="80" />
-</section>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Student Concession Card Status</title>
 
-@if (TempData["Msg"] != null)
-{
-    <div class="alert alert-@TempData["MsgType"]">
-        @TempData["Msg"]
-    </div>
-}
+    <!--style sheets references-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/HomePage.css" />
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
 
-<form asp-controller="CSVHelperTest" asp-action="IndexTest" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" />
-    <br />
-    File must be in .csv format
-    <br />
-    File header format must follow the format below
-    <br />
+    <!--script files references -->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
 
-    Id, StudEmail, StudName, StudPhNum, CardStatus, StudAttempts, CardStatusDate, Attempts
 
-    <hr />
-    <button type="submit">Upload</button>
-</form>
 
-@if (Model.Count() > 0)
-{
-    <hr />
-    <table cellpadding="0" cellspacing="0" width="100%" border="1">
-        <tr>
-            <td>Email</td>
-            <td>Name</td>
-            <td>Card Status</td>
-            <td>Date</td>
-        </tr>
-        @foreach (Student student in Model)
-        {
+</head>
 
+<body>
+    <section id="banner" class="rp-logo">
+        <img src="~/images/RP_Logo.png" width="200" height="80" />
+    </section>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-@TempData["MsgType"]">
+            @TempData["Message"]
+        </div>
+    }
+
+    <form asp-controller="CSVHelperTest" asp-action="IndexTest" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <br />
+        File must be in .csv format
+        <br />
+        File header format must follow the format below
+        <br />
+
+        Id, StudEmail, StudName, StudPhNum, CardStatus, StudAttempts, CardStatusDate, Attempts
+
+        <hr />
+        
+        <div class="form-group">
+            <input type="submit" style="margin-left: 200px;" class="btn btn-lg btn-primary" value="Upload" />
+        </div>
+    </form>
+
+    @if (Model.Count() > 0)
+    {
+        <hr />
+        <table cellpadding="0" cellspacing="0" width="100%" border="1">
             <tr>
-                <td>@student.StudEmail</td>
-                <td>@student.StudName</td>
-                <td>@student.CardStatus</td>
-                <td>@student.CardStatusDate</td>
+                <td>Email</td>
+                <td>Name</td>
+                <td>Card Status</td>
+                <td>Date</td>
             </tr>
-        }
+            @foreach (Student student in Model)
+            {
+
+                <tr>
+                    <td>@student.StudEmail</td>
+                    <td>@student.StudName</td>
+                    <td>@student.CardStatus</td>
+                    <td>@student.CardStatusDate</td>
+                </tr>
+            }
 
         </table>
-}
+
+    }
+</body>
+</html>

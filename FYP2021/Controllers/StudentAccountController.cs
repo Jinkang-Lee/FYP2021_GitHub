@@ -31,7 +31,7 @@ namespace FYP2021.Controllers
         private const string NAME_COL = "student_name";
 
         //Where to redirect to after sign in
-        private const string REDIRECT_CNTR = "Student";
+        private const string REDIRECT_CNTR = "StudentAccount";
         private const string REDIRECT_ACTN = "Index";
 
         private const string LOGIN_VIEW = "Login";
@@ -102,7 +102,38 @@ namespace FYP2021.Controllers
                        IsPersistent = false
                    });
 
-                    return RedirectToAction(REDIRECT_ACTN, REDIRECT_CNTR);
+                    //List<Student> list1 = DBUtl.GetList<Student>("SELECT card_status FROM Student WHERE student_email= '{0}'", studentEmail);
+
+                    DataTable list1 = DBUtl.GetTable("SELECT card_status FROM Student WHERE student_email = '{0}'", studentEmail);
+
+                    foreach (DataRow r in list1.Rows)
+                    {
+                        string studcardstatus = r["card_status"].ToString();
+                        if (studcardstatus == "Pending for TransitLink")
+                        {
+                            return View("Pending");
+                        }
+
+                        else if (studcardstatus == "Ready for Application")
+                        {
+                            return View("ReadyApplication");
+                        }
+
+                        else if (studcardstatus == "Card Ready")
+                        {
+                            return View("CardReady");
+                        }
+
+                        else if (studcardstatus == "Card Dispatched")
+                        {
+                            return View("CardDispatched");
+                        }
+
+                    }
+
+
+                    return RedirectToAction("Index");
+                    //return RedirectToAction(REDIRECT_ACTN, REDIRECT_CNTR);
                 }
             }
         }
@@ -222,9 +253,10 @@ namespace FYP2021.Controllers
             return View();
         }
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
     }
 }
