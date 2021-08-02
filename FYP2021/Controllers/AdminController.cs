@@ -27,7 +27,6 @@ namespace FYP2021.Controllers
         //}
 
 
-
         public IActionResult Index()
         {
             return View();
@@ -203,5 +202,17 @@ namespace FYP2021.Controllers
         {
             return View();
         }
+
+
+
+
+
+        //ENHANCEMENT: SuperAdmin edit admin users
+        [Authorize(Roles = "Super_Admin")]
+        public IActionResult EditAdmin()
+        {
+            return View();
+        }
+  
     }
 }
