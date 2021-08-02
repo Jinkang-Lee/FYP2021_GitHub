@@ -44,7 +44,7 @@ namespace FYP2021.Controllers
                 }
                 else
                 {
-                    TempData["Message"] = "File Not in CSV format!";
+                    TempData["Message"] = "File Not In CSV Format!";
                     TempData["MsgType"] = "warning";
                 }
 

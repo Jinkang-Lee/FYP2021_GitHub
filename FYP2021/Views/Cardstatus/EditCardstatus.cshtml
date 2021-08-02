@@ -44,15 +44,15 @@
         <div class="row">
             <form method="post" action="/Cardstatus/EditCardstatusPost">
                 <div class="form-group row row">
-                    <label class="control-label col-2" asp-for="Id">Id : </label>
-                    <div class="col-5">
+                    <label class="control-label col-sm-4" asp-for="Id">Id:</label>
+                    <div class="col-sm-8">
                         <input asp-for="Id" class="form-control" readonly="readonly" />
                     </div>
                 </div>
 
                 <div class="form-group row row">
-                    <label class="control-label col-2" asp-for="StudEmail">Email : </label>
-                    <div class="col-5">
+                    <label class="control-label col-sm-4" asp-for="StudEmail">Email:</label>
+                    <div class="col-sm-8">
                         <input asp-for="StudEmail" class="form-control" />
                     </div>
                 </div>
@@ -66,8 +66,8 @@
 
 
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" asp-for="CardStatus">Card Status: </label>
-                    <div class="col-sm-5">
+                    <label class="control-label col-sm-4" asp-for="CardStatus">Card Status:</label>
+                    <div class="col-sm-8">
                         <select class="form-control col-12" asp-for="CardStatus">
                             <option value="Pending for TransitLink">Pending for TransitLink</option>
                             <option value="Ready for Application">Ready for Application</option>
@@ -78,16 +78,17 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" asp-for="CardStatusDate">Today's Date: </label>
-                    <div class="col-sm-5">
+                    <label class="control-label col-sm-4" asp-for="CardStatusDate">Today's Date:</label>
+                    <div class="col-sm-8">
                         <input type="text" class="form-control" asp-for="CardStatusDate" value="@DateTime.Now.ToString("MM/dd/yyyy")" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" style="margin-left: 200px;" class="btn btn-lg btn-primary" value="Update Status" />
+                    <div class="offset-sm-4 col-sm-8">
+                        <input type="submit" class="btn btn-lg btn-primary" value="Update Status" />
+                    </div>
                 </div>
-
                 @if (ViewData["Message"] != null)
                 {
                     <div class="form-group row">
