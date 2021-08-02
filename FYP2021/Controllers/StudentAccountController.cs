@@ -104,8 +104,10 @@ namespace FYP2021.Controllers
 
                     //List<Student> list1 = DBUtl.GetList<Student>("SELECT card_status FROM Student WHERE student_email= '{0}'", studentEmail);
 
-                    DataTable list1 = DBUtl.GetTable("SELECT card_status FROM Student WHERE student_email = '{0}'", studentEmail);
+                    
 
+                    DataTable list1 = DBUtl.GetTable("SELECT card_status FROM Student WHERE student_email = '{0}'", studentEmail);
+                    
                     foreach (DataRow r in list1.Rows)
                     {
                         string studcardstatus = r["card_status"].ToString();
@@ -146,7 +148,7 @@ namespace FYP2021.Controllers
             HttpContext.SignOutAsync(AUTHSCHEME);
             if (Url.IsLocalUrl(returnUrl))
                 return Redirect(returnUrl);
-            return RedirectToAction(REDIRECT_ACTN, REDIRECT_CNTR);
+            return RedirectToAction("Index", "HomePage");
         }
 
         [AllowAnonymous]

@@ -24,7 +24,7 @@ namespace FYP2021.Models
         public string AdminPassword { get; set; }
 
 
-        public string UserRole { get; set; }
+        public string Role { get; set; }
 
     }
 }

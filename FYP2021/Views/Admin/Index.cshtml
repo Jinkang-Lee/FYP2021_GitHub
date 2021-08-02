@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@model DataRowCollection
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -28,18 +31,21 @@
 
 
     <section id="banner" class="button-area">
+
+        <h1 class="text-center"><b>Admin Main Menu</b></h1>
         <div class="container" style="height: 700px;">
 
-            <div class="row" >
-                <div class="col-md-12" style="margin-top: 120px;">
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 80px; margin-left: 150px;">
                     <div class="card-deck text-center">
                         <div class="card col-md-4" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title text-center"><b>Generate Report</b></h5>
                                 <p class="card-text">Click here to generate report about student card details and information.</p>
+                                @*<img src="~/images/analytics.png" alt="Report" width="50" height="60">*@
                                 <form method="get" action="/Report/ChooseReport">
                                     <div class="col-md-6" id="first-row-btn">
-                                        <button class="btn btn-primary btn-toolbar btn-lg">Generate Report</button>
+                                        <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px; margin-top: 10px;">Generate Report</button>
                                     </div>
                                 </form>
                             </div>
@@ -51,19 +57,7 @@
                                 <p class="card-text">Click here to view, create new, update and delete existing announcements.</p>
                                 <form method="get" action="/Announcement/Options">
                                     <div class="col-md-6" id="first-row-btn">
-                                        <button class="btn btn-primary btn-toolbar btn-lg">Announcement</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="card col-md-4" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center"><b>Update Card Status</b></h5>
-                                <p class="card-text">Click here to update the card status of the students' concession card</p>
-                                <form method="get" action="/Cardstatus/UpdateOptions">
-                                    <div class="col-md-6" id="second-row-btn">
-                                        <button class="btn btn-primary btn-toolbar btn-lg">Update Card Status</button>
+                                        <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px;">Announcement</button>
                                     </div>
                                 </form>
                             </div>
@@ -76,39 +70,57 @@
 
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" style="margin-top: 20px; margin-left: 150px;">
                     <div class="card-deck text-center">
+
+                        <div class="card col-md-4" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><b>Update Card Status</b></h5>
+                                <p class="card-text">Click here to update the card status of the students' concession card</p>
+                                <form method="get" action="/Cardstatus/UpdateOptions">
+                                    <div class="col-md-6" id="second-row-btn">
+                                        <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px;">Update Card Status</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+
                         <div class="card col-md-4" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title text-center"><b>Edit Student User</b></h5>
                                 <p class="card-text">Click here to Create New students, List students and Edit student information.</p>
                                 <form method="get" action="/Admin/EditStudent">
                                     <div class="col-md-6" id="third-row-btn">
-                                        <button class="btn btn-primary btn-toolbar btn-lg">Edit Student User</button>
+                                        <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px;">Edit Student User</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
+                        
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 20px; margin-left: 150px;">
+                    <div class="card-deck text-center">
                         <div class="card col-md-4" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title text-center"><b>Query Card History</b></h5>
                                 <p class="card-text">Click here to display and query the student cocession card history.</p>
                                 <form method="get" action="/Admin/QueryCardHistory">
                                     <div class="col-md-6" id="third-row-btn">
-                                        <button class="btn btn-primary btn-toolbar btn-lg">Query Card History</button>
+                                        <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px;">Query Card History</button>
                                     </div>
                                 </form>
-                            </div>
-                        </div>
-
-                        <div class="card col-md-4" style="width: 18rem;">
-                            <div class="card-body">
-                                
-                                    <div class="col-md-6" id="forth-row-btn">
-                                       
-                                    </div>
-                               
                             </div>
                         </div>
 
@@ -116,6 +128,13 @@
                 </div>
             </div>
 
+            <div class="row">
+                <form method="get" action="/AdminAccount/Logoff">
+                    <div class="col-md-6" id="third-row-btn">
+                        <button class="btn btn-primary btn-toolbar btn-lg">Logout</button>
+                    </div>
+                </form>
+            </div>
 
 
 
@@ -124,62 +143,61 @@
 
 
             <!--<div class="row">-->
-                @*<form method="get" action="/Report/ChooseReport">
-                <div class="col-md-6" id="first-row-btn">
-                    <button class="btn btn-primary btn-toolbar btn-lg">Generate Report</button>
-                </div>
-            </form>*@
+            @*<form method="get" action="/Report/ChooseReport">
+            <div class="col-md-6" id="first-row-btn">
+                <button class="btn btn-primary btn-toolbar btn-lg">Generate Report</button>
+            </div>
+        </form>*@
 
 
-                @*<form method="get" action="/Announcement/Options">
-                <div class="col-md-6" id="first-row-btn">
-                    <button class="btn btn-primary btn-toolbar btn-lg">Announcement</button>
-                </div>
-            </form>*@
+            @*<form method="get" action="/Announcement/Options">
+            <div class="col-md-6" id="first-row-btn">
+                <button class="btn btn-primary btn-toolbar btn-lg">Announcement</button>
+            </div>
+        </form>*@
 
             <!--</div>
 
 
-            <div class="row">-->
-                @*<form method="get" action="/Cardstatus/UpdateOptions">
+    <div class="row">-->
+            @*<form method="get" action="/Cardstatus/UpdateOptions">
+            <div class="col-md-6" id="second-row-btn">
+                <button class="btn btn-primary btn-toolbar btn-lg">Update Card Status</button>
+            </div>
+        </form>*@
+
+            @*<form method="get" action="/Admin/EditAdmin">
+            @if (User.IsInRole("SuperAdmin"))
+            {
                 <div class="col-md-6" id="second-row-btn">
-                    <button class="btn btn-primary btn-toolbar btn-lg">Update Card Status</button>
+                    <button class="btn btn-primary btn-toolbar btn-lg">Edit Admin User</button>
                 </div>
-            </form>*@
-
-                <!--<form method="get" action="/Controller/Action">
-                    @if (User.IsInRole("SuperAdmin"))
-                    {
-                        <div class="col-md-6" id="second-row-btn">
-                            <button class="btn btn-primary btn-toolbar btn-lg">Edit Admin User</button>
-                        </div>
-                    }
-                </form>
-            </div>
+            }
+        </form>*@
 
 
-            <div class="row">
-                <form method="get" action="/Admin/EditStudent">
-                    <div class="col-md-6" id="third-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">Edit Student User</button>
-                    </div>
-                </form>
+            @*<div class="row">
+            <form method="get" action="/Admin/EditStudent">
+                <div class="col-md-6" id="third-row-btn">
+                    <button class="btn btn-primary btn-toolbar btn-lg">Edit Student User</button>
+                </div>
+            </form>
 
-                <form method="get" action="/Admin/QueryCardHistory">
-                    <div class="col-md-6" id="third-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">Query Card History</button>
-                    </div>
-                </form>
-            </div>
+            <form method="get" action="/Admin/QueryCardHistory">
+                <div class="col-md-6" id="third-row-btn">
+                    <button class="btn btn-primary btn-toolbar btn-lg">Query Card History</button>
+                </div>
+            </form>
+        </div>
 
-            <div class="row">
-                <form method="get" action="/Cardstatus/EditAutoDelete">
-                    <div class="col-md-6" id="forth-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">Edit Duration of Auto Delete</button>
-                    </div>
-                </form>
+        <div class="row">
+            <form method="get" action="/Cardstatus/EditAutoDelete">
+                <div class="col-md-6" id="forth-row-btn">
+                    <button class="btn btn-primary btn-toolbar btn-lg">Edit Duration of Auto Delete</button>
+                </div>
+            </form>
 
-            </div>-->
+        </div>*@
         </div>
     </section>
 </body>
