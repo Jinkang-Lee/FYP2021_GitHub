@@ -97,7 +97,7 @@ namespace FYP2021.Controllers
             HttpContext.SignOutAsync(AUTHSCHEME);
             if (Url.IsLocalUrl(returnUrl))
                 return Redirect(returnUrl);
-            return RedirectToAction(REDIRECT_ACTN, REDIRECT_CNTR);
+            return RedirectToAction("Index", "HomePage");
         }
 
         [AllowAnonymous]
