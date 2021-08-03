@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
-<html>
+﻿
+<!DOCTYPE html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Concession Card - Admin</title>
+    <meta name"viewport" content="width=device-width, initial" />
+    <mata http-equiv="X-US-Compatible" content="ie-edge" />
+
 
     <!-- style sheets references -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -15,20 +16,416 @@
     <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/lib/jquery/jquery.validate.min.js"></script>
     <script src="~/lib/jquery/jquery.validate.unobtrusive.min.js"></script>
-
+    <title>Step Progressbar</title>
 </head>
 
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .step_progressbar {
+    }
+
+    ul {
+        display: flex;
+        list-style: none;
+        align-items: center;
+        justify-content: space-between;
+        counter-reset: step;
+    }
+
+    li {
+        display: inline-block;
+        position: relative;
+        width: 33.33%;
+        text-align: center;
+        margin: 15px 0;
+    }
+
+        li:before {
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #bdbdbd;
+            line-height: 50px;
+            text-align: center;
+            content: counter(step);
+            counter-increment: step;
+            margin: 10px auto;
+            position: relative;
+            z-index: 2;
+            font-size: 20px;
+        }
+
+        li.active {
+            color: green;
+            font-weight: bold;
+        }
+
+        li:after {
+            content: "";
+            width: 100%;
+            height: 3px;
+            background-color: #bdbdbd;
+            position: absolute;
+            top: 35px;
+            left: -50%;
+            z-index: 1;
+        }
+
+        li:first-child:after {
+            content: none;
+        }
+
+        li.active + li:after {
+            background-color: green;
+        }
+
+        li.active:before {
+            background-color: green;
+            color: #fff;
+        }
+</style>
 
 <body>
+
     <!--RP Logo Area-->
     <section id="banner" class="rp-logo">
         <img src="~/images/RP_Logo.png" width="200" height="80" />
+    </section>
+    <form method="get" action="/StudentAccount/Logoff">
+        <div class="col-md-6" id="third-row-btn">
+            <button class="btn btn-primary btn-toolbar btn-lg">Logout</button>
+        </div>
+    </form>
+    <div class="step_progressbar">
+        <br />
+        <ul>
+
+            <li >Pending for TransitLink</li>
+            <li>Ready for Application</li>
+            <li>Card Ready</li>
+            <li>Card Dispatched</li>
+
+        </ul>
+    </div>
+
+    <div class="container" style="text-align: center">
+        <br />
+        <h2>
+            Your current card status is still updating. Please kindly wait.
+        </h2>
+        <br />
+    </div>
+    <br>
+    <br>
+</body>
+
+@*Explaination of the card status*@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/HomePage.css" />
+    <style>
+
+
+        body {
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+
+        h1 {
+            color: #333;
+            font-weight: 700;
+            margin-top: 125px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            line-height: 23px;
+        }
+
+        .process-wrapper {
+            margin: auto;
+            max-width: 1080px;
+        }
+
+        #progress-bar-container {
+            position: center;
+            width: 90%;
+            margin: auto;
+            height: 100px;
+            margin-top: 65px;
+        }
+
+            #progress-bar-container ul {
+                padding: 0;
+                margin: 0;
+                padding-top: 15px;
+                z-index: 9999;
+                position: absolute;
+                width: 80%;
+                margin-top: -40px
+            }
+
+            #progress-bar-container li:before {
+                content: " ";
+                display: block;
+                margin: auto;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                border: solid 2px;
+                transition: all ease 0.3s;
+                background: #CCFFBD; /*color of circle*/
+            }
+
+            #progress-bar-container li.active:before, #progress-bar-container li:hover:before {
+                border: solid 2px #fff;
+                background: #284E78; /*color when circle is active*/
+            }
+
+            #progress-bar-container li {
+                list-style: none;
+                float: left;
+                width: 20%;
+                text-align: center;
+                color: #346751;
+                text-transform: uppercase;
+                font-size: 11px;
+                cursor: pointer;
+                font-weight: 700;
+                transition: all ease 0.2s;
+                vertical-align: bottom;
+                height: 60px;
+                position: relative;
+            }
+
+                #progress-bar-container li .step-inner {
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0;
+                    font-size: 14px;
+                }
+
+                #progress-bar-container li.active, #progress-bar-container li:hover {
+                    color: #284E78;
+                }
+
+                #progress-bar-container li:after {
+                    content: " ";
+                    display: block;
+                    width: 6px;
+                    height: 6px;
+                    background: #333;
+                    left: 50%;
+                    margin: -5%;
+                    border: solid 7px #fff;
+                    border-radius: 50%;
+                    margin-top: 25px;
+                    box-shadow: 0 2px 13px -1px rgba(0,0,0,0.3);
+                    transition: all ease 0.2s;
+                }
+
+                #progress-bar-container li:hover:after {
+                    background: #555;
+                }
+
+                #progress-bar-container li.active:after {
+                    background: #207893;
+                }
+
+            #progress-bar-container #line {
+                width: 85%;
+                margin: auto;
+                background: #eee;
+                height: 6px;
+                position: relative;
+                left: 2%;
+                top: 57px;
+                z-index: 1;
+                border-radius: 50px;
+                transition: all ease 0.9s;
+            }
+
+            #progress-bar-container #line-progress {
+                content: " ";
+                width: 3%;
+                height: 100%;
+                background: #207893;
+                background: linear-gradient();
+                position: relative;
+                z-index: 2;
+                border-radius: 50px;
+                transition: all ease 0.9s;
+            }
+
+        #progress-content-section {
+            width: 90%;
+            margin: auto;
+            background: #F8EDE3; /*here for box*/
+            border-radius: 4px;
+            background-image: linear-gradient();
+        }
+
+            #progress-content-section .section-content {
+                padding: 30px 40px;
+                text-align: center;
+            }
+
+                #progress-content-section .section-content h2 {
+                    font-size: 17px;
+                    text-transform: uppercase;
+                    color: black;
+                    letter-spacing: 1px;
+                }
+
+                #progress-content-section .section-content p {
+                    font-size: 16px;
+                    line-height: 1.8em;
+                    color: black;
+                }
+
+            #progress-content-section .section-content {
+                display: none;
+                animation: FadeInUp 700ms ease 1;
+                animation-fill-mode: forwards;
+                transform: translateY(15px);
+                opacity: 0;
+            }
+
+                #progress-content-section .section-content.active {
+                    display: block;
+                }
+
+        @@keyframes FadeInUp {
+            0% {
+                transform: translateY(15px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0px);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="main-area">
+        <br>
+        <h1>Information About The Concession Card Status <br> <br> Click The Circles To Know More</h1>
+        <br>
+        <div class="process-wrapper">
+            <div id="progress-bar-container">
+                <ul>
+
+                    <li class="step step01 active"><div class="step-inner">PENDING FOR TRANSITLINK</div></li>
+                    <li class="step step02"><div class="step-inner">READY FOR APPLICATION</div></li>
+                    <li class="step step03"><div class="step-inner">CARD READY</div></li>
+                    <li class="step step04"><div class="step-inner">CARD DISPATCHED</div></li>
+                </ul>
+
+                <div id="line">
+                    <div id="line-progress"></div>
+                </div>
+            </div>
+
+            <div id="progress-content-section">
+                <div class="section-content discovery active">
+                    <h2>Pending for transitlink</h2>
+                    <p>
+                        Republc Polytechnic will sent the list of student's data to TransitLink. TransitLink will update the student data and will notify Republic Polytechnic when it will be updated. This will take about 3 to 5 working days.
+                    </p>
+                </div>
+
+                <div class="section-content strategy">
+                    <h2>Ready for Applicaiton</h2>
+                    <p>
+                        Students will apply and make payment for their Concession Card on the TransitLink website upon receiving Email from Republic Polytechnic to apply for the Concession Card. This will take 1 working day.
+                    </p>
+                </div>
+
+                <div class="section-content creative">
+                    <h2>Card Ready</h2>
+                    <p>
+                        TransitLink will print and arrange for delivery of the Concession Cards to Republic Polytechnic. Republic Polytechnic will receive and prepare all the Concession Cards for distribution. This will take 2 to 6 weeks.
+                    </p>
+                </div>
+
+                <div class="section-content production">
+                    <h2>Card Dispatched</h2>
+                    <p>
+                        Republic Polytechnic will notify the students to collect their Concession Card in batches. This will take 1 to 2 working days.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script>
+
+            $(".step").click(function () {
+                $(this).addClass("active").prevAll().addClass("active");
+                $(this).nextAll().removeClass("active");
+            });
+
+            $(".step01").click(function () {
+                $("#line-progress").css("width", "3%");
+                $(".discovery").addClass("active").siblings().removeClass("active");
+            });
+
+            $(".step02").click(function () {
+                $("#line-progress").css("width", "33%");
+                $(".strategy").addClass("active").siblings().removeClass("active");
+            });
+
+            $(".step03").click(function () {
+                $("#line-progress").css("width", "66%");
+                $(".creative").addClass("active").siblings().removeClass("active");
+            });
+
+            $(".step04").click(function () {
+                $("#line-progress").css("width", "100%");
+                $(".production").addClass("active").siblings().removeClass("active");
+            });
+
+        </script>
+    </section>
+
+    <!--Contact Us Area-->
+    <section class="contact-area">
+        <br>
+        <h1>Contact Us</h1>
+        <br>
+
+        <div class="container" style="text-align: center">
+            <br />
+            <h2>
+                How Can We Help?
+            </h2>
+            <p>You may reach us via our Email: RP_Concession_Card@outlook.com</p>
+            <p>Our team will get in contact with you as soon as possible.</p>
+            <br />
+            <p><b>Address:</b> 9 Woodlands Avenue 9, Singapore 738964</p>
+            <p><b>Tel:</b> 6510 3000 (8 am to 6 pm, Monday to Friday)</p>
+            <br />
+            <br />
+            <div class="col-md-12" id="left-image">
+                <img src="~/images/RPSchoolCampus.png" class="img-fluid" style="        height: auto;
+        width: auto;" />
+
+            </div>
+        </div>
 
     </section>
-   
-
-
-    <h1>CONGRATS STUDENT YOU HAVE LOGGED IN</h1>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Student>
+﻿@model IEnumerable<CSV>
 @{
     Layout = null;
 }
@@ -52,20 +52,20 @@
                                 <div class="card-body">
                                     <h5 class="card-title text-center"><b>CSV Update</b></h5>
                                     <input type="file" name="file" />
-                                    <p class="card-text">Ensure that file is in .csv format.<br>Header needs to be in the following format below.<br>StudEmail, StudName, CardStatus, CardStatusDate</p>
+                                    <p class="card-text">Ensure that file is in .csv format.<br>Header needs to be in the following format below.<br>StudEmail, StudName, CardStatus, CardStatusDate<br><br>Card Status needs to be in the following format<br>Pending for TransitLink, Ready for Application, Card Ready, Card Dispatched</p>
                                     <div class="form-group">
                                         <input type="submit" style="margin-left: 200px;" class="btn btn-lg btn-primary" value="Upload" />
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="offset-sm-1 " id="top-image" style="margin-top: 30px;">
-                                    <img src="~/images/Addfiles.png" class="img-fluid" style="height:200px; width: auto;" />
-                                </div>
+                            <div class="offset-sm-1 " id="top-image" style="margin-top: 50px;">
+                                <img src="~/images/Addfiles.png" class="img-fluid" style="height:200px; width: auto;" />
+                            </div>
 
                             @*<div class="offset-sm-1 " id="top-image" style="margin-top: 50px;">
-                                <img src="~/images/Addfile.png" class="img-fluid" style="height:200px; width: auto;" />
-                            </div>*@
+                                    <img src="~/images/Addfile.png" class="img-fluid" style="height:200px; width: auto;" />
+                                </div>*@
 
                         </div>
                     </div>
@@ -85,6 +85,13 @@
 
 
     </form>
+    <div class="row">
+        <div>
+            <form action="/Cardstatus/ListCard" class="offset-sm-8">
+                <button class="btn btn-primary btn-toolbar btn-lg">Back</button>
+            </form>
+        </div>
+    </div>
 
     @if (Model.Count() > 0)
     {
@@ -96,7 +103,7 @@
                 <td>Card Status</td>
                 <td>Date</td>
             </tr>
-            @foreach (Student student in Model)
+            @foreach (CSV student in Model)
             {
 
                 <tr>

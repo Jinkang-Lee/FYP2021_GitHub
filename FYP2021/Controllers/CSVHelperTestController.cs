@@ -17,10 +17,9 @@ namespace FYP2021.Controllers
     public class CSVHelperTestController : Controller
     {
         [HttpGet]
-        public IActionResult IndexTest(List<Student> students = null)
+        public IActionResult IndexTest(List<CSV> students = null)
         {
-            students = students == null ? new List<Student>() : students;
-
+            students = students == null ? new List<CSV>() : students;
             return View(students);
         }
 
@@ -63,9 +62,9 @@ namespace FYP2021.Controllers
 
         }
 
-        public List<Student> GetStudentList(string fileName)
+        public List<CSV> GetStudentList(string fileName)
         {
-            List<Student> students = new List<Student>();
+            List<CSV> students = new List<CSV>();
 
             #region Read CSV
             var path = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\files"}" + "\\" + fileName;
@@ -78,12 +77,14 @@ namespace FYP2021.Controllers
                 while (csv.Read())
                 {
 
-                    var student = csv.GetRecord<Student>();
+                    var student = csv.GetRecord<CSV>();
 
                     students.Add(student);
 
                     string cardstatus = student.CardStatus;
                     string studentemail = student.StudEmail;
+                    
+
                     //string date = csv.GetRecord(student.StudEmail);
                     //DateTime cardstatusdate = DateTime.Parse(csv.GetField(5));
 
@@ -92,13 +93,13 @@ namespace FYP2021.Controllers
                     //table.Columns.Add(studentemail);
                     //table.Columns.Add(date); 
 
+
                     //foreach(Student st in students)
                     //{
-                    List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student WHERE student_email = '{0}'", studentemail);
+                    List<CSV> list = DBUtl.GetList<CSV>("SELECT * FROM Student WHERE student_email = '{0}'", studentemail);
 
                     if (list.Count > 0)
                     {
-
                         string update = @"UPDATE Student SET card_status='{0}' WHERE student_email ='{1}'";
 
                         int result = DBUtl.ExecSQL(update, cardstatus, student.StudEmail);
@@ -152,9 +153,10 @@ namespace FYP2021.Controllers
 
             }
         }
-            #endregion
+        #endregion
 
 
-        }
+    }
 
 }
+

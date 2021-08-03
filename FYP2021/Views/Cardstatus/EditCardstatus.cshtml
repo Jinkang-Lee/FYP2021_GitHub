@@ -89,6 +89,9 @@
                         <input type="submit" class="btn btn-lg btn-primary" value="Update Status" />
                     </div>
                 </div>
+
+
+
                 @if (ViewData["Message"] != null)
                 {
                     <div class="form-group row">
@@ -100,9 +103,18 @@
                     </div>
                 }
             </form>
+
+
+
         </div>
 
-
+        <div class="row">
+            <div>
+                <form action="/Cardstatus/ListCard" class="offset-sm-8">
+                    <button class="btn btn-primary btn-toolbar btn-lg">Back</button>
+                </form>
+            </div>
+        </div>
 
 
 

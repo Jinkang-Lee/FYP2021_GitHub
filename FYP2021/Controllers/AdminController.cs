@@ -29,7 +29,23 @@ namespace FYP2021.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            DataTable list = DBUtl.GetTable("SELECT * FROM Student");
+
+            foreach (DataRow r in list.Rows)
+            {
+                string dateInString = r["cardstatus_date"].ToString();
+
+
+                DateTime startDate = DateTime.Parse(dateInString);
+                DateTime expiryDate = startDate.AddDays(90);
+
+                if (DateTime.Now > expiryDate)
+                {
+                    string delete = ("DELETE FROM Student WHERE student_id={0}");
+                    DBUtl.ExecSQL(delete, r["student_id"]);
+                }
+            }
+                    return View();
         }
 
 
