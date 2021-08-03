@@ -128,6 +128,7 @@
                         This website allows both students and admins of Republic Polytechnic to check and track card status with ease.
                     </p>
                     <p>Click either "Student" or "Admin" to begin!</p>
+                    <p>Alternatively, you can also click on "Telegram Chatbot" to use telegram to check your card status!</p>
 
 
 
@@ -144,19 +145,22 @@
                 <!--Buttons for Student and Admin login-->
                 <form method="get" action="/StudentAccount/GetOTP">
 
-                    <div class="col-sm-3" id="student-button">
+                    <div class="col-sm-6" id="student-button">
                         <button class="btn btn-primary btn-toolbar btn-lg" type="submit">Student</button>
                     </div>
                 </form>
 
                 <form method="get" action="/AdminAccount/Login">
-                    <div class="col-sm-3" id="admin-button">
+                    <div class="col-sm-6" id="admin-button">
                         <button class="btn btn-primary btn-toolbar btn-lg" type="submit">Admin</button>
                     </div>
                 </form>
 
+                
+            </div>
+            <div class="row">
                 <form method="get" action="https://t.me/RPConscard_bot">
-                    <div class="col-sm-3" id="admin-button">
+                    <div class="offset-sm-9 col-sm-3" id="admin-button" style="margin-top: 20px;">
                         <button class="btn btn-primary btn-toolbar btn-lg" type="submit">Telegram Chatbot</button>
                     </div>
                 </form>
