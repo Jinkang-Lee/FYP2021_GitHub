@@ -32,7 +32,7 @@
 
     <section id="banner" class="button-area">
 
-        <h1 class="text-center"><b>Admin Main Menu</b></h1>
+        <h1 class="text-center" style="color: white;"><b>Admin Main Menu</b></h1>
         <div class="container" style="height: 700px;">
 
             <div class="row">
@@ -123,6 +123,26 @@
                                 </form>
                             </div>
                         </div>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Super_Admin"))
+                            {
+                                <div class="card col-md-4" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center"><b>Query Card History</b></h5>
+                                        <p class="card-text">Only Super Admins are allowed to access this function</p>
+                                        <form method="get" action="/Admin/QueryCardHistory">
+                                            <div class="col-md-6" id="third-row-btn">
+                                                <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px;">Edit Admins</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+
 
                     </div>
                 </div>
