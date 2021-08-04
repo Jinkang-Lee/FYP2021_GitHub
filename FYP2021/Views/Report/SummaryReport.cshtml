@@ -70,13 +70,14 @@
             <table style="background-color: lightgray" ; id="ReportTable" class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col"> Student ID </th>
+                        <th scope="col"> Student Email </th>
                         <th scope="col"> Student Name </th>
                         <th scope="col"> Card Status </th>
                         <th scope="col"> Start Date </th>
 
                     </tr>
                 </thead>
+
                 <tbody>
                     @foreach (DataRow row in Model)
                     {
@@ -117,7 +118,7 @@
                         </div>
                     </form>
 
-                    <form method="post" asp-controller="Report" asp-action="ReportToCSV">
+                    <form method="get" asp-controller="Report" asp-action="ReportToCSV">
                         <div class="col-md-6" id="first-row-btn">
                             <button class="btn btn-primary btn-toolbar btn-lg"> Download as CSV </button>
                         </div>
@@ -125,6 +126,7 @@
                 </div>
             </div>
         </section>
+
         <div class="container" style="align-content: end" ;>
 
             <a class="bottomNav" onclick="history.go(-1); return false;" style="color: black" href="#">Back</a><br />

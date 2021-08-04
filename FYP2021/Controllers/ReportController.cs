@@ -14,7 +14,7 @@ namespace FYP2021.Controllers
         public IActionResult ReportViewAsPDF()
         {
             //Take entry from database
-            List<Student> list = DBUtl.GetList<Student>("SELECT student_id,student_email,student_name,card_status,cardstatus_date FROM Students");
+            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student");
 
             //Manual Entry
             List<Student> list2 = new List<Student>
@@ -28,8 +28,8 @@ namespace FYP2021.Controllers
 
             //DataTable dt = DBUtl.GetTable("SELECT * FROM Student");
 
-            if (list != null)
-                return new ViewAsPdf("ReportViewAsPDF", list)
+            if (list2 != null)
+                return new ViewAsPdf("ReportViewAsPDF", list2)
                 {
                     PageSize = Rotativa.AspNetCore.Options.Size.A4,
                     PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape
@@ -55,11 +55,12 @@ namespace FYP2021.Controllers
         public IActionResult ReportToCSV()
         {
             //Entry from database
-            List<Student> list = DBUtl.GetList<Student>("SELECT student_id,student_email,student_name,card_status,cardstatus_date FROM Students");
+            List<Student> list = DBUtl.GetList<Student>("SELECT * FROM Student");
 
             var builder = new StringBuilder();
             builder.AppendLine("Id,StudentEmail,StudentName,CardStatus,CardStatusDate");
-            foreach (var student in list)
+
+            foreach (var student in list2)
             {
                 builder.AppendLine($"{student.Id},{student.StudEmail},{student.StudName},{student.CardStatus},{student.CardStatusDate}");
 
