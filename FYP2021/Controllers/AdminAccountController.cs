@@ -236,6 +236,7 @@ namespace FYP2021.Controllers
         }
 
         //ChangePassword HttpPost
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult ChangePassword(string email, string password)
         {
