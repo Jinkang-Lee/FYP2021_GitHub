@@ -106,10 +106,10 @@
                     <td>@row["cardStatus_date"]</td>
                     <td>@row["cardStatus_date"]</td>
                     <td>@row["cardStatus_date"]</td>*@
-                        <td>@String.Format("{0:yyyy-MM-dd}", @row["pending_date"])</td>
-                        <td>@String.Format("{0:yyyy-MM-dd}", @row["readyapplication_date"])</td>
-                        <td>@String.Format("{0:yyyy-MM-dd}", @row["cardready_date"])</td>
-                        <td>@String.Format("{0:yyyy-MM-dd}", @row["carddispatched_date"])</td>
+                        <td>@String.Format("{0:dd-MM-yyyy}", @row["pending_date"])</td>
+                        <td>@String.Format("{0:dd-MM-yyyy}", @row["readyapplication_date"])</td>
+                        <td>@String.Format("{0:dd-MM-yyyy}", @row["cardready_date"])</td>
+                        <td>@String.Format("{0:dd-MM-yyyy}", @row["carddispatched_date"])</td>
                     </tr>
                 }
             </tbody>
