@@ -137,7 +137,7 @@ namespace FYP2021.Controllers
         //HTTP POST FOR EDITING STUDENT IN THE LIST
         [HttpPost]
         [Authorize]
-        public IActionResult ListEditStudentPost(Student student, IFormCollection form)
+        public IActionResult ListEditStudentPost(Student student/*, IFormCollection form*/)
         {
 
             if (!ModelState.IsValid)

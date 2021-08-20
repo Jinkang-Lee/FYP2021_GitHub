@@ -5,11 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data;
 using FYP2021.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FYP2021.Controllers
 {
     public class HomePageController : Controller
     {
+        
         public IActionResult Index()
         {
             string sql = "SELECT * FROM Announcement";

@@ -35,31 +35,51 @@
         <h1 class="text-center" style="color: white;"><b>Admin Main Menu</b></h1>
         <div class="container" style="height: 700px;">
 
+            @*Logout Button*@
+            <div class="row">
+                <div class="col-md-12 text-right" id="third-row-btn">
+                    <form method="get" action="/AdminAccount/Logoff">
+
+                        <button class="btn btn-primary btn-toolbar btn-lg offset-md-10">Logout</button>
+
+                    </form>
+                </div>
+            </div>
+
+
             <div class="row">
                 <div class="col-md-12" style="margin-top: 80px; margin-left: 150px;">
                     <div class="card-deck text-center">
-                        <div class="card col-md-4" style="width: 18rem;">
+                        <div class="card text-white bg-primary col-md-4" style="width: 18rem;">
                             <div class="card-body">
-                                <h5 class="card-title text-center"><b>Generate Report</b></h5>
-                                <p class="card-text">Click here to generate report about student card details and information.</p>
-                                @*<img src="~/images/analytics.png" alt="Report" width="50" height="60">*@
-                                <form method="get" action="/Report/ChooseReport">
-                                    <div class="col-md-6" id="first-row-btn">
-                                        <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px; margin-top: 10px;">Generate Report</button>
-                                    </div>
-                                </form>
+
+                                <a class="card-block stretched-link " href="/Report/ChooseReport" style="color:white; text-decoration: none; ">
+                                    <h5 class="card-title text-center"><b>Generate Report</b></h5>
+                                    <p class="card-text">Click here to generate report about student card details and information.</p>
+                                    @*<img src="~/images/analytics.png" alt="Report" width="50" height="60">*@
+                                    @*<form method="get" action="/Report/ChooseReport">
+                                        <div class="col-md-6" id="first-row-btn">*@
+                                    @*<button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px; margin-top: 10px;">Generate Report</button>*@
+                                    @*</div>
+                                        </form>*@
+                                </a>
+                                
                             </div>
                         </div>
 
-                        <div class="card col-md-4" style="width: 18rem;">
+                        <div class="card text-white bg-success col-md-4" style="width: 18rem;">
                             <div class="card-body">
-                                <h5 class="card-title text-center"><b>Announcement</b></h5>
-                                <p class="card-text">Click here to view, create new, update and delete existing announcements.</p>
-                                <form method="get" action="/Announcement/Options">
-                                    <div class="col-md-6" id="first-row-btn">
-                                        <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px;">Announcement</button>
-                                    </div>
-                                </form>
+
+                                <a class="card-block stretched-link " href="/Announcement/Options" style="color:white; text-decoration: none; ">
+                                    <h5 class="card-title text-center"><b>Announcement</b></h5>
+                                    <p class="card-text">Click here to view, create new, update and delete existing announcements.</p>
+                                    @*<form method="get" action="/Announcement/Options">
+                                        <div class="col-md-6" id="first-row-btn">
+                                            <button class="btn btn-success btn-toolbar btn-lg" style="margin-left: 40px;">Announcement</button>
+                                        </div>
+                                    </form>*@
+                                </a>
+                                    
                             </div>
                         </div>
 
@@ -73,33 +93,41 @@
                 <div class="col-md-12" style="margin-top: 20px; margin-left: 150px;">
                     <div class="card-deck text-center">
 
-                        <div class="card col-md-4" style="width: 18rem;">
+                        <div class="card text-white bg-danger col-md-4" style="width: 18rem;">
                             <div class="card-body">
-                                <h5 class="card-title text-center"><b>Update Card Status</b></h5>
-                                <p class="card-text">Click here to update the card status of the students' concession card</p>
-                                <form method="get" action="/Cardstatus/UpdateOptions">
-                                    <div class="col-md-6" id="second-row-btn">
-                                        <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px;">Update Card Status</button>
-                                    </div>
-                                </form>
+
+                                <a class="card-block stretched-link " href="/Cardstatus/UpdateOptions" style="color:white; text-decoration: none; ">
+                                    <h5 class="card-title text-center"><b>Update Card Status</b></h5>
+                                    <p class="card-text">Click here to update the card status of the students' concession card</p>
+                                    @*<form method="get" action="/Cardstatus/UpdateOptions">
+                                        <div class="col-md-6" id="second-row-btn">
+                                            <button class="btn btn-danger btn-toolbar btn-lg" style="margin-left: 20px;">Update Card Status</button>
+                                        </div>
+                                    </form>*@
+                                </a>
+                                    
                             </div>
                         </div>
 
 
 
-                        <div class="card col-md-4" style="width: 18rem;">
+                        <div class="card text-white bg-info col-md-4" style="width: 18rem;">
                             <div class="card-body">
-                                <h5 class="card-title text-center"><b>Edit Student User</b></h5>
-                                <p class="card-text">Click here to Create New students, List students and Edit student information.</p>
-                                <form method="get" action="/Admin/EditStudent">
-                                    <div class="col-md-6" id="third-row-btn">
-                                        <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px;">Edit Student User</button>
-                                    </div>
-                                </form>
+
+                                <a class="card-block stretched-link " href="/Admin/EditStudent" style="color:white; text-decoration: none; ">
+                                    <h5 class="card-title text-center"><b>Edit Student User</b></h5>
+                                    <p class="card-text">Click here to Create New students, List students and Edit student information.</p>
+                                    @*<form method="get" action="/Admin/EditStudent">
+                                        <div class="col-md-6" id="third-row-btn">
+                                            <button class="btn btn-info btn-toolbar btn-lg" style="margin-left: 30px;">Edit Student User</button>
+                                        </div>
+                                    </form>*@
+                                </a>
+                                    
                             </div>
                         </div>
 
-                        
+
 
 
                     </div>
@@ -112,52 +140,37 @@
             <div class="row">
                 <div class="col-md-12" style="margin-top: 20px; margin-left: 150px;">
                     <div class="card-deck text-center">
-                        <div class="card col-md-4" style="width: 18rem;">
+                        <div class="card text-white bg-warning col-md-4" style="width: 18rem;">
                             <div class="card-body">
-                                <h5 class="card-title text-center"><b>Query Card History</b></h5>
-                                <p class="card-text">Click here to display and query the student cocession card history.</p>
-                                <form method="get" action="/Admin/QueryCardHistory">
-                                    <div class="col-md-6" id="third-row-btn">
-                                        <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px;">Query Card History</button>
-                                    </div>
-                                </form>
+
+                                <a class="card-block stretched-link " href="/Admin/QueryCardHistory" style="color:black; text-decoration: none; ">
+                                    <h5 class="card-title text-center"><b>Query Card History</b></h5>
+                                    <p class="card-text">Click here to display and query the student cocession card history.</p>
+                                    @*<form method="get" action="/Admin/QueryCardHistory">
+                                        <div class="col-md-6" id="third-row-btn">
+                                            <button class="btn btn-warning btn-toolbar btn-lg" style="margin-left: 20px;">Query Card History</button>
+                                        </div>
+                                    </form>*@
+                                </a>
+                                    
                             </div>
                         </div>
 
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            @if (User.IsInRole("Super_Admin"))
-                            {
-                                <div class="card col-md-4" style="width: 18rem;">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center"><b>Query Card History</b></h5>
-                                        <p class="card-text">Only Super Admins are allowed to access this function</p>
-                                        <form method="get" action="/Admin/QueryCardHistory">
-                                            <div class="col-md-6" id="third-row-btn">
-                                                <button class="btn btn-primary btn-toolbar btn-lg" style="margin-left: 40px;">Edit Admins</button>
-                                            </div>
-                                        </form>
+                        <div class="card col-md-4" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><b>Coming Soon!</b></h5>
+                                <p class="card-text">We are coming up with a new feature, please be patient</p>
+
+                                    <div class="col-md-6" id="third-row-btn">
+                                        <button type="button" class="btn btn-dark btn-toolbar btn-lg disabled" style="margin-left: 20px;">Under Maintenance</button>
                                     </div>
-                                </div>
-                            }
-                        }
 
-
+                            </div>
+                        </div>
 
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <form method="get" action="/AdminAccount/Logoff">
-                    <div class="col-md-6" id="third-row-btn">
-                        <button class="btn btn-primary btn-toolbar btn-lg">Logout</button>
-                    </div>
-                </form>
-            </div>
-
-
-
 
 
 
